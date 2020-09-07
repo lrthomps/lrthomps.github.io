@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+  	<title>Framework Free</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+      <script type="text/x-mathjax-config">
+ MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+    
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+      
+    <header class="container">
+      <div id="dhead" class="container">
+        <div class="row">
+          <div id="headlinks">
+            <script src="/assets/js/header.js"></script>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="container">
+
+<small>7 September 2020</small>
+<div id="title">
+<h1>Site overhaul to get rid of Jekyll</h1>
+<h2>...and get things working again!</h2>
+
+<p class="view">by Lara Thompson</p>
+</div>
+
+
+<p>I had great intentions last summer to add more regular posts: more paper summaries, worked through ideas, etc. But [excuses]. Fast forward to now, I have notes to put up but have since switched entirely from mac to Ubuntu, discovered a far better app to edit markdown with math, <a href="https://www.typora.io/">Typora</a> (not freeware but so good I&#39;ll pay with it&#39;s out of beta), and I can&#39;t get the new post to render properly (some strange auto-scaling was happening).</p>
+<p>After I wasted over nearly two days debugging Jekyll (cause stuff happened outside of my template files), I gave up. In a couple of hours, I was rid of Jekyll, rid of frameworks and down to raw html+css. Gotta say, html5 once you give in to it, is damn nice compared to circa 2004 wed development (my work is still <a href="https://pitp.phas.ubc.ca/">live</a>, don&#39;t look). </p>
+<p>A few  things to share to anyone who&#39;s thinking of doing the same:</p>
+<ul>
+<li><p>before you do, keep in mind it worked for me because</p>
+<ul>
+<li>I know html+css but not Jekyll</li>
+<li>I don&#39;t need a real blog (with feed, commenting, auto-generated file structure etc); though all I&#39;m missing is the feed.xml file</li>
+
+</ul>
+</li>
+<li><p>I copied code snippets from other sites, kept some css from the Jekyll minima theme, but my goal was to strip it back to the simplest it could be</p>
+</li>
+<li><p><a href="https://gist.github.com/">gist</a> for syntax highlighting of code, and let Github host and render</p>
+</li>
+<li><p>mathjax for latex math: I try to keep formulas from going too wide but if they must I choose to let them run over the page edge on small devices. It&#39;s better than squinting at scaled down math</p>
+</li>
+<li><p>colours: again, simple is best. Think of all the wonderful people that use a dark mode: does half your content disappear? It seems the majority of pages still have a white(ish) background, so I went with that too: it means the simplest dark modes that invert colours works for my site (e.g. Firefox iOS app).</p>
+</li>
+
+</ul>
+<p>My favourite find to convert a picture of myself that didn&#39;t feel so [...]: cartoonize <a href='https://github.com/SystemErrorWang/White-box-Cartoonization'>project/paper</a> + <a href='https://cartoonize-lkqov62dia-de.a.run.app/'>demo</a>. It&#39;s another style transfer GAN, predominantly trained on <code>scenery images are collected from Shinkai Makoto, Miyazaki Hayao and Hosoda Mamoru films</code>. The cityscapes are the best, especially those with clouds. I used a picture from the approach on Mount Rainier: love what it did to the rocks, grass, trees and background hills!</p>
+
+
+<small>tags: <em>other</em></small>
+
+  
+    </section>
+    <p class="hosted">Hosted on GitHub Pages.</p>
+  </body>
+</html>

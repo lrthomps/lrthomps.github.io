@@ -272,13 +272,10 @@ section img {
 
 
 #headlinks {
+    margin-top: 30px;
     padding-left: 20px;
     grid-column: span 12;
     text-align: right;
-}
-
-#headlinks h2 {
-    font-style: normal;
 }
 
 
