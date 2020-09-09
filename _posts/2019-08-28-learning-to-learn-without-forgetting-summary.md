@@ -1,44 +1,14 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <title>L2LwoF summary</title>
+---
+layout: post
+use_math: true
+title:  "Learning to learn without forgetting: a summary"
+tags: ["paper summary", "data science"]
+date:   2019-08-28
+summary: Bullet-point form summary of this excellent paper. Contributions include a memory store of past examples; balances learning of new updates with recall of these stored examples; continual (online) learning in supervised and reinforcement learning settings.
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    
-      <script type="text/x-mathjax-config">
- MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-</script>
-<script type="text/javascript"
-        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-    
+---
 
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>   
-    <header class="container">
-      <div id="dhead" class="container">
-        <div class="row">
-          <div id="headlinks">
-            <script src="/assets/js/header.js"></script>
-          </div>
-        </div>
-      </div>
-    </header>
-    <section class="container">
-
-<small>28 August 2019</small>
-<div id="title">
-<h1>Learning to learn without forgetting: a summary</h1>
-
-<p class="view">by Lara Thompson</p>
-</div>
 
 <p>Matthew Riemer et. al. <a href="https://arxiv.org/abs/1810.11910">Learning to Learn Without Forgetting by Maximizing Transfer and Minimizing Interference.</a> <em>ICLR</em>, 2019.</p>
 <ul>
@@ -118,14 +88,3 @@ Findings:</li>
 </ul>
 </li>
 </ul>
-
-
-<small>tags: <em>paper summary</em> - <em>data science</em></small>
-
-
-    </section>
-
-    <p class="hosted">Hosted on GitHub Pages.</p>
- 
-  </body>
-</html>

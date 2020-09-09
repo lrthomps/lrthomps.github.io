@@ -1,50 +1,17 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <title>Uncertain OLS</title>
+---
+layout: post
+use_math: true
+title:  "Linear Regression with Uncertainty"
+tags: ["tutorial", "data science"]
+date:   2020-09-01
+summary: Everyone uses linear regression whether they admit it or not. Here I review the math behind it with estimates of uncertainty. 
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    
-      <script type="text/x-mathjax-config">
- MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-</script>
-<script type="text/javascript"
-        src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-    
-
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-      
-    <header class="container">
-      <div id="dhead" class="container">
-        <div class="row">
-          <div id="headlinks">
-            <script src="/assets/js/header.js"></script>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <section class="container">
-
-<small>1 September 2020</small>
-<div id="title">
-<h1>Linear Regression with Uncertainty</h1>
-
-<p class="view">by Lara Thompson</p>
-</div>
+---
 
 <p>Linear regression is probably the least sexy machine learning model and yet it’s a veritable playground for learning. I think every data scientist has used fit at least once and yet how many know how to get per prediction estimates of uncertainty? I didn't before I had to do a code review for the stats engine behind Explain Data in Tableau. Now I do and, to record my notes for future me and others, to note the limitations, here we go!</p>
 
-<p><img src="/assets/images/rl_error.png" style="" /></p>
+<p><img src="{{ "/assets/images/rl_error.png" | relative_url }}" style="" /></p>
 
 <script src="https://gist.github.com/lrthomps/2ea956be57a27454c52930af3f575b3d.js"></script>
 
@@ -190,12 +157,3 @@ $$</p>
 <p>K. P. Murphy.  <em>Machine Learning: a Probabilistic Perspective</em>. The MIT Press, 2012.</p>
 
 <p>T. Hastie, R. Tibshirani, and J. Friedman. <em>The Elements of Statistical Learning</em>. Springer, 2009.</p>
-
-
-<small>tags: <em>tutorial</em> - <em>data science</em></small>
-
-  
-    </section>
-    <p class="hosted">Hosted on GitHub Pages.</p>
-  </body>
-</html>
