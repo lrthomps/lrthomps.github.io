@@ -11,7 +11,7 @@ image: "/assets/images/rl_error.png"
 
 <p>Linear regression is probably the least sexy machine learning model and yet it’s a veritable playground for learning. I think every data scientist has used fit at least once and yet how many know how to get per prediction estimates of uncertainty? I didn't before I had to do a code review for the stats engine behind Explain Data in Tableau. Now I do and, to record my notes for future me and others, to note the limitations, here we go!</p>
 
-<p><img src="{{ "/assets/images/rl_error.png" | relative_url }}" style="" /></p>
+<p><img src="{{ "/assets/images/rl_error.png" | absolute_url }}" style="" /></p>
 
 <script src="https://gist.github.com/lrthomps/2ea956be57a27454c52930af3f575b3d.js"></script>
 
