@@ -3,7 +3,7 @@ name: Lara Thompson
 description: Yet another physicist doing ML.
 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://lrthomps.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 repository: lrthomps/lrthomps.github.io
 
 github_username:  lrthomps
