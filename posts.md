@@ -12,5 +12,6 @@ layout: page
   {% endfor %}
 </ul>
 
-<a href="{{ "feed.xml" | relative_url }}" title="posts">
-            <img src="{{ 'assets/images/rss-orange.png' | relative_url }}" height=25px></a>
+<a href="{{ "feed.xml" | relative_url }}" type='application/atom+xml'>
+	<img src="{{ 'assets/images/rss-orange.png' | relative_url }}" height=25px>
+</a>

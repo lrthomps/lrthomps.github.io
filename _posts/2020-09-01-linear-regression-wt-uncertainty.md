@@ -5,7 +5,7 @@ title:  "Linear Regression with Uncertainty"
 tags: ["tutorial", "data science"]
 date:   2020-09-01
 summary: Everyone uses linear regression whether they admit it or not. Here I review the math behind it with estimates of uncertainty. 
-
+image: "/assets/images/rl_error.png"
 
 ---
 
