@@ -278,6 +278,18 @@ section img {
     text-align: right;
 }
 
+.footnotes div {
+    border-top: thick solid black;
+
+}
+.footnotes ol {
+    padding-top: 50px;
+    padding-left: 0;
+   
+}
+.footnotes li {
+    font-size: 13px; color: #666; 
+}
 
 /*
 
