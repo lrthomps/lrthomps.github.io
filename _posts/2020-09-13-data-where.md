@@ -16,17 +16,7 @@ Ultimately I have a taxonomy problem: divide the data by datatype, domain or bes
 
 ## Curated Datasets
 
-A breed all their own: they're uniform, tidy, split into training/validation/test sets, (over-)used to pit algorithms against each other (some curated and shared for that purpose but aren't adopted as readily). Older benchmarks are good for starting out or for hard variants of the problem statement (eg. one-shot!). 
-
-### Various
-
-* [Penn ML Benchmarks](https://epistasislab.github.io/penn-ml-benchmarks/) for supervised learning algorithms
-* [AutoML/AutoDL](https://automl.chalearn.org/) competitions datasets dating back to 2016; Springer has [open access to the book](https://www.automl.org/book/) with a chapter reviewing the challenge
-* [NIPS 2003 workshop on feature extraction](http://clopinet.com/isabelle/Projects/NIPS2003/) (in case you want to compare against 11.9 in the Elements)
-* [OKCupid dataset](https://openpsych.net/forum/showthread.php?tid=279) N=68,371, 2,620 variables from the dating site OKCupid
-* [Common Crawl](https://commoncrawl.org/the-data/) with over 8yrs of web
-* [GDELT Project](https://www.gdeltproject.org/) "watching our world unfold", or (less creepy) "the GDELT Project monitors the world's broadcast, print, and web news from nearly every corner of every country in over 100 languages and identifies the people, locations, organizations, themes, sources, emotions, counts, quotes, images and events driving our global society every second of every day, creating a free open platform for computing on the entire world."
-* [CS bibliography](https://dblp.uni-trier.de/) has >5m publications, use as a graph, for NLP/topics, for time series analysis
+A breed all their own: they're uniform, tidy, split into training/validation/test sets, (over-)used to pit algorithms against each other (some curated and shared for that purpose but aren't adopted as readily). Older benchmarks are good for starting out or for hard variants of the problem statement (eg. one-shot!). In no particular order:
 
 ### Images
 
@@ -69,6 +59,16 @@ A breed all their own: they're uniform, tidy, split into training/validation/tes
 * [GroupLens](https://grouplens.org/datasets/) links to various (Book-Crossing is gone?)
 
 
+### Various
+
+* [Penn ML Benchmarks](https://epistasislab.github.io/penn-ml-benchmarks/) for supervised learning algorithms
+* [AutoML/AutoDL](https://automl.chalearn.org/) competitions datasets dating back to 2016; Springer has [open access to the book](https://www.automl.org/book/) with a chapter reviewing the challenge
+* [NIPS 2003 workshop on feature extraction](http://clopinet.com/isabelle/Projects/NIPS2003/) (in case you want to compare against 11.9 in the Elements)
+* [OKCupid dataset](https://openpsych.net/forum/showthread.php?tid=279) N=68,371, 2,620 variables from the dating site OKCupid
+* [Common Crawl](https://commoncrawl.org/the-data/) with over 8yrs of web
+* [GDELT Project](https://www.gdeltproject.org/) "watching our world unfold", or (less creepy) "the GDELT Project monitors the world's broadcast, print, and web news from nearly every corner of every country in over 100 languages and identifies the people, locations, organizations, themes, sources, emotions, counts, quotes, images and events driving our global society every second of every day, creating a free open platform for computing on the entire world."
+* [CS bibliography](https://dblp.uni-trier.de/) has >5m publications, use as a graph, for NLP/topics, for time series analysis
+
 
 ### Outlier/Anomaly/Event Detection 
 
@@ -81,19 +81,10 @@ A breed all their own: they're uniform, tidy, split into training/validation/tes
 * *[MAVEN: A massive general domain event detection dataset](https://arxiv.org/abs/2004.13590)*, coming soon but apparently you can write the authors for early access.
 
 
-### Audio
-* [Free Spoken Digit Dataset](https://github.com/Jakobovski/free-spoken-digit-dataset) = spoken MNIST
-* [Free Music Archive](https://github.com/mdeff/fma) ~900GB/343 days of Creative-Commons-licensed audio from 106,574 tracks from 16,341 artists and 14,854 albums, arranged in a hierarchical taxonomy of 161 genres
-* [Million Song Dataset](https://labrosa.ee.columbia.edu/millionsong/) audio features and metadata of ~1m popular music tracks
-* [LibriSpeech](http://www.openslr.org/12/) ~1k hrs of audiobooks from LibriVox
-* [VoxCeleb](http://www.robots.ox.ac.uk/~vgg/data/voxceleb/) ~1m utterances by ~7k celebrities, >2k hrs
-* Spotify [OpenMic](https://github.com/cosmir/openmic-2018) and [TREC](https://podcastsdataset.byspotify.com/)
-
-and **Video**: [AViD](https://github.com/piergiaj/AViD) collected videos with a creative-commons license shared as a static dataset
-
-
 ### One/Few Shot
+* miniImageNet was introduced in *Matching Networks for One Shot Learning*; *Meta-Transfer Learning for Few-Shot Learning* added tieredImageNet and Fewshot-CIFAR10 both available to [downloaded directly](https://mtl.yyliu.net/download/); also see mini on [Kaggle](https://www.kaggle.com/c/hw2-few-shot-learning/) 
 * [Meta-Dataset](https://github.com/google-research/meta-dataset) assembles various datasets into one benchmark
+* [Chollet's ARC dataset](https://github.com/fchollet/ARC") this one is akin to searching for patterns in [$\pi$](https://en.wikipedia.org/wiki/Pi_(film))
 
 
 ### Graphs
@@ -109,6 +100,17 @@ and **Video**: [AViD](https://github.com/piergiaj/AViD) collected videos with a 
 Both from the universe of Max Tegmark:
 * [AI Feynman](https://space.mit.edu/home/tegmark/aifeynman.html) all eqns from the Feynman lectures, includes bonus eqns
 * [AI Physicist](https://space.mit.edu/home/tegmark/aiphysicist.html) considers different forces per region of space;
+
+### Audio
+* [Free Spoken Digit Dataset](https://github.com/Jakobovski/free-spoken-digit-dataset) = spoken MNIST
+* [Free Music Archive](https://github.com/mdeff/fma) ~900GB/343 days of Creative-Commons-licensed audio from 106,574 tracks from 16,341 artists and 14,854 albums, arranged in a hierarchical taxonomy of 161 genres
+* [Million Song Dataset](https://labrosa.ee.columbia.edu/millionsong/) audio features and metadata of ~1m popular music tracks
+* [LibriSpeech](http://www.openslr.org/12/) ~1k hrs of audiobooks from LibriVox
+* [VoxCeleb](http://www.robots.ox.ac.uk/~vgg/data/voxceleb/) ~1m utterances by ~7k celebrities, >2k hrs
+* Spotify [OpenMic](https://github.com/cosmir/openmic-2018) and [TREC](https://podcastsdataset.byspotify.com/)
+
+and **Video**: [AViD](https://github.com/piergiaj/AViD) collected videos with a creative-commons license shared as a static dataset
+
 
 ## Data in the Wild
 
@@ -147,15 +149,15 @@ Both from the universe of Max Tegmark:
 
 * [Harvard Dataverse](https://dataverse.harvard.edu/) is a repository for research data (and code!).
 
-* Appen hosts some [Open Source Datasets](https://appen.com/resources/datasets/)
-
-* [KDnuggets](https://www.kdnuggets.com/datasets/index.html) has datasets galore and also aggregates yet more aggregators. Alas, some links are out of date.
-
 * [FiveThirtyEight](https://data.fivethirtyeight.com/) posts all the data to back the articles
 
 * [Tableau Public](https://public.tableau.com/s/resources?qt-overview_resources=1#qt-overview_resources) hosted datasets
 
 * [StatCan Data](https://www150.statcan.gc.ca/n1/en/type/data); [DataBC](https://data.gov.bc.ca/); [Vancouver Open Data](https://opendata.vancouver.ca/pages/home/); [US Data.gov](https://www.data.gov/); [NYC OpenData](https://opendata.cityofnewyork.us/); [Seattle Open Data](https://data.seattle.gov/); [Switzerland's data](http://www.dataseries.org/); etc...
+
+* Appen hosts some [Open Source Datasets](https://appen.com/resources/datasets/)
+
+* [KDnuggets](https://www.kdnuggets.com/datasets/index.html) has datasets galore and also aggregates yet more aggregators. Alas, some links are out of date.
 
 
 

@@ -28,12 +28,12 @@ Translations that reach across languages. Speech to text that loves accents as m
 <li>details on projects I’m working on</li>
 </ul>
 
-<p>The next things on my to-study list:</p>
+<p>The next things on my radar:</p>
 <ul>
-<li>explainability of black-box models: what lies after LIME and SHAP? Causal Bayesian Networks?</li>
-<li>recurrent neural networks: does attention really make them obsolete?</li>
+<li>entanglement in representations (embeddings)</li>
+<li>any insights for the <a href="https://github.com/fchollet/ARC">ARC dataset</a>, few shot learning in general</li>
 <li>game theory (to deepen my understanding of RL)</li>
-<li>cryptography, as a facet of privacy</li>
+<li>continuing my tweaking of <a href="https://github.com/lrthomps/umap_minibatch">UMAP</a></li>
 </ul>
 
 <p>Suggestions?</p>
