@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "Site overhaul to get rid of Jekyll"
+title:  "Site overhaul to get <strike>rid of</strike> Jekyll"
 subtitle: "...and get things working again!"
 tags: ["other"]
 date:   2020-09-07
-summary: If you know html+css, why use a framework? 
+summary: If you know html+css, why use a framework? Turns out, a few reasons.
 
 
 ---
@@ -35,13 +35,15 @@ summary: If you know html+css, why use a framework?
 
 <h2>...and bringing Jekyll back</h2>
 
-I considered getting the feed working manually, adding posts manually hereon, updating posts.html manually. But finally, I accepted the challenge of just getting Jekyll working after all.
+I considered getting the feed working manually, adding posts manually hereon, updating posts.html manually. But finally, I accepted the challenge of just getting Jekyll working after all. It was too much like installing a GPU for ML only &mdash; fighting against the grain &mdash; except in this case, why bother?
 
 Main takeaways:
 
 * no theme is required: I kept fighting the theme, elements kept not looking like they should. Overall, I failed the theme. But! no theme required! I had all the layout files anyway. Lesson learned. No theme.
 
 * the theme I got rid of wanted assets in \_assets but normal Jekyll wants them in assets
+
+* math: use \vert for pipes; \star for complex conjugate. Otherwise, pipes are interpreted as part of a table and stars italicize
 
 * posts didn't have to get buried in folder hell: specify the file structure in \_config.yml: 
 

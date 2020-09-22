@@ -4,11 +4,13 @@ title:  "Data is everywhere!"
 subtitle: "Uh, where again?"
 tags: ["machine learning"]
 date:   2020-09-13
-summary: Last night I was on a data science career panel (of awesome ladies!) as part the [Vancouver Datajam 2020](https://www.vancouverdatajam.ca/) and I promised (as I've been meaning to do for a while...) to post a list of data resources. 
+summary: Last night I was on a data science career panel (of awesome ladies!) as part the Vancouver Datajam 2020 and I promised (as I've been meaning to do for a while...) to post a list of data resources. 
 
 ---
 
 Last night I was on a data science career panel (of awesome ladies!) as part the [Vancouver Datajam 2020](https://www.vancouverdatajam.ca/) and I promised (as I've been meaning to do for a while...) to post a list of data resources. The hardest part of finding data isn't finding such a list but finding such a list that is up-to-date! To that end, this list was **last verified September 13, 2020**.
+
+A very well maintained, corporately sponsored, [model and dataset](https://www.tensorflow.org/resources/models-datasets) resource is offered by Google. Many of the datasets below are built into [tensorflow datasets](https://blog.tensorflow.org/2019/02/introducing-tensorflow-datasets.html).
 
 ### Ok, but how to divvy up the data types?
 
@@ -24,6 +26,7 @@ A breed all their own: they're uniform, tidy, split into training/validation/tes
 * [CIFAR-100](https://www.cs.toronto.edu/~kriz/cifar.html) 100 classes 500+100 images/class
 * [ciFAIR](https://cvjena.github.io/cifair/) duplicate free versions of CIFAR-10/100
 * [ImageNet](http://www.image-net.org/) is large with bigger images a decent subset annotated with bounding boxes
+* [Plant Disease](https://www.kaggle.com/emmarex/plantdisease) is the [most widely used](https://arxiv.org/abs/2009.04365) in agriculture studies
 * [Unsplash](https://unsplash.com/data) lite and Full (must request; some evidence they don't answer non-edu emails?)
 
 ### Segmentation & Captioning
@@ -46,6 +49,12 @@ A breed all their own: they're uniform, tidy, split into training/validation/tes
 * [Snowden archive](https://www.cjfe.org/snowden)
 * [3m Russian Troll tweets](https://github.com/fivethirtyeight/russian-troll-tweets/) from FiveThirtyEight
 * many in [torchnlp](https://pytorchnlp.readthedocs.io/en/latest/source/torchnlp.datasets.html)
+
+For benchmarking:
+
+* [SQuAD 1-2 datasets](https://rajpurkar.github.io/SQuAD-explorer/)
+* [GLUE](https://gluebenchmark.com/) and [SuperGlue](https://super.gluebenchmark.com/)
+* [*Measuring Massive Multitask Language Understanding*](https://github.com/hendrycks/test) bigger, harder to test GPT-3
 
 [^senti]: [SentiWordNet](https://github.com/aesuli/SentiWordNet) ("assigns to each synset of WordNet three sentiment scores: positivity, negativity, objectivity") may be interesting to compare against in sentiment analysis from supervised datasets.
 
@@ -103,6 +112,7 @@ Both from the universe of Max Tegmark:
 
 ### Audio
 * [Free Spoken Digit Dataset](https://github.com/Jakobovski/free-spoken-digit-dataset) = spoken MNIST
+* [Speech Command Dataset](https://ai.googleblog.com/2017/08/launching-speech-commands-dataset.html) with 65k 1s utterances of 30 short spoken commands like "Yes", "No", "Stop", "Go"
 * [Free Music Archive](https://github.com/mdeff/fma) ~900GB/343 days of Creative-Commons-licensed audio from 106,574 tracks from 16,341 artists and 14,854 albums, arranged in a hierarchical taxonomy of 161 genres
 * [Million Song Dataset](https://labrosa.ee.columbia.edu/millionsong/) audio features and metadata of ~1m popular music tracks
 * [LibriSpeech](http://www.openslr.org/12/) ~1k hrs of audiobooks from LibriVox
