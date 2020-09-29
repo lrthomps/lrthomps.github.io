@@ -45,9 +45,9 @@ $$</p>
 
 <p>The model is now specified by the minimisation:</p>
 <p>$$
-\begin{align}
+\begin{aligned}
 \hat \beta = \textrm{argmin}_\beta {1 \over 2\sigma^2} \Big( \Big.(\pmb{y}  &amp;- \pmb{X} \pmb{\beta})^T(\pmb{y} - \pmb{X}\pmb{\beta}) \\ &amp; \Big.+ \lambda \pmb{\beta}^T \pmb{\beta} \Big) + \log\sqrt{2\pi}\sigma
-\end{align}
+\end{aligned}
 $$</p>
 <p>In OLS $\sigma$ is usually set to 1. The last term can be seen as a regulariser: the first term will pull $\sigma$ up to counter  the error term.</p>
 
@@ -58,12 +58,12 @@ $$</p>
 <p>The minimum of an unconstrained function can be found by setting the first derivative(s) to zero:</p>
 
 <p>$$
-\begin{align}
+\begin{aligned}
 {d \over d{\pmb{\beta}}} \left( (\pmb{y} - \pmb{X} \pmb{\beta})^T(\pmb{y} - \pmb{X}\pmb{\beta}) + \lambda \pmb{\beta}^T \pmb{\beta} \right) &amp;= 0 \\
 {d \over d{\pmb{\beta}}}\left(\pmb{\beta}^T \pmb{X}^T \pmb{X} \pmb{\beta}
  - 2\pmb{\beta}^T \pmb{X}^T \pmb{y} + \lambda \pmb{\beta}^T \pmb{\beta}\right) &amp;= 0\\
  2\pmb{X}^T \pmb{X} \pmb{\beta} -2\pmb{X}^T \pmb{y} + 2\lambda \pmb{\beta} &amp;=0
-\end{align}
+\end{aligned}
 $$</p>
 
 <p>so that</p>
@@ -86,11 +86,11 @@ $$</p>
 <p>We would not only like the MAP estimate of the linear regression, but also the variation about it. A quadratic approximation estimates this variation using the inverse Hessian of the loss function at the minimum, the so-called Laplace approximation [8.4.1 in Murphy, 2012]. The second derivative (in the augmented $\lambda$-absorbed version, dropping tildes) is independent of $\beta$:</p>
 
 <p>$$
-\begin{align}
+\begin{aligned}
 {1 \over 2\sigma^2}\left. {d^2 \over d\pmb{\beta}^2}(\pmb{y} - \pmb{X} \pmb{\beta})^T(\pmb{y} - 
 \pmb{X}\pmb{\beta})\right|_{MAP}  &amp;\\
 = {1 \over \hat\sigma^2}\pmb{X}^T \pmb{X} = {1 \over \hat\sigma^2}\pmb{R}^T \pmb{R} &amp;
-\end{align}
+\end{aligned}
 $$</p>
 
 <p>We can express our solution as $\pmb{\beta} \sim N( \pmb{\hat \beta}, \hat\sigma^2 (\pmb{R}^T \pmb{R})^{-1})$. Had we treated $\sigma$ as a first class unknown parameter to be estimated from the data, the MAP estimate is simply</p>
@@ -141,12 +141,12 @@ $$</p>
 
 <p>The Akaike information criterion (AIC) is an estimate of <em>in-sample</em> prediction error (some texts claim out-of-sample but Hastie assures us otherwise in chapter 7). The definition and evaluation for linear regression is</p>
 <p>$$
-\begin{align}
+\begin{aligned}
 AIC  &amp;=  2p - 2E[loglik]\\
 &amp;=2p + 2\log \sqrt{2\pi} \hat\sigma  
 + {1\over (n-p)} \sum_{i=1}^n \left( {y - \hat y(x) \over \hat\sigma} \right)^2\\
 &amp;=  2p + 1 + 2\log \sqrt{2\pi} \hat\sigma 
-\end{align}
+\end{aligned}
 $$</p>
 
 <p>The Bayesian information criterion (BIC) is similar but replaces $2p \to \log n \; p$ and favours small models.</p>

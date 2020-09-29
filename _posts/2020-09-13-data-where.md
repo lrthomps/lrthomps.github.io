@@ -1,5 +1,6 @@
 ---
 layout: post
+use_math: true
 title:  "Data is everywhere!"
 subtitle: "Uh, where again?"
 tags: ["machine learning"]
@@ -8,7 +9,7 @@ summary: Last night I was on a data science career panel (of awesome ladies!) as
 
 ---
 
-Last night I was on a data science career panel (of awesome ladies!) as part the [Vancouver Datajam 2020](https://www.vancouverdatajam.ca/) and I promised (as I've been meaning to do for a while...) to post a list of data resources. The hardest part of finding data isn't finding such a list but finding such a list that is up-to-date! To that end, this list was **last verified September 13, 2020**.
+Last night I was on a data science career panel (of awesome ladies!) as part the [Vancouver Datajam 2020](https://www.vancouverdatajam.ca/) and I promised (as I've been meaning to do for a while...) to post a list of data resources. The hardest part of finding data isn't finding such a list but finding such a list that is up-to-date! To that end, this list was **last verified September 29, 2020**.
 
 A very well maintained, corporately sponsored, [model and dataset](https://www.tensorflow.org/resources/models-datasets) resource is offered by Google. Many of the datasets below are built into [tensorflow datasets](https://blog.tensorflow.org/2019/02/introducing-tensorflow-datasets.html).
 
@@ -18,7 +19,7 @@ Ultimately I have a taxonomy problem: divide the data by datatype, domain or bes
 
 ## Curated Datasets
 
-A breed all their own: they're uniform, tidy, split into training/validation/test sets, (over-)used to pit algorithms against each other (some curated and shared for that purpose but aren't adopted as readily). Older benchmarks are good for starting out or for hard variants of the problem statement (eg. one-shot!). In no particular order:
+A breed all their own: they're uniform, tidy, split into training/validation/test sets, (over-)used to pit algorithms against each other (some curated and shared for that purpose but aren't adopted as readily). Older benchmarks are good for starting out or for hard variants of the problem statement (eg. one-shot!). See [sotabench](https://sotabench.com/) for a [Papers With Code](https://paperswithcode.com/) project to encourage reproducing published results. In no particular order:
 
 ### Images
 
@@ -26,6 +27,7 @@ A breed all their own: they're uniform, tidy, split into training/validation/tes
 * [CIFAR-100](https://www.cs.toronto.edu/~kriz/cifar.html) 100 classes 500+100 images/class
 * [ciFAIR](https://cvjena.github.io/cifair/) duplicate free versions of CIFAR-10/100
 * [ImageNet](http://www.image-net.org/) is large with bigger images a decent subset annotated with bounding boxes
+* [Large-scale Fashion (DeepFashion) Database](http://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html) to scale up Fashion-MNIST
 * [Plant Disease](https://www.kaggle.com/emmarex/plantdisease) is the [most widely used](https://arxiv.org/abs/2009.04365) in agriculture studies
 * [Unsplash](https://unsplash.com/data) lite and Full (must request; some evidence they don't answer non-edu emails?)
 
@@ -45,7 +47,8 @@ A breed all their own: they're uniform, tidy, split into training/validation/tes
 * [Machine Translation](http://statmt.org/wmt18/index.html) ~15GB within various "tasks"
 * [Yelp Open Dataset](https://www.yelp.com/dataset) mixes NLP with images, interaction timelines, coordinates
 * [One Billion Words](https://opensource.google/projects/lm-benchmark)  a standard corpus of reasonable size (0.8 billion words)
-* [PG-19](https://github.com/deepmind/pg19) extracted from Gutenberg;
+* [Fake News Corpus](https://github.com/several27/FakeNewsCorpus)
+* [PG-19](https://github.com/deepmind/pg19) extracted from Gutenberg
 * [Snowden archive](https://www.cjfe.org/snowden)
 * [3m Russian Troll tweets](https://github.com/fivethirtyeight/russian-troll-tweets/) from FiveThirtyEight
 * many in [torchnlp](https://pytorchnlp.readthedocs.io/en/latest/source/torchnlp.datasets.html)
@@ -64,8 +67,9 @@ For benchmarking:
 * [MovieLens](https://grouplens.org/datasets/movielens/) 25m ratings for ~60k movies of ~160k users
 * [Spotify Recsys Challenge 2018](https://github.com/tmscarla/spotify-recsys-challenge) assembled by MSc students independent of Spotify who no longer host it
 * [Goodbooks-10k](https://github.com/zygmuntz/goodbooks-10k) scraped from GoodReads
+* [Book-Crossing](https://www.kaggle.com/ruchi798/bookcrossing-dataset)
 * [Netflix Prize](https://www.kaggle.com/netflix-inc/netflix-prize-data), a classic
-* [GroupLens](https://grouplens.org/datasets/) links to various (Book-Crossing is gone?)
+* [GroupLens](https://grouplens.org/datasets/) links to various datasets (book crossing is on Kaggle! look back two links)
 
 
 ### Various
@@ -85,6 +89,7 @@ For benchmarking:
 * [Outlier Detection Datasets (ODDS)](http://odds.cs.stonybrook.edu/)
 * *Unsupervised Anomaly Detection Benchmark* [data](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/OPQMVF)
 * *Anomaly Detection Meta-Analysis Benchmarks* [data](https://ir.library.oregonstate.edu/concern/datasets/47429f155)
+* [Numenta Anomaly Benchmark (NAB)](https://github.com/numenta/NAB)
 * [Turing Change Point Dataset](https://github.com/alan-turing-institute/TCPD)
 * [Geoparse Benchmark](https://revealproject.eu/geoparse-benchmark-open-dataset/) 1000s of tweets during 4 diff natural disasters
 * *[MAVEN: A massive general domain event detection dataset](https://arxiv.org/abs/2004.13590)*, coming soon but apparently you can write the authors for early access.
@@ -93,7 +98,7 @@ For benchmarking:
 ### One/Few Shot
 * miniImageNet was introduced in *Matching Networks for One Shot Learning*; *Meta-Transfer Learning for Few-Shot Learning* added tieredImageNet and Fewshot-CIFAR10 both available to [downloaded directly](https://mtl.yyliu.net/download/); also see mini on [Kaggle](https://www.kaggle.com/c/hw2-few-shot-learning/) 
 * [Meta-Dataset](https://github.com/google-research/meta-dataset) assembles various datasets into one benchmark
-* [Chollet's ARC dataset](https://github.com/fchollet/ARC") this one is akin to searching for patterns in [$\pi$](https://en.wikipedia.org/wiki/Pi_(film))
+* [Chollet's ARC dataset](https://github.com/fchollet/ARC) this one is akin to searching for patterns in [$\pi$](https://en.wikipedia.org/wiki/Pi_(film))
 
 
 ### Graphs
@@ -117,7 +122,7 @@ Both from the universe of Max Tegmark:
 * [Million Song Dataset](https://labrosa.ee.columbia.edu/millionsong/) audio features and metadata of ~1m popular music tracks
 * [LibriSpeech](http://www.openslr.org/12/) ~1k hrs of audiobooks from LibriVox
 * [VoxCeleb](http://www.robots.ox.ac.uk/~vgg/data/voxceleb/) ~1m utterances by ~7k celebrities, >2k hrs
-* Spotify [OpenMic](https://github.com/cosmir/openmic-2018) and [TREC](https://podcastsdataset.byspotify.com/)
+* Spotify [OpenMic](https://github.com/cosmir/openmic-2018) and [TREC](https://podcastsdataset.byspotify.com/) (podcasts dataset)
 
 and **Video**: [AViD](https://github.com/piergiaj/AViD) collected videos with a creative-commons license shared as a static dataset
 
@@ -135,11 +140,14 @@ and **Video**: [AViD](https://github.com/piergiaj/AViD) collected videos with a 
 * [www.data.gov/climate](https://www.data.gov/climate)
 * [AI for Earth](https://www.microsoft.com/en-us/ai/ai-for-earth-tech-resources#primaryR10)
 * [Catalyst Cooperative](https://catalyst.coop/)
+* [Washington Post Data](https://github.com/washingtonpost/data-2C-beyond-the-limit-usa/) behind the series ["2ºC: Beyond the Limit."](https://www.washingtonpost.com/graphics/2020/national/climate-environment/climate-change-colorado-utah-hot-spot/), also [here](https://www.washingtonpost.com/graphics/2019/national/climate-environment/climate-change-america/), 
+[here](https://www.washingtonpost.com/graphics/2019/national/climate-environment/climate-change-california/), 
+and [here](https://www.washingtonpost.com/graphics/2020/climate-solutions/climate-change-minnesota/). 
 
- Recommended by [Amanda Giang](https://mech.ubc.ca/amanda-giang/) during the discussion: 
- * [Pangeo](http://pangeo.io/) and [their github](https://github.com/pangeo-data/WeatherBench)
- * [Zenodo](https://zenodo.org/)
- * [Google Earth Engine](https://earthengine.google.com/)
+> Recommended by [Amanda Giang](https://mech.ubc.ca/amanda-giang/) during the discussion: 
+>   * [Pangeo](http://pangeo.io/) and [their github](https://github.com/pangeo-data/WeatherBench)
+>   * [Zenodo](https://zenodo.org/)
+>   * [Google Earth Engine](https://earthengine.google.com/)
 
 ### Sports stats
 * [NHL](http://www.nhl.com/stats/skaters)
@@ -163,7 +171,7 @@ and **Video**: [AViD](https://github.com/piergiaj/AViD) collected videos with a 
 
 * [Tableau Public](https://public.tableau.com/s/resources?qt-overview_resources=1#qt-overview_resources) hosted datasets
 
-* [StatCan Data](https://www150.statcan.gc.ca/n1/en/type/data); [DataBC](https://data.gov.bc.ca/); [Vancouver Open Data](https://opendata.vancouver.ca/pages/home/); [US Data.gov](https://www.data.gov/); [NYC OpenData](https://opendata.cityofnewyork.us/); [Seattle Open Data](https://data.seattle.gov/); [Switzerland's data](http://www.dataseries.org/); etc...
+* [StatCan Data](https://www150.statcan.gc.ca/n1/en/type/data); [DataBC](https://data.gov.bc.ca/); [Vancouver Open Data](https://opendata.vancouver.ca/pages/home/); [US Data.gov](https://www.data.gov/); [NYC OpenData](https://opendata.cityofnewyork.us/); [Seattle Open Data](https://data.seattle.gov/); [Switzerland's data](http://www.dataseries.org/); [Our World in Data](https://ourworldindata.org/); etc...
 
 * Appen hosts some [Open Source Datasets](https://appen.com/resources/datasets/)
 
