@@ -9,9 +9,35 @@ summary: Last night I was on a data science career panel (of awesome ladies!) as
 
 ---
 
-Last night I was on a data science career panel (of awesome ladies!) as part the [Vancouver Datajam 2020](https://www.vancouverdatajam.ca/) and I promised (as I've been meaning to do for a while...) to post a list of data resources. The hardest part of finding data isn't finding such a list but finding such a list that is up-to-date! To that end, this list was **last verified September 29, 2020**.
+Last verified October 4, 2020
 
-A very well maintained, corporately sponsored, [model and dataset](https://www.tensorflow.org/resources/models-datasets) resource is offered by Google. Many of the datasets below are built into [tensorflow datasets](https://blog.tensorflow.org/2019/02/introducing-tensorflow-datasets.html).
+Last night I was on a data science career panel (of awesome ladies!) as part the [Vancouver Datajam 2020](https://www.vancouverdatajam.ca/) and I promised (as I've been meaning to do for a while...) to post a list of data resources. The hardest part of finding data isn't finding such a list but finding such a list that is up-to-date but I'll try. Should I fail here first is a list of well maintained curated data source lists.
+
+## An Aggregate of Other Aggregators
+
+* [Tensorflow models/datasets](https://www.tensorflow.org/resources/models-datasets) resource is offered by Google. Many of the datasets below are accessible via [tensorflow_datasets](https://blog.tensorflow.org/2019/02/introducing-tensorflow-datasets.html)
+
+* [UCI ML Repository](https://archive.ics.uci.edu/ml/index.php) "currently maintain 557 data sets as a service to the machine learning community"
+
+* [Kaggle](https://www.kaggle.com/datasets) including such gems as the [arXiv](https://www.kaggle.com/Cornell-University/arxiv) and [avocado prices](https://www.kaggle.com/neuromusic/avocado-prices)
+
+* [Google Public Data](https://www.google.com/publicdata/directory) is curating datasets; they also have a [Dataset Search](https://datasetsearch.research.google.com/)
+
+* [OpenSpending](https://openspending.org/): "search over 3,446 data packages from 83 countries with over 159,706,407 fiscal records"
+
+* [Harvard Dataverse](https://dataverse.harvard.edu/) is a repository for research data (and code!).
+
+* [FiveThirtyEight](https://data.fivethirtyeight.com/) posts all the data to back the articles
+
+* [Tableau Public](https://public.tableau.com/s/resources?qt-overview_resources=1#qt-overview_resources) hosted datasets
+
+* [Stats Canada](https://www150.statcan.gc.ca/n1/en/type/data); [DataBC](https://data.gov.bc.ca/); [Vancouver Open Data](https://opendata.vancouver.ca/pages/home/); [US Data.gov](https://www.data.gov/); [NYC OpenData](https://opendata.cityofnewyork.us/); [Seattle Open Data](https://data.seattle.gov/); [Switzerland's data](http://www.dataseries.org/); [Our World in Data](https://ourworldindata.org/); [data.world](https://data.world/); etc...
+
+* Appen hosts some [Open Source Datasets](https://appen.com/resources/datasets/)
+
+* [KDnuggets](https://www.kdnuggets.com/datasets/index.html) has datasets galore and also aggregates yet more aggregators. Alas, some links are out of date.
+
+
 
 ### Ok, but how to divvy up the data types?
 
@@ -154,29 +180,6 @@ and [here](https://www.washingtonpost.com/graphics/2020/climate-solutions/climat
 * [Formula-1](https://www.sportsvizsunday.com/formula-1)
 * [baseball](http://www.seanlahman.com/baseball-archive/statistics/)
 * [athletes](https://www.bbc.com/news/special/2012/newsspec_3734/athletes_data.txt)
-
-## An Aggregate of Other Aggregators
-
-* [UCI ML Repository](https://archive.ics.uci.edu/ml/index.php) "currently maintain 557 data sets as a service to the machine learning community"
-
-* [Kaggle](https://www.kaggle.com/datasets) including such gems as the [arXiv](https://www.kaggle.com/Cornell-University/arxiv) and [avocado prices](https://www.kaggle.com/neuromusic/avocado-prices)
-
-* [Google Public Data](https://www.google.com/publicdata/directory) is curating datasets; they also have a [Dataset Search](https://datasetsearch.research.google.com/)
-
-* [OpenSpending](https://openspending.org/): "search over 3,446 data packages from 83 countries with over 159,706,407 fiscal records"
-
-* [Harvard Dataverse](https://dataverse.harvard.edu/) is a repository for research data (and code!).
-
-* [FiveThirtyEight](https://data.fivethirtyeight.com/) posts all the data to back the articles
-
-* [Tableau Public](https://public.tableau.com/s/resources?qt-overview_resources=1#qt-overview_resources) hosted datasets
-
-* [StatCan Data](https://www150.statcan.gc.ca/n1/en/type/data); [DataBC](https://data.gov.bc.ca/); [Vancouver Open Data](https://opendata.vancouver.ca/pages/home/); [US Data.gov](https://www.data.gov/); [NYC OpenData](https://opendata.cityofnewyork.us/); [Seattle Open Data](https://data.seattle.gov/); [Switzerland's data](http://www.dataseries.org/); [Our World in Data](https://ourworldindata.org/); etc...
-
-* Appen hosts some [Open Source Datasets](https://appen.com/resources/datasets/)
-
-* [KDnuggets](https://www.kdnuggets.com/datasets/index.html) has datasets galore and also aggregates yet more aggregators. Alas, some links are out of date.
-
 
 
 
