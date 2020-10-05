@@ -9,7 +9,7 @@ summary: Last night I was on a data science career panel (of awesome ladies!) as
 
 ---
 
-Last verified October 4, 2020
+**Last verified October 4, 2020**
 
 Last night I was on a data science career panel (of awesome ladies!) as part the [Vancouver Datajam 2020](https://www.vancouverdatajam.ca/) and I promised (as I've been meaning to do for a while...) to post a list of data resources. The hardest part of finding data isn't finding such a list but finding such a list that is up-to-date but I'll try. Should I fail here first is a list of well maintained curated data source lists.
 

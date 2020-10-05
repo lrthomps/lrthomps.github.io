@@ -2,7 +2,7 @@
 layout: page
 ---
 
-<p>Studied math and physics, now a data scientist, in Vancouver, BC.</p>
+<p>Roughly five years a data scientist after studying math and physics, now in Vancouver, BC.</p>
 
 <p>In Vancouver because I love the mountains so near, prefer my snow up there, don’t mind the rain down here, and could not live in an un-walkable/un-bikeable place.</p>
 
