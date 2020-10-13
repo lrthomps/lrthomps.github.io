@@ -47,12 +47,20 @@ Ultimately I have a taxonomy problem: divide the data by datatype, domain or bes
 
 A breed all their own: they're uniform, tidy, split into training/validation/test sets, (over-)used to pit algorithms against each other (some curated and shared for that purpose but aren't adopted as readily). Older benchmarks are good for starting out or for hard variants of the problem statement (eg. one-shot!). See [sotabench](https://sotabench.com/) for a [Papers With Code](https://paperswithcode.com/) project to encourage reproducing published results. In no particular order:
 
+### Disentanglement/Representation Learning
+
+* [MPI3D datasets](https://github.com/rr-learning/disentanglement_dataset) simulated and real-world environments
+* [disentanglement_lib](https://github.com/google-research/disentanglement_lib) includes dSprites, Color/Noisy/Scream-dSprites, SmallNORB, Cars3D, and Shapes3D
+* also, try generating points on a surface in 3d to represent in 2d, such as the swiss roll (more rolls are harder to learn)
+
+
 ### Images
 
 * [MNIST](http://yann.lecun.com/exdb/mnist/),[CIFAR-10](http://www.cs.toronto.edu/~kriz/cifar.html), and [Fashion-MNIST](https://github.com/zalandoresearch/fashion-mnist) all have ~60k images split among 10 classes
 * [CIFAR-100](https://www.cs.toronto.edu/~kriz/cifar.html) 100 classes 500+100 images/class
 * [ciFAIR](https://cvjena.github.io/cifair/) duplicate free versions of CIFAR-10/100
 * [ImageNet](http://www.image-net.org/) is large with bigger images a decent subset annotated with bounding boxes
+* [DanBooru20##](https://www.gwern.net/Danbooru2019) a large-scale anime image database with 3.69m+ images annotated with 108m+ tags
 * [Large-scale Fashion (DeepFashion) Database](http://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html) to scale up Fashion-MNIST
 * [Plant Disease](https://www.kaggle.com/emmarex/plantdisease) is the [most widely used](https://arxiv.org/abs/2009.04365) in agriculture studies
 * [Unsplash](https://unsplash.com/data) lite and Full (must request; some evidence they don't answer non-edu emails?)
