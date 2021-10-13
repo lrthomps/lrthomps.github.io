@@ -93,19 +93,19 @@ $$</p>
 \end{aligned}
 $$</p>
 
-<p>We can express our solution as $\pmb{\beta} \sim N( \pmb{\hat \beta}, \hat\sigma^2 (\pmb{R}^T \pmb{R})^{-1})$. Had we treated $\sigma$ as a first class unknown parameter to be estimated from the data, the MAP estimate is simply</p>
-<p>$$
-\hat \sigma = {1 \over n-p} \sum_{i=1}^n  (y - \hat y(x))^2
-$$</p>
-<p>Note that the subtracted $p$ in the denominator arises naturally; this is often an ad-hoc correction for an unbiased estimate (e.g. 3.2 in Hastie’s Elements). For the full Bayesian formulation, see section 7.6.3 of Murphy, 2012. $\sigma$ is integrated out to get the marginal distribution of the regression coefficients,</p>
+<p>The exact posterior distribution of the coefficients is $\pmb{\beta} \sim N( \pmb{\hat \beta}, \sigma^2 (\pmb{R}^T \pmb{R})^{-1})$ where the posterior of the variance is an inv-$\chi^2$ distribution. If $\sigma$ is integrated out, we get the marginal distribution of the regression coefficients,</p>
 <p>$$
 \pmb{\beta} \sim T( \pmb{\hat \beta}, \hat\sigma^2(\pmb{R}^T \pmb{R})^{-1}, n-p)
 $$</p>
 <p>where $T$ is the student-t distribution. If $n \gg p$, $T \to N$ for high orders and we recover the quadratic approximation (phew!).</p>
 
+We can also exactly calculate the predictive posterior distribution given new samples $\tilde X$:
+<p>$$
+\pmb{\tilde y} \sim T( \tilde X \hat \beta, \hat \sigma^2 (I + \tilde X (X^TX)^{-1} \tilde X^T), n - p)
+$$</p>
 <p>These estimates assume the model represents the data; that the underlying process generating samples is a linear function with Gaussian noise. In my tests, all data were generated this way and still the test set far too frequently fell in the distant tails. These in-sample uncertainty estimates make too many assumptions and are no replacement for cross-validation.</p>
 
-<h2 id="sampling-for-prediction-uncertainty">Sampling for Prediction Uncertainty</h2>
+<h2 id="sampling-for-prediction-uncertainty">Sampling for Uncertainty</h2>
 
 <p>The especially useful reason to use QR decomposition is in the form of the covariance matrix for $\pmb{\beta}$ because $\pmb{R}$ is  $p\times p$ and therefore allows us to transform $\pmb{\beta} = \pmb{\hat\beta} + \hat\sigma\pmb{R^{-1} z}$ where  $\pmb{z} \sim T(0, I_p, n-p)$ which can be sampled efficiently. Note that the general transformation of a normal distribution is</p>
 <p>$$

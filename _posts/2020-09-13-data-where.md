@@ -64,6 +64,10 @@ A breed all their own: they're uniform, tidy, split into training/validation/tes
 * [Large-scale Fashion (DeepFashion) Database](http://mmlab.ie.cuhk.edu.hk/projects/DeepFashion.html) to scale up Fashion-MNIST
 * [Plant Disease](https://www.kaggle.com/emmarex/plantdisease) is the [most widely used](https://arxiv.org/abs/2009.04365) in agriculture studies
 * [Unsplash](https://unsplash.com/data) lite and Full (must request; some evidence they don't answer non-edu emails?)
+* [Zappos50K](http://vision.cs.utexas.edu/projects/finegrained/utzap50k/) 4 categories of shoes
+* [UCSD Birds](http://www.vision.caltech.edu/visipedia/CUB-200-2011.html) 200 categories of birds
+* [CelebA](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)  200K images each with 40 attributes
+* [Visual Domain Decathlon](https://www.robots.ox.ac.uk/~vgg/decathlon/) 10 simultaneous visual challenges
 
 ### Segmentation & Captioning
 
@@ -84,6 +88,7 @@ A breed all their own: they're uniform, tidy, split into training/validation/tes
 * [Fake News Corpus](https://github.com/several27/FakeNewsCorpus)
 * [PG-19](https://github.com/deepmind/pg19) extracted from Gutenberg
 * [Snowden archive](https://www.cjfe.org/snowden)
+* [Darknet Market Archives 2013-2015](https://www.gwern.net/DNM-archives) scrapes covering vendor pages, feedback, images, etc.
 * [3m Russian Troll tweets](https://github.com/fivethirtyeight/russian-troll-tweets/) from FiveThirtyEight
 * many in [torchnlp](https://pytorchnlp.readthedocs.io/en/latest/source/torchnlp.datasets.html)
 
