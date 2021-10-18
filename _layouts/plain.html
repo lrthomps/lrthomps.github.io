@@ -10,7 +10,12 @@
     {% if page.use_math %}
       {% include mathjax_support.html %}
     {% endif %}
-    
+
+    {% if page.use_carousel %}
+      {% include carousel_support.html %}
+    {% endif %}
+
+
     <link href='{{ "feed.xml" | relative_url }}' rel='alternate' type='application/atom+xml'>
     <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
     <!--[if lt IE 9]>

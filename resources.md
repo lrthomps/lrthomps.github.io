@@ -4,9 +4,7 @@ layout: page
 
 <h2 id="books">Books</h2>
 
-<p>I learn best from reading, not coursera-like videos (though who didn’t enjoy Andrew Ng’s course?). Papers are important to keep up with the latest, but to fill in the background usually left unexplained, the gaps that are often skipped and to expose the bits I never knew I didn’t know: I turn to textbooks.</p>
-
-<p>I’m currently reading Hastie’s book <em>The Elements of Statistical Learning</em>: the further I get into it the easier it gets (yeah learning!). Simul reading: <em>AI</em> by Russel and Norvig (a classic!); <em>Machine Learning</em> by Kevin Murphy (more Bayesian and more detailed than the Elements); and a highly readable <a href="https://www.goodreads.com/book/show/8295305-a-book-of-abstract-algebra">Book of Abstract Algebra</a> (motivated by the ICML '2020 Outstanding paper award' paper `<a href="https://arxiv.org/abs/2002.08599">On Learning Sets of Symmetric Elements</a>). In general, I track all my reading on <a href="https://www.goodreads.com/user/show/3114636-lara-thompson">Goodreads</a>.</p>
+<p>I learn best from reading, not coursera-like videos (though who didn’t enjoy Andrew Ng’s course?). Papers are important to keep up with the latest, but to fill in the background usually left unexplained, the gaps that are often skipped and to expose the bits I never knew I didn’t know: I turn to textbooks. I track all my reading on <a href="https://www.goodreads.com/user/show/3114636-lara-thompson">Goodreads</a>.</p>
 
 <p><a href="http://neuralnetworksanddeeplearning.com/">Neural Networks and Deep Learning</a> by Michael Nielsen: back prop, loss functions, problems when neural networks go deep</p>
 
