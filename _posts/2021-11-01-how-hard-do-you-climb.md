@@ -32,25 +32,29 @@ Lattice Training does another <a href="https://latticetraining.com/product/my-fi
 
 The <a href="https://docs.google.com/spreadsheets/u/0/d/1J6d45EqIlIsIqNdi2X-Zl-EGFxf9d9T3R_W55xrpEAs/edit">dataset</a> that I'll use includes many strength metrics, training habits and basic climber attributes[^otherdata]. I'll focus on bouldering and ask questions like: which metrics are important for bouldering? how balanced should a strength profile be? what progression of strength is most common in going from V-low to V-med to V-hi? 
 
-Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearlesstofu</a> in social media, kindly submitted her survey responses as well as those of a strong climbing friend, Nelson <a href="https://www.instagram.com/aloeveraelephant/">@aloeveraelephant</a>[^seethemclimb]. I'll see how typical we all are and try to assess our relative strengths and weaknesses (we're nicely spread out in max V grade which makes for especially aesthetic plots!) Then, based on my findings (and taking into what I've learned in all my covid reading), I'll present a practical training assessment including strenth targets and ratios (aka, my winter plans). 
-
 
 [^otherdata]: Other datasets exist, most notably the scrapped submissions from 8a.nu <a href="https://www.kaggle.com/dcohen21/8anu-climbing-logbook">downloadable</a> from kaggle.  <a href="https://latticetraining.com">Lattice Training</a> released an interesting finger strength vs V grade that we'll compare with. 
 
-[^seethemclimb]: To see them climb, I highly recommend <a href="https://www.youtube.com/c/FearlessTofu">Megan's YouTube channel; you can see Nelson in 2 of her recent videos: in "<a href="https://www.youtube.com/watch?v=HrGscD-nyMc&t=270s">Friends try my moonboard</a>" wearing orange shorts and a blue tank top, and in "<a href="https://www.youtube.com/watch?v=Q2nP8j-FhSM">We try the FOREARM CHALLENGE</a>".
- 
 
-## Interlude: reading plots
-
-If you see a bar chart, I'm counting climbers per value of V grade or number of years, or binned values (aka how many in each interval) as in the ape index chart where we count in 1cm .
-
-If you see a scatter plot (lots of dots), each point is one climber from the dataset with coordinates of eg. height (on the vertical axis) versus V grade (on the horizontal axis). I'll always superpose a line that shows the average (height) over climbers (at each V grade). 
-
-Pink is for female climbers; blue for male; purple is for all climbers.
 
 ## About the Climbers in the Dataset
 
 The climbers surveyed include 80 women and 514 men. The women are on average lighter (58kg / 72kg), shorter (165cm /  179cm), have a shorter ape index by more than 1cm, have been climbing 4 months less, climb 15min less per week, train 20min less per week, are weaker in all measures except they can hold an L-sit longer (45s / 35s); they climb 1-2 V grades lower but their hardest grade is closer to the grade they can send 90-100% of the time. Higher V grade climbers are more likely to climb outside (nearly everyone in this dataset climbs inside).
+
+
+Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearlesstofu</a> in social media, kindly submitted her survey responses as well as those of a strong climbing friend, Nelson <a href="https://www.instagram.com/aloeveraelephant/">@aloeveraelephant</a>[^seethemclimb]. I'll see how typical we all are and try to assess our relative strengths and weaknesses (we're nicely spread out in max V grade which makes for especially aesthetic plots!) Then, based on my findings (and taking into what I've learned in all my covid reading), I'll present a practical training assessment including strenth targets and ratios (aka, my winter plans). 
+
+
+[^seethemclimb]: To see them climb, I highly recommend <a href="https://www.youtube.com/c/FearlessTofu">Megan's YouTube channel; you can see Nelson in 2 of her recent videos: in "<a href="https://www.youtube.com/watch?v=HrGscD-nyMc&t=270s">Friends try my moonboard</a>" wearing orange shorts and a blue tank top, and in "<a href="https://www.youtube.com/watch?v=Q2nP8j-FhSM">We try the FOREARM CHALLENGE</a>".
+
+
+### Interlude: reading plots
+
+If you see a bar chart, I'm counting climbers per value (eg. the V grade or the number of years), or binned values (how many in each interval) as in the ape index chart where we group climbers in ~2cm increments (eg. just over 175 climbers have an ape index between 0 to +2cm).
+
+If you see a scatter plot (lots of circles), each point is one climber from the dataset with coordinates of eg. height (on the vertical axis) versus V grade (on the horizontal axis). I'll always superpose a line that shows the average (height) over climbers (that climb at each V grade). 
+
+Pink is for female climbers; blue for male; purple is for all climbers.
 
 
 <script type="text/javascript">
@@ -89,7 +93,7 @@ $(document).ready(function(){
   </div>    
   <div class="item">
     <img src="{{ "/assets/images/climbing/bmi.png" | relative_url }}">
-    <p class="caption">BMI is crude scaling of weight and height (about as accurate as the physics joke "approximate the cow by a sphere"). It doesn’t differentiate muscle with fat and muscle is 20% heavier per volume than fat. It seems the trend vs V grade in men is to drop in BMI (from >25 to 22) while in women the trend is actually to increase (from <18 to ~21). Possibly, the optimal BMI is 21-22 for both genders[^probmi].</p>
+    <p class="caption">BMI is crude scaling of weight and height (about as accurate as the physics joke "approximate the cow by a sphere"). It doesn’t differentiate muscle with fat and muscle is 20% heavier per volume than fat. It seems the trend vs V grade in men is to drop in BMI (from >25 to 22) while in women the trend is actually to increase (from <18 to ~21). Possibly, the optimal BMI is 21-22 for both genders<sup id="fnref:probmi" role="doc-noteref"><a href="#fn:probmi" class="footnote">8</a></sup>.</p>
   </div>    
   <div class="item">
     <img src="{{ "/assets/images/climbing/hoursclimbing.png" | relative_url }}">
@@ -104,6 +108,8 @@ $(document).ready(function(){
 <a class="carousel-control right" href="#carousel_stats" data-slide="next">&rsaquo;</a>
 </div>
 </div>
+
+[^probmi]
 
 [^probmi]: <a href="https://www.reddit.com/r/climbharder/comments/el9pow/climbing_height_vs_weight_from_mani/">The BMI of the pros</a> are more typically borderline or outright underweight (defined as 18.5). Hopefully these are their "performance weights" and not their "training/recovery weight". There's a <a href="https://www.youtube.com/watch?v=aSepsUJKdHs&t=1225s">segment in this video</a> where Alex Huber talks about getting down from his training 68kg down to 9a climbing weight 62kg (he's 176cm so that's going from a bmi of 22 down to 20). 
 
