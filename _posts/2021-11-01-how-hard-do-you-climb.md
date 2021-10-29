@@ -10,125 +10,295 @@ summary: Analysis of a climbing survey dataset to test the wisdom of the crowd i
 
 ---
 
-I've been on and off climbing for nearly two decades, beginning with years of mountaineering and easy (<5.9) trad, building up to a lead of Exasperator 5.10c (in two pitches) and a lone V2 in the Squamish grandwall boulders. This summer was the first that I devoted to bouldering and the first time that I did any kind of training. After a few months with a weekly training session[^summertraining], I started getting "<a href="https://hiveclimbing.com/start-here/#explained">4-hex</a>" routes regularly at the Hive, a V5 on the kilter board[^kilter], started getting outdoor V2s more easily (including a 12 yr later repeat of that first V2) and got my first outdoor V3[^v3]. 
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#carousel_intros, #carousel_stats, #carousel_strengths, #carousel_del_s, #carousel_preds, #carousel_grades').carousel(
+    {interval: false}
+    );     
+});
+</script>
 
-[^summertraining]: An intensive core series (~30-45min) followed by max strength training for pull-ups and push-ups (5 sets of 5 reps of progressively difficult variations).
+I've been on and off climbing for nearly two decades, beginning with years of mountaineering and easy (<5.9) trad, peaking a decade ago with a lead of Exasperator 5.10c (in two pitches) and a small V2 in Squamish (Tumbleweed). This summer was the first that I devoted to bouldering and the first time that I did any kind of training[^summertraining]. A few months in, I started getting "<a href="https://hiveclimbing.com/start-here/#explained">4-hex</a>" routes regularly at the Hive, a V5 on the kilter board[^kilter], started getting outdoor V2s more easily (including a 12 yr later repeat of Tumbleweed) and got my first granite V3[^v3], Green Eggs and Sam. 
+
+
+[^summertraining]: Weekly: an intensive core series (~30-45min) followed by max strength training for pull-ups and push-ups (5 sets of 5 reps of progressively difficult variations).
 
 [^kilter]: Writing this post is what pushed me to try V5 at all! When the models said I was underperforming I had to consider: am I not trying hard often enough? And yes, if I try hard, I can climb harder!
 
 [^v3]: &hellip;followed by another three V3s while visiting the Okanagan! I guess the edgier basalt columns and gneiss rock are closer to indoor bouldering. For local granite, I need to work on sloper strength and tricky mantels!
 
-Being data minded, as a runner, I've already been tracking my runs and rest heart rate (for recovery stats) with a Garmin watch, so of course I tracked all my training sessions but, beyond noting new grades climbed, I wasn't tracking anything else. But what metrics are most relevant to climbing? Number of pull-ups? How small an edge I can hang from? Or how steep a sloper? From that, can I estimate what grade I should be climbing at?
+Being data minded and a runner, I wear a Garmin to track my runs and rest heart rate (to track recovery), so, of course, I tracked all my training sessions but beyond noting when I reach harder grades I wasn't tracking anything else. But what metrics are most relevant to climbing? Number of pull-ups? How small an edge I can hang from? Or how steep a sloper? From that, can I estimate what grade I should be climbing at?
 
-The <a href="https://gripped.com/indoor-climbing/how-close-are-you-to-climbing-5-15d/">9c "ultimate" climbing test</a>[^9ctest] is everywhere on social media and estimates your highest achievable[^9ctestgap] grade given max finger strength, max (single) pull-up strength, core strength and endurance (hanging from a bar). I get a very lopsided score of 14 dominated nearly entirely by core strength. Should the scores be more equal? Does a 6 in one really make up for a 2 in another?
+The <a href="https://gripped.com/indoor-climbing/how-close-are-you-to-climbing-5-15d/">9c "ultimate" climbing test</a>[^9ctest] has been all over social media for over a year. Measure your max finger strength, max (single) pull-up strength, core strength (up to a 30s front lever) and endurance (hanging from a bar) to estimate your highest achievable[^9ctestgap] grade. I get a very lopsided score of 14 dominated nearly entirely by core strength. Should the scores be more equal? Does a 6 in one really make up for a 2 in another?
 
 [^9ctest]: Magnus Midtb&oslash;&rsquo;s <a href="https://www.youtube.com/watch?v=UOBB4wkTdxQ">video</a> of getting assessed by the test creators, Martin Mobr&aring;ten and Stian Christophersen (authors of The Climbing Bible), set off endless posts and videos of climbers everywhere doing the 9c test&mdash;if I feel ambitious and bored someday, I'll compile results.
 
-[^9ctestgap]: The gap between your actual grade and this predicted grade can apparently be attributed to lack of technique and/or mobility, poor strategy or lacking mental strength. Aka, everything we can't really measure. 
+[^9ctestgap]: The gap between your actual grade and this predicted grade can apparently be attributed to lack of technique and/or mobility, poor strategy or lacking mental strength. Aka, everything we can't really measure. When the climber outclimbs the estimate it’s often down to mobility and style specialization.
 
-The <a href="https://strengthclimbing.com/finger-strength-analyzer/">Climbing Finger Strength Analyzer 2.0</a> takes finger strength and pull-up strength as inputs and estimates your V grade. I get a V3 estimate with a 36% probability of climbing V5 and the assessment that my "upper body strength is quite high compared to [my] finger strength" and to stop training it in favour of improving finger strength. That's with pull up strength roughly on par to finger strength (in the common protocols); if I increase finger strength by 1.5x then my "upper body strength is on par with [my] finger strength" and, up to 2x then my "upper body strength is slightly low compared to [my] finger strength". We'll come back to this ratio.
 
-Lattice Training does another <a href="https://latticetraining.com/product/my-fingers/">finger assessment</a>: given your finger strength in your preferred grip (half crimp or open hand) for a 7s on a 20mm hang, they'll "compare your data to [their] models so you can find out how your finger strength compares to other similar climbers". [and I get?] Ok, but I want to build my own models and include more than just finger strength. 
+<aside>
+<h3>Reading plots</h3>
+
+<p>If you see a bar chart, I'm counting climbers per value (eg. the V grade or the number of years), or binned values (how many in each interval) as in the ape index chart where we group climbers in ~2cm increments (eg. just over 175 climbers have an ape index between 0 to +2cm).</p>
+
+<p>If you see a scatter plot (lots of circles), each point is one climber from the dataset with coordinates of eg. height (on the vertical axis) versus V grade (on the horizontal axis). I'll always superpose a line that shows the average (height) over climbers (that climb at each V grade). </p>
+
+<p>Pink is for female climbers; blue for male; purple is for all climbers.</p>
+</aside>
+
+The <a href="https://strengthclimbing.com/finger-strength-analyzer/">Climbing Finger Strength Analyzer 2.0</a> takes finger strength and pull-up strength as inputs and estimates your V grade. I get a V4 estimate with a 51% probability of climbing V5 and the assessment that my "upper body strength is quite high compared to [my] finger strength" and to stop training it in favour of improving finger strength. That's with pull up strength roughly on par to finger strength (in the common protocols); if I increase finger strength by 1.5x then my "upper body strength is on par with [my] finger strength" and, up to 2x then my "upper body strength is slightly low compared to [my] finger strength". We'll come back to this ratio.
+
+
+Lattice Training does another <a href="https://latticetraining.com/product/my-fingers/">finger assessment</a>: given your finger strength in your preferred grip (half crimp or open hand) for a 7s on a 20mm hang, they'll "compare your data to [their] models so you can find out how your finger strength compares to other similar climbers". After submitting my half crimp finger strength, weight and highest V grade within the last two years:
+
+> Your score of 121.8% bodyweight held makes you in the expected range for your bouldering grade. We would expect people at your grade, weight and gender to be scoring around the level you achieved.
+
+Ok, but I want to build and check models myself and include more than just finger strength (and pull up strength). 
 
 The <a href="https://docs.google.com/spreadsheets/u/0/d/1J6d45EqIlIsIqNdi2X-Zl-EGFxf9d9T3R_W55xrpEAs/edit">dataset</a> that I'll use includes many strength metrics, training habits and basic climber attributes[^otherdata]. I'll focus on bouldering and ask questions like: which metrics are important for bouldering? how balanced should a strength profile be? what progression of strength is most common in going from V-low to V-med to V-hi? 
 
 
-[^otherdata]: Other datasets exist, most notably the scrapped submissions from 8a.nu <a href="https://www.kaggle.com/dcohen21/8anu-climbing-logbook">downloadable</a> from kaggle.  <a href="https://latticetraining.com">Lattice Training</a> released an interesting finger strength vs V grade that we'll compare with. 
+[^otherdata]: Other datasets exist, most notably the scrapped submissions from 8a.nu <a href="https://www.kaggle.com/dcohen21/8anu-climbing-logbook">downloadable</a> from kaggle.  <a href="https://latticetraining.com">Lattice Training</a> released an interesting <a href="https://www.instagram.com/p/B9zNGplJMyG/">finger strength vs V grade</a> that we'll compare with. 
 
 
 
 ## About the Climbers in the Dataset
 
-The climbers surveyed include 80 women and 514 men. The women are on average lighter (58kg / 72kg), shorter (165cm /  179cm), have a shorter ape index by more than 1cm, have been climbing 4 months less, climb 15min less per week, train 20min less per week, are weaker in all measures except they can hold an L-sit longer (45s / 35s); they climb 1-2 V grades lower but their hardest grade is closer to the grade they can send 90-100% of the time. Higher V grade climbers are more likely to climb outside (nearly everyone in this dataset climbs inside).
 
 
-Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearlesstofu</a> in social media, kindly submitted her survey responses as well as those of a strong climbing friend, Nelson <a href="https://www.instagram.com/aloeveraelephant/">@aloeveraelephant</a>[^seethemclimb]. I'll see how typical we all are and try to assess our relative strengths and weaknesses (we're nicely spread out in max V grade which makes for especially aesthetic plots!) Then, based on my findings (and taking into what I've learned in all my covid reading), I'll present a practical training assessment including strenth targets and ratios (aka, my winter plans). 
+Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearlesstofu</a> in social media, kindly submitted her survey responses as well as those of a strong climbing friend, Nelson <a href="https://www.instagram.com/aloeveraelephant/">@aloeveraelephant</a>. I'll see how typical we all are and try to assess our relative strengths and weaknesses (we're nicely spread out in max V grade which makes for especially aesthetic plots!) Then, based on my findings (and taking into what I've learned in all my covid reading), I'll present a practical training assessment including strenth targets and ratios (aka, my winter plans). 
 
 
-[^seethemclimb]: To see them climb, I highly recommend <a href="https://www.youtube.com/c/FearlessTofu">Megan's YouTube channel; you can see Nelson in 2 of her recent videos: in "<a href="https://www.youtube.com/watch?v=HrGscD-nyMc&t=270s">Friends try my moonboard</a>" wearing orange shorts and a blue tank top, and in "<a href="https://www.youtube.com/watch?v=Q2nP8j-FhSM">We try the FOREARM CHALLENGE</a>".
 
 
-### Interlude: reading plots
+<style>
+.float-container {
+  width: 80%; margin: auto
+}
+.float-child {
+  width:  50%;
+  float:  left;
+  padding: 5px;
+  font-style: italic;
+  font-size: 10pt;
+  color: #333333;
+}
 
-If you see a bar chart, I'm counting climbers per value (eg. the V grade or the number of years), or binned values (how many in each interval) as in the ape index chart where we group climbers in ~2cm increments (eg. just over 175 climbers have an ape index between 0 to +2cm).
+/*.float-left {
+  min-width: 300px;
+}
+.float-right {
+  min-width: 50px;
+}*/
 
-If you see a scatter plot (lots of circles), each point is one climber from the dataset with coordinates of eg. height (on the vertical axis) versus V grade (on the horizontal axis). I'll always superpose a line that shows the average (height) over climbers (that climb at each V grade). 
+.float-child img {
+  display: inline; max-width: 100%; max-height: 100%;
+}
 
-Pink is for female climbers; blue for male; purple is for all climbers.
+</style>
 
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-  $('#carousel_stats, #carousel_strengths, #carousel_del_s, #carousel_preds, #carousel_feats, #carousel_del_y, #carousel_del_s_s2').carousel({
-  interval: false
-  });     
-  
-});
-
-</script>
 <div id="wrapper">
-
-<div id="carousel_stats" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="item active">
-      <img src="{{ "/assets/images/climbing/histogram_by_grade.png" | relative_url }}">
-      <p class="caption">V6 is the most common grade&colon; a peak in the men's, but more of a bump in the women’s distribution (and have a second bump at V9). Lattice Training noticed this and called it a milestone grade. Megan is left of that second bump so clearly she’ll get a V9 imminently; Nelson sits in the blue V11 bar; and I’m just shy of the first pink bump so by similar logic I should get a V6 soon! Note that these are Megan and my indoor grades; <a href="https://www.youtube.com/watch?v=PLRYD1q6VrQ">Megan's outdoor hardest climb</a> was a V7 while mine was a V3. This discrepancy may be a known <a href="https://boulderingboss.com/indoor-vs-outdoor-bouldering-is-there-a-difference-in-v-grades/">trend in gym route grading</a>.</p>
-  </div>
-  <div class="item">
-    <img src="{{ "/assets/images/climbing/histogram_by_inoutdoor.png" | relative_url }}">
-    <p class="caption">If we break down those grades by who climbs indoors vs outdoors we find that most strong climbers (also) climb outside whereas the majority of beginners only climb inside. I started with outdoors only and came inside to increase volume. For those that started inside, I strongly suggest trying bouldering on real rock. It’ll challenge your route reading infinitely more, the footwork is almost always harder and the variety of grips you’ll practise is endless.</p>
-  </div>
-  <div class="item">
-    <img src="{{ "/assets/images/climbing/histogram_by_year.png" | relative_url }}">
-    <p class="caption">Majority of climbers are in their first 4 years of climbing. Megan has been climbing 6 years; Nelson, 5. For modelling purposes later, I put myself down for ~5-10 years to take out the many skipped years since I started climbing in grad school. </p>
-  </div>
-  <div class="item">
-    <img src="{{ "/assets/images/climbing/height.png" | relative_url }}">
-    <p class="caption">Higher V grade male climbers then to be shorter; but higher V grade female climbers then to be taller. At 5’1”, Megan is the shortest in this dataset at V8&colon; clearly height is not holding her back!</p>
-  </div>
-  <div class="item">
-    <img src="{{ "/assets/images/climbing/apeindex.png" | relative_url }}">
-    <p class="caption">There are more climbers with +ve index than -ve and I wonder if this generalizes to non-climbers. I sit at -4cm while both Megan and Nelson have an ape index of +4cm. Kai Lightner has a stupendous ape index of +18cm; at 190cm tall, that's a >2m arm span!</p>
-  </div>    
-  <div class="item">
-    <img src="{{ "/assets/images/climbing/bmi.png" | relative_url }}">
-    <p class="caption">BMI is crude scaling of weight and height (about as accurate as the physics joke "approximate the cow by a sphere"). It doesn’t differentiate muscle with fat and muscle is 20% heavier per volume than fat. It seems the trend vs V grade in men is to drop in BMI (from >25 to 22) while in women the trend is actually to increase (from <18 to ~21). Possibly, the optimal BMI is 21-22 for both genders<sup id="fnref:probmi" role="doc-noteref"><a href="#fn:probmi" class="footnote">8</a></sup>.</p>
-  </div>    
-  <div class="item">
-    <img src="{{ "/assets/images/climbing/hoursclimbing.png" | relative_url }}">
-    <p class="caption">The highest V grade climbers climb roughly twice as much per week as the beginners. This is as much about what a person can handle and still recover (skin not least of all). </p>
-  </div>
-  <div class="item">
-    <img src="{{ "/assets/images/climbing/hourstraining.png" | relative_url }}">
-    <p class="caption">Beginners don’t train at all, nor should they necessarily, while the highest V grade climbers average 5-8 hours per week (this includes both climbing-specific training and general strength training). Ignore the women’s regression going negative: don’t worry, they can’t actually <em>untrain</em>.</p>
+  <div id="carousel_intros" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="item ">
+        <div class="float-container">
+          <div class="float-child float-left ">
+            <img src="{{ "/assets/images/climbing/me-s.jpg" | relative_url }}">
+          </div>
+          <div class="float-child float-right">
+            <h3>Lara, the author</h3>
+            <p>See me <a href="https://www.instagram.com/p/CUi_e-5pTRs/">climb</a></p>
+            <p>168cm tall<br> 
+              -4cm ape index<br>
+           22.7 BMI<br></p>
+            <p>climbing 18 years<br> 
+              bouldering ~7 years<br></p>
+            <p><a href="https://hiveclimbing.com/start-here/#explained">4-hex</a> at the Hive<br> V5 on the kilter board<br> V3 outside<br> 3-hex/V1 inside/outside is doable<br></p>
+            <p>6 hrs climbing / week<br> 
+              1 hr training / week<br>
+            1-2 hangboarding / week<br>
+            running<br>
+          backcountry skiing soon!</p>
+            <p>+30lbs half crimp<br> 
+              +4lbs open hand<br> 
+              +25lbs 5rep pull-ups<br> 
+              10 pull-ups<br> 
+              19 push-ups<br> 
+            30s hanging L-sit</p>
+          </div>
+        </div>
+      </div>
+      <div class="item active">
+        <div class="float-container">
+          <div class="float-child float-left ">
+            <img src="{{ "/assets/images/climbing/megan.png" | relative_url }}">
+          </div>
+          <div class="float-child float-right">
+            <h3>Megan, <a href="https://www.instagram.com/fearlesstofu/">@fearlesstofu</a></h3>
+            <p>See her climb (and much more) on her <a href="https://www.youtube.com/fearlesstofu">YouTube channel</a></p>
+            <p>156cm tall<br>
+              neutral ape index<br>
+              20.8 BMI<br></p>
+            <p>climbing ~6 years<br></p>
+            <p>V8 indoors<br> 
+              <a href="https://www.youtube.com/watch?v=95YO-N2b48o">V7 outside</a><br> 
+              V4 is doable<br></p>
+            <p>2 hrs / week on a <a href="https://www.instagram.com/fearlessmooncake/">moonboard</a> <br>
+            no other training<br>
+           less lately: studying 📚</p>
+            <p>+12kg half crimp<br> 
+              +26.26kg open hand<br> 
+              +4kg 5rep pull-ups<br> 
+              10 pull-ups<br> 
+              14 push-ups<br> 
+            38s hanging L-sit</p>
+          </div>
+        </div>
+      </div>
+      <div class="item ">
+        <div class="float-container">
+          <div class="float-child float-left ">
+            <img src="{{ "/assets/images/climbing/nelson.jpg" | relative_url }}">
+          </div>
+          <div class="float-child float-right">
+            <h3>Nelson, <a href="https://www.instagram.com/aloeveraelephant/">@aloeveraelephant </a></h3>
+            <p>See him in "<a href="https://www.youtube.com/watch?v=HrGscD-nyMc&t=270s">Friends try my moonboard</a>" wearing orange shorts and a blue tank top, and in "<a href="https://www.youtube.com/watch?v=Q2nP8j-FhSM">We try the FOREARM CHALLENGE</a>"</p>
+            <p>175cm tall<br>
+              +4cm ape index<br>
+              22.5 BMI<br></p>
+            <p>climbing ~5 years<br>
+            climbs outdoors "maybe twice a year"</p>
+            <p>V11<br>
+            V8, in the last 3 months<br> 
+              V7 is doable<br></p>
+            <p>10 hrs climbing / week<br>
+            no other training<br></p>
+            <p>+36kg half crimp<br> 
+              +48kg open hand<br> 
+              +28kg 5rep pull-ups<br> 
+              18 pull-ups<br> 
+              24 push-ups<br> 
+            27s hanging L-sit</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control left" href="#carousel_intros" data-slide="prev">
+      &lsaquo;
+    </a>
+    <a class="carousel-control right" href="#carousel_intros" data-slide="next">
+      &rsaquo;
+    </a>
   </div>
 </div>
-<a class="carousel-control left" href="#carousel_stats" data-slide="prev">&lsaquo;</a>
-<a class="carousel-control right" href="#carousel_stats" data-slide="next">&rsaquo;</a>
+
+
+[^otherquestions]: Training specifics such as hangboard protocols (eg. repeaters, max hangs, min edges and one-armed protocols) as well as grip types trained (eg. half crimp, open hand and others not modeled as they were too noisy); 
+
+
+The survey included another 77 women and 513 men. The women are on average lighter (58kg / 72kg), shorter (165cm /  179cm), have a shorter ape index by more than 1cm, have been climbing 4 months less, climb 15min less per week, train 20min less per week, are weaker in all measures except they can hold an L-sit longer (45s / 35s); they climb 1-2 V grades lower but their hardest grade is closer to the grade they can send 90-100% of the time. Higher V grade climbers are more likely to climb outside (nearly everyone in this dataset climbs inside). Let’s look at some more statistics visually.
+
+
+<div id="wrapper">
+  <div id="carousel_stats" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="{{ "/assets/images/climbing/histogram_by_grade.png" | relative_url }}">
+        <p class="caption">V6 is the most common grade&colon; a peak in the men's, but more of a bump in the women’s distribution (and have a second bump at V9). Lattice Training noticed this and called it a milestone grade. Megan is left of that second bump so clearly she’ll get a V9 imminently; Nelson sits in the blue V11 bar; and I’m just shy of the first pink bump so by similar logic I should get a V6 soon! Note that these are Megan and my indoor grades; <a href="https://www.youtube.com/watch?v=PLRYD1q6VrQ">Megan's outdoor hardest climb</a> was a V7 while mine was a V3. This discrepancy may be a known <a href="https://boulderingboss.com/indoor-vs-outdoor-bouldering-is-there-a-difference-in-v-grades/">trend in gym route grading</a>.</p>
+    </div>
+    <div class="item">
+      <img src="{{ "/assets/images/climbing/histogram_by_year.png" | relative_url }}">
+      <p class="caption">Majority of climbers are in their first 4 years of climbing. Megan has been climbing 6 years; Nelson, 5. For modelling purposes later, I put myself down for ~5-10 years to take out the many skipped years since I started climbing in grad school. </p>
+    </div>
+    <div class="item">
+      <img src="{{ "/assets/images/climbing/grade_by_year.png" | relative_url }}">
+      <p class="caption">Climbing grades rise with number of years climbing and plateau after ~5 years. The women's data is noisy because there aren't enough respondents. Keep in mind that all grades are self-assessed and self-reported.</p>
+    </div>
+    <div class="item">
+      <img src="{{ "/assets/images/climbing/height.png" | relative_url }}">
+      <p class="caption">Higher V grade male climbers then to be shorter; but higher V grade female climbers then to be taller. At 5’1”, Megan is the shortest in this dataset at V8&colon; clearly height is not holding her back!</p>
+    </div>
+    <div class="item">
+      <img src="{{ "/assets/images/climbing/apeindex.png" | relative_url }}">
+      <p class="caption">There are more climbers with +ve index than -ve and I wonder if this generalizes to non-climbers. I sit at -4cm while both Megan and Nelson have an ape index of +4cm. Kai Lightner has a stupendous ape index of +18cm; at 190cm tall, that's a >2m arm span!</p>
+    </div>    
+    <div class="item">
+      <img src="{{ "/assets/images/climbing/bmi.png" | relative_url }}">
+      <p class="caption">BMI is crude scaling of weight and height (about as accurate as the physics joke "approximate the cow by a sphere"). It doesn’t differentiate muscle with fat and muscle is 20% heavier per volume than fat. It seems the trend vs V grade in men is to drop in BMI (from >25 to 22) while in women the trend is actually to increase (from <18 to ~21). Maybe there's an optimal BMI ~21-22 for most (amateur?) climbers.</p>
+    </div>    
+    <div class="item">
+      <img src="{{ "/assets/images/climbing/hoursclimbing.png" | relative_url }}">
+      <p class="caption">The highest V grade climbers climb roughly twice as much per week as the beginners. This is as much about what a person can handle and still recover (skin not least of all). </p>
+    </div>
+    <div class="item">
+      <img src="{{ "/assets/images/climbing/hourstraining.png" | relative_url }}">
+      <p class="caption">Beginners don’t train at all, nor should they necessarily, while the highest V grade climbers average 5-8 hours per week (this includes both climbing-specific training and general strength training). Ignore the women’s regression going negative: don’t worry, they can’t actually <em>untrain</em>.</p>
+    </div>
+    <div class="item">
+      <img src="{{ "/assets/images/climbing/histogram_by_inoutdoor.png" | relative_url }}">
+      <p class="caption">If we break down those grades by who climbs indoors vs outdoors we find that most strong climbers (also) climb outside whereas the majority of beginners only climb inside. I started with outdoors only and came inside to increase volume. For those that started inside, I strongly suggest trying bouldering on real rock. It’ll challenge your route reading infinitely more, the footwork is almost always harder and the variety of grips you’ll practise is endless.</p>
+    </div>
+  </div>
+  <a class="carousel-control left" href="#carousel_stats" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#carousel_stats" data-slide="next">&rsaquo;</a>
+  </div>
 </div>
+
+
+[^probmi]: <a href="https://www.reddit.com/r/climbharder/comments/el9pow/climbing_height_vs_weight_from_mani/">The BMI of the pros</a> are more typically borderline or outright underweight (defined as 18.5). Hopefully these are their "performance weights" and not their "training/recovery weight". There's a <a href="https://www.youtube.com/watch?v=aSepsUJKdHs&t=1225s">segment in this video</a> where Alex Huber talks about his "liquid diet" to drop from his training weight, 68kg, down to his 9a climbing weight, 62kg&mdash;he's 176cm so that's going from a bmi of 22 down to 20. 
+
+
+## Highest ever vs highest recently vs 'doable' V grade
+
+Climbers submitted three different grades: highest ever, highest in the last 3 months, and grade they can send 90-100% of the time. The first is problematic because it may have been years ago and the climber’s current strength and   habits don’t reflect how they were when they climbed that hard. My own strength has waxed and waned multiple times now going on its third cycle. 
+
+The “climbable” grade is highly subjective. Should we consider all styles? Or just the style we love and climb well. What about the reachy climbs if you’re short, or the overly compressed climbs if you’re tall? Just what grade are parkour style / coordination dynos?
+
+
+<div id="wrapper">
+  <div id="carousel_grades" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="{{ "/assets/images/climbing/max_recent.png" | relative_url }}">
+        <p class="caption">When we compare max ever V grade to hardest in the last 3 months, the spread is as high as 4 V grades. There were a few climbers claiming higher recent grades to highest ever: I reversed them and assume they just read the questions backwards.</p>
+      </div>
+      <div class="item">
+        <img src="{{ "/assets/images/climbing/doable_max.png" | relative_url }}">
+        <p class="caption">For the V grade that can be climbed 90-100% of the time (aka, doable) vs highest ever V grade, the spread is as high as 5 V grades. The trends show a widening gap: to reach those hardest grades requires specialization (aka, find the climb suits you) and a lot of projecting. Megan may be underestimating or her height may disadvantage her on too many climbs.</p>
+      </div>
+      <div class="item">
+        <img src="{{ "/assets/images/climbing/doable_recent.png" | relative_url }}">
+        <p class="caption">I find it hilarious that some climbers can claim that the 90-100% "doable" climbing grade is <em>higher</em> than the grade they've climbed in the last 3 months. Note that I've already filtered out the climbers that responded "I don't boulder" for the 3 month question. This really makes it clear to me how subjective this question was on the survey.</p>
+      </div>
+    </div>
+    <a class="carousel-control left" href="#carousel_grades" data-slide="prev">
+      &lsaquo;
+    </a>
+    <a class="carousel-control right" href="#carousel_grades" data-slide="next">
+      &rsaquo;
+    </a>
+  </div>
 </div>
 
-[^probmi]
-
-[^probmi]: <a href="https://www.reddit.com/r/climbharder/comments/el9pow/climbing_height_vs_weight_from_mani/">The BMI of the pros</a> are more typically borderline or outright underweight (defined as 18.5). Hopefully these are their "performance weights" and not their "training/recovery weight". There's a <a href="https://www.youtube.com/watch?v=aSepsUJKdHs&t=1225s">segment in this video</a> where Alex Huber talks about getting down from his training 68kg down to 9a climbing weight 62kg (he's 176cm so that's going from a bmi of 22 down to 20). 
-
+So even though we’re all chasing that hardest ever, or we aim to be well rounded and want to maximize that "climbable" grade, neither are consistent in the analysis. That's why I'm always using the 3-month recent max. Grading gets more complicated when we consider indoor vs outdoor (or moonboard vs kilter board for that matter). For Megan and I, I'm using our highest (indoor grade in all cases) since it seemed most likely that climbers would do the same when surveyed. 
 
 ## Strength by Grade
 
-Blah blah.
+Now we know a little about the climbers informing this post in all the ways  except the ones that we’re all most interested in: how strong are they? 
+
+I’ll plot every type of strength in the survey and, like before, I’ll aggregate by their highest recent bouldering grade.
 
 <div id="wrapper">
 <div id="carousel_strengths" class="carousel slide">
     <div class="carousel-inner">
       <div class="item active">
-        <img src="{{ "/assets/images/climbing/halfcrimp.png" | relative_url }}">
-        <p class="caption">Often touted to be the most predictive of strength metrics, the maximum weight a climber can add to a 10s hang on an 18mm[^18mm] edge normalized by the climber’s weight. Both Megan and Nelson seem to outperform given their finger strength (they're less strong than others of the same grade). Despite differences in protocol, the trends here agree fairly well with a <a href="https://www.instagram.com/p/B9zNGplJMyG/">post from Lattice Training</a> (cf. ~1.3 for V5, ~1.45 for V8 and ~1.6 for V11). Quite possibly, finger strength is the one metric you can never be strong in. In another <a href="https://latticetraining.com/2017/09/07/9c-adam-ondra-alex-megos/">post</a>, Lattice Training estimates that to climb 9c one must be able to add 110% their bodyweight (atop their bodyweight, making 210% total strength) to climb 9c. Alex Megos can add 132% to his 7s/20mm hangs!</p>
+        <img src="{{ "/assets/images/climbing/maxfinger.png" | relative_url }}">
+        <p class="caption">Often touted to be the most predictive of strength metrics, finger strength is given by the maximum weight a climber can add to a 5-10s hang on an 18mm-20mm edge normalized by the climber’s weight (this survey asked for 10s/18mm hangs). Both Megan and Nelson seem too strong for their recent grade but are perfectly with the trend using their max ever V grades (8, 11). The trends here agree fairly well with a <a href="https://www.instagram.com/p/B9zNGplJMyG/">post from Lattice Training</a> (with 7s/20mm hangs): each V grade requires another 8% of body weight for the hangs. In another <a href="https://latticetraining.com/2017/09/07/9c-adam-ondra-alex-megos/">post</a>, they estimate a necessary 1.1 finger strength to climb 9c. Alex Megos can add 132% to his 7s/20mm hangs and has climbed multiple V15s (but I wouldn't say he's underperforming given that he's a sport climber!). Adam Ondra manages V16 while only capabel of 112% hangs. His technique, speed and surreal mobility certainly highlight that strength is not all that matters.</p>
       </div>
-      <div class="item">
+<!--       <div class="item">
         <img src="{{ "/assets/images/climbing/openhand.png" | relative_url }}">
-        <p class="caption">The equivalent for open hand grips is noisier&colon; fewer climbers reported open hand strength. Now both Megan and Nelson are stronger than others at their V grade while I’m the least strong in mine (generally climbers didn't often report any weighted metrics that involved weight removed; maybe all those that didn't answer were more likely not not manage body weight alone?) In <a href="https://www.v-publishing.co.uk/books/climbing/beastmaking/">Beastmaking</a>, the author suggests that hand anatomy plays a role in which grip a climber favours. Full- and half-crimp place more strain on the finger pulleys and open-hand[^openinjuries] transfers better to slopers&colon; I know what I need to train!</p>
-      </div>
+        <p class="caption">The equivalent for open hand grips is noisier&colon; fewer climbers reported open hand strength. Now both Megan and Nelson are stronger than others at their V grade while I’m the least strong in mine (generally climbers didn't often report any weighted metrics that involved weight removed; maybe all those that didn't answer were more likely not not manage body weight alone?) </p>
+      </div> -->
       <div class="item">
         <img src="{{ "/assets/images/climbing/5reppullups.png" | relative_url }}">
         <p class="caption">While finger strength didn’t show a big gender difference, the normalized weight added to 5 pull-ups is 10-20% more at a given grade for male climbers. Either the women make due with less pull up strength or they default to problems that don’t require it. I’m pleased to see both Megan and Nelson climb hard given pulling strength.</p>
@@ -153,22 +323,19 @@ Blah blah.
 </div>
 
 
-[^18mm]: Though more commonly, an edge size of 20mm is used both because it is ever so slightly safer while being just as effective a training size, and 20 is a round number in the metric world (even in the imperial world, 3/4” ~ 19mm, the thickness of blahx1 lumber); and the hold is only 5-7s. 10s is very long!
 
-[^openinjuries]: Open hand grips can lead to overuse injuries in the form of <a href="https://theclimbingdoctor.com/rock-climbing-finger-tenosynovitis/">finger tendon tenosynovitis</a>.
-
-What about differences in strength metrics: how should the two grips compare for finger strength? How does finger strength compare with pulling strength? 
+What about differences in strength metrics: how should the two grips compare for finger strength? How does finger strength compare with pulling strength? And how should finger strength and pulling strength compare as we get stronger?
 
 <div id="wrapper">
 <div id="carousel_del_s" class="carousel slide">
     <div class="carousel-inner">
-      <div class="item active" style="height: 550px">
+      <div class="item active">
         <img src="{{ "/assets/images/climbing/delta_fingers.png" | relative_url }}">
-        <p class="caption">Half crimp and open hand strength are typically equal. Considering the merits of both, I think I can stand to train my open hand to catch up to my crimp while Megan and Nelson (who I’ve seen use crimps in videos!) may do well to train their half crimp to catch up to their open hand.</p>
+        <p class="caption">Half crimp and open hand strength are typically equal. In <a href="https://www.v-publishing.co.uk/books/climbing/beastmaking/">Beastmaking</a>, the author suggests that hand anatomy plays a role in which grip a climber favours. Full- and half-crimp are generally the stronger grip but place more strain on the finger pulleys and open-hand transfers better to slopers. Considering the merits of both, I think I can stand to train my open hand to catch up to my crimp while Megan and Nelson may do well to train their half crimp to catch up to their open hand.</p>
       </div>
-      <div class="item" style="height: 550px">
-        <img src="{{ "/assets/images/climbing/pull_finger.png" | relative_url }}" style="max-height: 75%;">
-        <p class="caption">Here I subtracted the finger strength (whichever was higher) from the 5-rep pulling strength. At higher V-grades, finger strength begins to exceed pulling strength for both women and men. When training, at first if you are weak in all aspects, it makes sense to increase your pulling strength to keep up or exceed your finger strength since it is safer and faster to gain. As you get stronger fingers, let your pulling strength lag behind (unless you want to climb steep, compression climbs all day, then, by all means, continue to get more pulling strength). As with all strength training, it’s important to constantly adapt all strength gains into climbing gains before working to get any stronger still. Two climbers were cropped to better see the trend: they had excess pulling strength of 3 body weights!</p>
+      <div class="item">
+        <img src="{{ "/assets/images/climbing/finger_by_pull.png" | relative_url }}">
+        <p class="caption">Instead of considering the progression of strength by grade, let's look at finger strength (whichever is higher) over 5-rep pulling strength as a function of finger strength; aka, how should the two metrics develop together. When both are still low, pulling strength exceeds finger strength for both women and men; but as they get stronger, women typically get far more finger strength than pulling strength. Megan has more than 6x the finger to pulling strength! The men tend to increase both with their finger strength starting to exceed pulling strength only once they've reach roughly 50% body weight. The trend seems to roll over beyond that with finger:pulling strength ~5:3.</p>
       </div>
     </div>
     <a class="carousel-control left" href="#carousel_del_s" data-slide="prev">
@@ -184,20 +351,37 @@ What about differences in strength metrics: how should the two grips compare for
 
 With a dataset of nearly 600 climbers, I could train a model[^models] to predict the hardest V grade each climber had reached given their strength metrics and training habits. Shockingly, the model was better than expected with some regression to the mean (that is, low V grade climbers were predicted high, while high V grade climbers were predicted low) with typical errors ~1-2 V grades. 
 
-[^models]: Several in fact, of various kinds: I started with linear regression, went to 2-4 layer dense neural networks before finally settling on random forests (which, of course, are usually best for this kind of tabular data). I trained many of each kind and chose the model type that gave the most consistent feature importance estimates. 
+[^models]: Several in fact, of various kinds: I started with linear regression, went to 2-4 layer dense neural networks before finally trying on random forests then boosted trees (which, of course, are usually best for this kind of tabular data). I trained many of each kind and settled on the model type that gave the most consistent feature importance estimates. 
 
+In predicting each of the reported bouldering grades, the model can be assessed for how important it found each feature of the climber. In nearly every model I trained for every grade, the most important feature is number of years climbed. After all: 
+
+>   Climbing is the best training for climbing
+
+Strangely, the number of pull-ups often appeared more important than the actual pull-up strength. Surely in bouldering, number of pull-ups is more of an endurance feat while 5-rep max weight is a measure of strength endurance (single rep max weighted pull-ups would better assess pure strength). If most boulders feature 5 moves, this should be the most important (pull-up) feature. The reason I think they come reversed is that 3/4 of climbers reported number of pull-ups while less than half reported weighted ones: there's just more information in the former for the model to learn from.
+That said, it's astonishing that half crimp strength was the most common second most used feature when only 35% of climbers reported it!
 
 <div id="wrapper">
 <div id="carousel_preds" class="carousel slide">
     <div class="carousel-inner">
+      <div class="item ">
+        <img src="{{ "/assets/images/climbing/pred_max_recent.png" | relative_url }}" >
+        <p class="caption">This (<a href="https://lightgbm.readthedocs.io/en/latest/">lightgbm</a>) model was trained holding out a random 30 climbers (in green) including Megan, Nelson and I: that the test climbers are predicted as well as the others is a sign the model trained well. The slight bias to predict high for lower V grade climbers and low for higher V grade climbers (known as regressing to the mean) isn't too surprising since there is a lot of missing data (unmeasured weighted hangs for instance). Megan, Nelson and I are very well predicted; reassuring since the model had all our strength metrics.</p>
+      </div>
       <div class="item active">
-        <img src="{{ "/assets/images/climbing/pred_max.png" | relative_url }}" style="max-height: 100%;">
+        <img src="{{ "/assets/images/climbing/feats_max_recent.png" | relative_url }}">
+        <p class="caption">As found by the model, the most important aspect of a climber to guess their highest V grade is how long they’ve been climbing! BMI is next in importance: the predicted grade only increases for climbers with BMI &le; 19; Megan, Nelson and my predictions all go up if we increase out BMI by 0.5 (not by much though). Next we see hours climbing, max pull up reps and half crimp strength. This is <a href="https://christophm.github.io/interpretable-ml-book/feature-importance.html">permutation importance</a> so the score is the (normalized) increase in mean squared error over all climbers (the 30 held out climbers included) when each feature is random shuffled.</p>
       </div>
       <div class="item">
-        <img src="{{ "/assets/images/climbing/pred_max_recent.png" | relative_url }}" style="max-height: 100%;">
+        <img src="{{ "/assets/images/climbing/del_y_max_recent.png" | relative_url }}" >
+        <p class="caption">Change no habits, even if continuing various kinds of training, if you get no stronger and just climb another year and you’ll improve by 0.5 to 1.5 V grades in your first 5 years.</p>
       </div>
       <div class="item">
-        <img src="{{ "/assets/images/climbing/pred_doable.png" | relative_url }}" style="max-height: 100%;">
+        <img src="{{ "/assets/images/climbing/del_s_max_recent.png" | relative_url }}" >
+        <p class="caption">The predicted grade shift for increased strength metrics all follow a similar pattern: there are no gains (and sometimes expected losses!) for increasing strength at the lowest levels. I interpret this as the usual advice from trainers and climbers alike: to improve at climbing, at first, focus on climbing. You will naturally get stronger. Once a minimal strength is reached (10s hangs on a 20mm edge, 5 pull-ups, 10 push-ups, 5s hanging L-sit) then increasing them further yields greater gains. Once a certain strength is reached however, the gains saturate. The data sets the upper limits at hangs with body weight added, 5-rep pull-ups with less than half body weight added, 20 pull-ups, 30 push-ups, 30s of hanging L-sit. Note that this dataset is realistic limited to climbing up to V10 (very few climbers climbed harder); but <a href="https://www.instagram.com/p/B9zNGplJMyG/">Lattice Training reports</a> less than that finger strength for bouldering V15!</p>
+      </div>
+      <div class="item">
+        <img src="{{ "/assets/images/climbing/del_s2_max_recent.png" | relative_url }}" >
+        <p class="caption">The predicted grade shift for increased strength metrics all follow a similar pattern: there are no gains (and sometimes expected losses!) for increasing strength at the lowest levels. I interpret this as the usual advice from trainers and climbers alike: to improve at climbing, at first, focus on climbing. You will naturally get stronger. Once a minimal strength is reached (10s hangs on a 20mm edge, 5 pull-ups, 10 push-ups, 5s hanging L-sit) then increasing them further yields greater gains. Once a certain strength is reached however, the gains saturate. The data sets the upper limits at hangs with body weight added, 5-rep pull-ups with less than half body weight added, 20 pull-ups, 30 push-ups, 30s of hanging L-sit. Note that this dataset is realistic limited to climbing up to V10 (very few climbers climbed harder); but <a href="https://www.instagram.com/p/B9zNGplJMyG/">Lattice Training reports</a> less than that finger strength for bouldering V15!</p>
       </div>
     </div>
     <a class="carousel-control left" href="#carousel_preds" data-slide="prev">
@@ -210,108 +394,16 @@ With a dataset of nearly 600 climbers, I could train a model[^models] to predict
 </div>
 
 
-<p class="caption">This small model was trained holding out a random 30 climbers including Megan, Nelson and I, shown in green: it generalizes well to this unseen data. The model is biased to predicting high for lower V grade climbers and low for higher V grade climbers (known as regressing to the mean) which makes my higher than true and Nelson’s lower than true predictions less concerning (aka, maybe I’m not underperforming by the full 1.5 V grades; but Nelson should still feel complimented for out climbing the predictions based on his metrics!)</p>
+<!-- It’s tricky to assess the expected V grade change with BMI change as it affects all the normalized strength metrics. Clearly the denominator (weight) changes directly as BMI is proportional to weight, and if the BMI drop is only excess fat and superfluous muscle then we can imagine that the muscles can still support the original weight and the finger and pulling strengths will seem to increase by the weight lost. Of course, this is <em>not</em> a reasonable assumption in many climbers, especially in the lower BMI / % body fat range[^bodyweight]. If a BMI gain is only in muscles used in grip and pull strengths, then even though the weight increases, the strength gains should keep up or even exceed the added weight. For BMIs under 20, the expected V grade increases if BMI increases by 0.5. Lowering BMI by 0.5 only increased V grade prediction through adjusted strength metrics.
 
-
-In predicting each of the reported bouldering grades, the model can be assessed for how important it found each feature of the climber. In nearly every model I trained for every grade, the most important feature is number of years climbed. After all: 
-
->     Climbing is the best training for climbing
->       ~ according to basically everyone
-
-But commonly the number of pull-ups were appear more important than the actual pull-up strength. Surely in bouldering, number of pull-ups is more an an endurance feat while 5-rep is roughly strength endurance (single rep max weighted pull-ups would better assess pure strength). If most boulders feature 5 moves, this should be the most important (pull-up) feature. The reason I think they come reversed is that 3/4 of climbers reported number of pull-ups while less than half reported weighted ones. There's just more information in the former for the model to learn from.
-That said, it's astonishing that half crimp strength was the most common second most used feature when only 35% of climbers reported it!
-
-
-<div id="wrapper">
-<div id="carousel_feats" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="item active" style="height: 750px">
-      <img src="{{ "/assets/images/climbing/feats_max.png" | relative_url }}" style="max-height: 100%;">
-    </div>
-    <div class="item" style="height: 750px">
-      <img src="{{ "/assets/images/climbing/feats_max_recent.png" | relative_url }}" style="max-height: 100%;">
-    </div>
-    <div class="item" style="height: 750px">
-      <img src="{{ "/assets/images/climbing/feats_doable.png" | relative_url }}" style="max-height: 100%;">
-    </div>
-  </div>
-  <a class="carousel-control left" href="#carousel_feats" data-slide="prev">
-    &lsaquo;
-  </a>
-  <a class="carousel-control right" href="#carousel_feats" data-slide="next">
-    &rsaquo;
-  </a>
-  </div>
-</div>
-
-
-<p class="caption">As found by the model, the most important aspect of a climber to guess their highest V grade is how long they’ve been climbing! Next we see half crimp strength dominate, followed by BMI and max pull up reps where lower and higher are not strictly better. The effect size of each aspect depends on the particular climber’s profiles. NB: the scale is relative but meaningless.</p>
-
-<div id="wrapper">
-<div id="carousel_del_y" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="item active">
-        <img src="{{ "/assets/images/climbing/del_y_max.png" | relative_url }}" style="max-height: 100%;">
-      </div>
-      <div class="item">
-        <img src="{{ "/assets/images/climbing/del_y_max_recent.png" | relative_url }}" style="max-height: 100%;">
-      </div>
-      <div class="item">
-        <img src="{{ "/assets/images/climbing/del_y_doable.png" | relative_url }}" style="max-height: 100%;">
-      </div>
-    </div>
-    <a class="carousel-control left" href="#carousel_del_y" data-slide="prev">
-      &lsaquo;
-    </a>
-    <a class="carousel-control right" href="#carousel_del_y" data-slide="next">
-      &rsaquo;
-    </a>
-  </div>
-</div>
-
-<p class="caption">Change no habits, even if continuing various kinds of training, if you get no stronger and just climb another year and you’ll improve by 0.5 to nearly 2 V grades in your first 4 years.</p>
-
-
-<div id="wrapper">
-<div id="carousel_del_s_s2" class="carousel slide">
-  <div class="carousel-inner">
-    <div class="item active" style="height: 750px">
-      <p class="figtitle">Predicting max V grade</p>
-      <img src="{{ "/assets/images/climbing/del_s_max.png" | relative_url }}" style="max-height: 370px;">
-      <img src="{{ "/assets/images/climbing/del_s2_max.png" | relative_url }}" style="max-height: 355px;">
-    </div>
-    <div class="item" style="height: 750px">
-      <p class="figtitle">Predicting max recent V grade</p>
-      <img src="{{ "/assets/images/climbing/del_s_max_recent.png" | relative_url }}" style="max-height: 370px;">
-      <img src="{{ "/assets/images/climbing/del_s2_max_recent.png" | relative_url }}" style="max-height: 355px;">
-    </div>
-    <div class="item" style="height: 750px">
-      <p class="figtitle">Predicting ~doable V grade</p>
-      <img src="{{ "/assets/images/climbing/del_s_doable.png" | relative_url }}" style="max-height: 370px;">
-      <img src="{{ "/assets/images/climbing/del_s2_doable.png" | relative_url }}" style="max-height: 355px;">
-    </div>
-  </div>
-  <a class="carousel-control left" href="#carousel_del_s_s2" data-slide="prev">
-    &lsaquo;
-  </a>
-  <a class="carousel-control right" href="#carousel_del_s_s2" data-slide="next">
-    &rsaquo;
-  </a>
-  </div>
-</div>
-
-<p class="caption">The predicted grade shift for increased strength metrics all follow a similar pattern: there are no gains (and sometimes expected losses!) for increasing strength at the lowest levels. I interpret this as the usual advice from trainers and climbers alike: to improve at climbing, at first, focus on climbing. You will naturally get stronger. Once a minimal strength is reached (10s hangs are possible on a 20mm edge; can do 5 pull ups and 10 push ups; can do a hanging L-sit) then increasing them further yields greater gains. Once a certain strength is reached however, the gains saturate. The data sets the upper limits at hangs with body weight added, 5-rep pull-ups with less than half body weight added, 20 pull-ups, 30 push-ups, 37s of hanging L-sit (chosen so arbitrarily precise because that is Megan’s L-sit time!). </p>
-
-It’s tricky to assess the expected V grade change with BMI change as it affects all the normalized strength metrics. Clearly the denominator (weight) changes directly as BMI is proportional to weight, and if the BMI drop is only excess fat and superfluous muscle then we can imagine that the muscles can still support the original weight and the finger and pulling strengths will seem to increase by the weight lost. Of course, this is <em>not</em> a reasonable assumption in many climbers, especially in the lower BMI / % body fat range[^bodyweight]. If a BMI gain is only in muscles used in grip and pull strengths, then even though the weight increases, the strength gains should keep up or even exceed the added weight. For BMIs under 20, the expected V grade increases if BMI increases by 0.5. Lowering BMI by 0.5 only increased V grade prediction through adjusted strength metrics.
-
-[^bodyweight]: This is an entire topic on its own and not one I'm well placed to talk about. For some people it’s rather clear that we can lose some fat to get into better climbing condition (whether our goal actually demand it is yet another matter); for others, the margin is getting very slim. Read the recent thread on weight, diet and training by professional boulderer Staša Gejo <a href="https://www.instagram.com/gejostasa/">@gejostasa</a> starting with <a href="https://www.instagram.com/p/CUQabPzMvuU/">this one</a>.
+[^bodyweight]: This is an entire topic on its own and not one I'm well placed to talk about. For some people it’s rather clear that we can lose some fat to get into better climbing condition (whether our goal actually demand it is yet another matter); for others, the margin is getting very slim. Read the recent thread on weight, diet and training by professional boulderer Staša Gejo <a href="https://www.instagram.com/gejostasa/">@gejostasa</a> starting with <a href="https://www.instagram.com/p/CUQabPzMvuU/">this one</a>. Of course, the pros[^probmi] have a different commitment level than most of us and, in general, we won't push our bodies as hard.
 
 
 Using myself as an example to clarify these strength adjustments, I weigh a little under 140lbs and am 168 cm / 5’6.5” tall. I can currently add 25.5 lbs to my half crimp hangs; 25 lbs to my 5-rep pull-ups; and have to take away 25.5 lbs to do open hand hangs. My BMI goes down by 0.5 if my weight drops by 3 lbs[^3lbs]. If my strength doesn’t change, I’ll be able to hang and pull with 28.5 / 28 / -22.5 lbs. With those 4 updated metrics (BMI and the three normalized strengths; note that we’re still ignoring any changes in pull ups, push ups or L-sits), the model predicts I can push my bouldering ~2.5 V grades higher (the comparison +0.5 BMI drops my V grade by a mere 0.13 assuming no strength adjustments necessary). If that sounds overly optimistic, I agree: the model is telling me that others with that BMI and those strength metrics climb V9 (the model originally predicted high for me); but they may also generally have more technique and mobility, and losing weight won’t magically help me with either. 
 
 [^3lbs]: I had a lazy second half of my 30s and my weight drifted from a lean and muscular 130 lbs to a soft and weak 140 lbs. Training this summer so far has unsoftened me somewhat and strengthened me oodles with weight dropping just a little. All to say, it’s not unreasonable to think I have 3 lbs of excess fat. 
 
-... gender changes?
+... gender changes? -->
 
 
 ## What if...
@@ -327,17 +419,21 @@ Lara: 1 year later, still climbing 6 hours a week and training for 1 hr, startin
 
 [^onearmhangs]: Actually, model predicts that if I hang one-armed I get an even greater return. Strangely, it did not have the same expected change for Nelson or Megan. Yes, my left is weaker but how did the model know that I'm imbalanced? Are all V-middling climbers imbalanced? Kidding aside, it means that climbers otherwise like me but only climb a little harder train one-armed &mdash; maybe <a href="https://www.youtube.com/watch?v=IUOm2IHylpA">farmer crimps</a>? 
 
-## A Better Bouldering Assessment
+## Training Progression
 
-add mobility metrics
-add 1 rep pull-up
-progression for core
-add or modify hangs to 5s or 7s
-add hang endurance test? some number of 7/3 repeaters, what weight can be added?
-track indoor, system board and outdoor grades
-keep:
-5 rep pull-ups
-number of pull-ups, push-ups
+Track: 
+* add mobility metrics
+* add 1 rep pull-up
+* progression for core
+* add or modify hangs to 5s or 7s
+* add hang endurance test? some number of 7/3 repeaters, what weight can be added?
+* track indoor, system board and outdoor grades
+* 5 rep pull-ups
+* number of pull-ups, push-ups
+
+
+Aim for max 5-rep pull-up strength following finger strength ~3 or 4:5  
+Aim for max single rep pull-up strength surpassing 5-rep strength 5:4 (according to the finger strength analyzer; a small departure from the inherent scaling implied by the 9c test)
 
 
 ## Further Reading and Other Resources
