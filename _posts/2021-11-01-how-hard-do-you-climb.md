@@ -29,33 +29,39 @@ I've been on and off climbing for nearly two decades, beginning with years of mo
 
 Being data minded and a runner, I wear a Garmin to track my runs and rest heart rate (to track recovery), so, of course, I tracked all my training sessions but beyond noting when I reach harder grades I wasn't tracking anything else. But what metrics are most relevant to climbing? Number of pull-ups? How small an edge I can hang from? Or how steep a sloper? From that, can I estimate what grade I should be climbing at?
 
-The <a href="https://gripped.com/indoor-climbing/how-close-are-you-to-climbing-5-15d/">9c "ultimate" climbing test</a>[^9ctest] has been all over social media for over a year. Measure your max finger strength, max (single) pull-up strength, core strength (up to a 30s front lever) and endurance (hanging from a bar) to estimate your highest achievable[^9ctestgap] grade. I get a very lopsided score of 14 dominated nearly entirely by core strength. Should the scores be more equal? Does a 6 in one really make up for a 2 in another?
+The <a href="https://gripped.com/indoor-climbing/how-close-are-you-to-climbing-5-15d/">9c "ultimate" climbing test</a>[^9ctest] has been all over social media for over a year. Measure your max finger strength, max (single) pull-up strength, core strength (up to a 30s front lever) and endurance (hanging from a bar) to estimate your highest achievable[^9ctestgap] grade. I get a very lopsided score of 15 dominated nearly entirely by core strength. Should the scores be more equal? Does a 6 in one really make up for a 2 in another? Does that atrocious endurance hanging from a bar actually assess anything for bouldering[^endurancetest]?
 
 [^9ctest]: Magnus Midtb&oslash;&rsquo;s <a href="https://www.youtube.com/watch?v=UOBB4wkTdxQ">video</a> of getting assessed by the test creators, Martin Mobr&aring;ten and Stian Christophersen (authors of The Climbing Bible), set off endless posts and videos of climbers everywhere doing the 9c test&mdash;if I feel ambitious and bored someday, I'll compile results.
 
 [^9ctestgap]: The gap between your actual grade and this predicted grade can apparently be attributed to lack of technique and/or mobility, poor strategy or lacking mental strength. Aka, everything we can't really measure. When the climber outclimbs the estimate it’s often down to mobility and style specialization.
 
+[^endurancetest]: Another <a href="https://www.substr8climbing.com/athletic-assessment">climbing assessment</a> from SUBSTR8 Climbing Performance has a more climbing specific endurance test: inclined ring pull-ups at 45&deg;, do 3 every 10s for as long as possible (up to 6min), "resting" in between always inclined. Again, this seems more relevant for route climbing.
+
 
 <aside>
-<h3>Reading plots</h3>
+  <h3>Reading plots</h3>
 
-<p>If you see a bar chart, I'm counting climbers per value (eg. the V grade or the number of years), or binned values (how many in each interval) as in the ape index chart where we group climbers in ~2cm increments (eg. just over 175 climbers have an ape index between 0 to +2cm).</p>
+  <p>If you see a bar chart, I'm counting climbers per value (eg. the V grade or the number of years), or binned values (how many in each interval) as in the ape index chart where we group climbers in ~2cm increments (eg. just over 175 climbers have an ape index between 0 to +2cm).</p>
 
-<p>If you see a scatter plot (lots of circles), each point is one climber from the dataset with coordinates of eg. height (on the vertical axis) versus V grade (on the horizontal axis). I'll always superpose a line that shows the average (height) over climbers (that climb at each V grade). </p>
+  <p>If you see a scatter plot (lots of circles), each point is one climber from the dataset with coordinates of eg. height (on the vertical axis) versus V grade (on the horizontal axis). I'll always superpose a line that shows the average (height) over climbers (that climb at each V grade). </p>
 
-<p>Pink is for female climbers; blue for male; purple is for all climbers.</p>
+  <p>Pink is for female climbers; blue for male; purple is for all climbers.</p>
 </aside>
 
 The <a href="https://strengthclimbing.com/finger-strength-analyzer/">Climbing Finger Strength Analyzer 2.0</a> takes finger strength and pull-up strength as inputs and estimates your V grade. I get a V4 estimate with a 51% probability of climbing V5 and the assessment that my "upper body strength is quite high compared to [my] finger strength" and to stop training it in favour of improving finger strength. That's with pull up strength roughly on par to finger strength (in the common protocols); if I increase finger strength by 1.5x then my "upper body strength is on par with [my] finger strength" and, up to 2x then my "upper body strength is slightly low compared to [my] finger strength". We'll come back to this ratio.
 
 
-Lattice Training does another <a href="https://latticetraining.com/product/my-fingers/">finger assessment</a>: given your finger strength in your preferred grip (half crimp or open hand) for a 7s on a 20mm hang, they'll "compare your data to [their] models so you can find out how your finger strength compares to other similar climbers". After submitting my half crimp finger strength, weight and highest V grade within the last two years:
+Lattice Training has a free <a href="https://latticetraining.com/product/my-fingers/">finger assessment</a>: given your finger strength in your preferred grip (half crimp or open hand) for a 7s on a 20mm hang, they'll "compare your data to [their] models so you can find out how your finger strength compares to other similar climbers". After submitting my half crimp finger strength, weight and highest V grade within the last two years:
 
 > Your score of 121.8% bodyweight held makes you in the expected range for your bouldering grade. We would expect people at your grade, weight and gender to be scoring around the level you achieved.
 
-Ok, but I want to build and check models myself and include more than just finger strength (and pull up strength). 
+Is finger strength enough? Surely pull-up strength is also important, but how many reps? Just one (as in the 9c test) or as many as 5 (as in the survey data used here)? Core strength is crucial, but how best is it assessed? There were many complaints about the difficulty jump from 20s of hanging L-sit to 5s of front lever in the 9c test. 
 
-The <a href="https://docs.google.com/spreadsheets/u/0/d/1J6d45EqIlIsIqNdi2X-Zl-EGFxf9d9T3R_W55xrpEAs/edit">dataset</a> that I'll use includes many strength metrics, training habits and basic climber attributes[^otherdata]. I'll focus on bouldering and ask questions like: which metrics are important for bouldering? how balanced should a strength profile be? what progression of strength is most common in going from V-low to V-med to V-hi? 
+Mobility is another important factor missing from the discussion so far and, sadly, also not in the dataset I'll be using. In an actual <a href="https://www.youtube.com/watch?v=AuOkMElNgtU">Lattice Training assessment</a>, of course they have tests of mobility: ankles (how far past your toes can your knee reach, at least 5", higher is better), hips (how close to the wall can your body with knees frogged, hip bone at most 10", lower is better), and shoulders (arms above the hard should pull to the ears, ideally past). The GB climbing team assessment, <a href="https://youtu.be/HRz65aplK7w?t=219">previewed by Hannah Morris</a>, tests shoulder mobility the same way, hip mobility in the same way but lying down, and ankle mobility entirely differently. They check how deeply you can squat with feet together; then, as a progression, if you can balance in and out of a pistol squat on each side. Because Hannah and her boyfriend weren't more flexible, we didn't see the full mobility progressions in the GB tests. 
+
+While it's fun to reverse-engineer the trends behind the <a href="https://strengthclimbing.com/finger-strength-analyzer/">Climbing Finger Strength Analyzer 2.0</a>[^reverse], to fully explore what to assess in a boulderer, I'll analyse and model a <a href="https://docs.google.com/spreadsheets/u/0/d/1J6d45EqIlIsIqNdi2X-Zl-EGFxf9d9T3R_W55xrpEAs/edit">dataset</a> that includes many strength metrics, training habits and basic climber attributes[^otherdata]. We'll see how to balance a strength profile, what progression of strength to expect going from V-lo through V-med to V-hi, what training gets suggested to improve, and that height and BMI both have a sweet spot, not too low, not too high. 
+
+[^reverse]: Around my finger strength (25% of body weight), to get the wording "your pull-up strength is on par with your finger strength" for 1-rep pull-ups the weight added should exceed the finger test by 125%; for 5-rep pull-ups the weight should be less than that added for finger test, around 75% of that weight. If I could hang 50kg atop 60kg, the 1-rep "on par" is for the same weight while the 5-rep "on par" is still 75%, now 37.5kg. 
 
 
 [^otherdata]: Other datasets exist, most notably the scrapped submissions from 8a.nu <a href="https://www.kaggle.com/dcohen21/8anu-climbing-logbook">downloadable</a> from kaggle.  <a href="https://latticetraining.com">Lattice Training</a> released an interesting <a href="https://www.instagram.com/p/B9zNGplJMyG/">finger strength vs V grade</a> that we'll compare with. 
@@ -145,7 +151,7 @@ Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearle
               V4 is doable<br></p>
             <p>2 hrs / week on a <a href="https://www.instagram.com/fearlessmooncake/">moonboard</a> <br>
             no other training<br>
-           less lately: studying 📚</p>
+           both less than usual: studying 📚!</p>
             <p>+12kg half crimp<br> 
               +26.26kg open hand<br> 
               +4kg 5rep pull-ups<br> 
