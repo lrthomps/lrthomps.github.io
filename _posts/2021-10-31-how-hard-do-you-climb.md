@@ -5,8 +5,8 @@ use_carousel: true
 title:  "How Hard Do You Climb?"
 subtitle: "and can a model help you climb harder?"
 tags: ["machine learning", "climbing"]
-date:   2021-11-01
-summary: Analysis of a climbing survey dataset to test the wisdom of the crowd in how best to improve at climbing. 
+date:   2021-10-31
+summary: Analysis of a climbing survey dataset to test the wisdom of the crowd in how best to improve at climbing and assess training progress. 
 
 ---
 
@@ -18,22 +18,24 @@ $(document).ready(function(){
 });
 </script>
 
-I've been on and off climbing for nearly two decades, beginning with years of mountaineering and easy (<5.9) trad, peaking a decade ago with a lead of Exasperator 5.10c (in two pitches) and a small V2 in Squamish (Tumbleweed). This summer was the first that I devoted to bouldering and the first time that I did any kind of training[^summertraining]. A few months in, I started getting "<a href="https://hiveclimbing.com/start-here/#explained">4-hex</a>" routes regularly at the Hive, a V5 on the kilter board[^kilter], started getting outdoor V2s more easily (including a 12 yr later repeat of Tumbleweed) and got my first granite V3[^v3], Green Eggs and Sam. 
+During COVID, people rushed to <a href="https://www.bbc.com/news/entertainment-arts-53637305">Netflix</a> and <a href="https://www.statista.com/statistics/1106313/youtube-usage-increase-due-to-coronavirus-home-usa/">YouTube</a>, but they also signed up with <a href="https://www.cnbc.com/2020/11/05/peloton-says-recent-spike-in-covid-19-cases-lockdowns-boosting-sales.html">Peloton</a>, and <a href="https://runningmagazine.ca/the-scene/stravas-year-in-sport-report-tells-the-story-of-running-during-covid-19/">ran and biked more than ever</a>. When the climbing gym was closed during early lockdown I started watching oodles of climbing on YouTube (from not really using it at all) and barely slowed down since (spoiler alert: <a href="https://www.youtube.com/fearlesstofu">one YouTuber</a> that I highly recommend is in the dataset!). But also in 2020, I ran more than twice as far than in any other year; I started regular training with intervals, hills (my favourite), and long slow runs, that summer breaking my 10km PR by 2.5min. When bouldering resumed it was natural to ask what training could do for my climbing?
+
+After a summer of training[^summertraining], I started getting "<a href="https://hiveclimbing.com/start-here/#explained">4-hex</a>" routes regularly (V4-V6), a V5 on the kilter board[^kilter], started getting outdoor V2s more easily and got my first granite V3[^v3], Green Eggs and Sam. A tweaked A2 pulley got me on the hangboard with "no hang" repeaters for rehab; once healed, I eased into max hangs.
 
 
-[^summertraining]: Weekly: an intensive core series (~30-45min) followed by max strength training for pull-ups and push-ups (5 sets of 5 reps of progressively difficult variations).
+[^summertraining]: A weekly intensive core series (30-45min) followed by max strength training for pull-ups and push-ups (5 sets of 5 reps of progressively difficult variations).
 
 [^kilter]: Writing this post is what pushed me to try V5 at all! When the models said I was underperforming I had to consider: am I not trying hard often enough? And yes, if I try hard, I can climb harder!
 
 [^v3]: &hellip;followed by another three V3s while visiting the Okanagan! I guess the edgier basalt columns and gneiss rock are closer to indoor bouldering. For local granite, I need to work on sloper strength and tricky mantels!
 
-Being data minded and a runner, I wear a Garmin to track my runs and rest heart rate (to track recovery), so, of course, I tracked all my training sessions but beyond noting when I reach harder grades I wasn't tracking anything else. But what metrics are most relevant to climbing? Number of pull-ups? How small an edge I can hang from? Or how steep a sloper? From that, can I estimate what grade I should be climbing at?
+I wear a Garmin to track my runs and rest heart rate (to track recovery), so, of course, I tracked all my training sessions but beyond noting when I reach harder grades I wasn't tracking anything else. But what metrics are most relevant to climbing? Number of pull-ups? How small an edge I can hang from? Or how steep a sloper? 
 
 The <a href="https://gripped.com/indoor-climbing/how-close-are-you-to-climbing-5-15d/">9c "ultimate" climbing test</a>[^9ctest] has been all over social media for over a year. Measure your max finger strength, max (single) pull-up strength, core strength (up to a 30s front lever) and endurance (hanging from a bar) to estimate your highest achievable[^9ctestgap] grade. I get a very lopsided score of 15 dominated nearly entirely by core strength. Should the scores be more equal? Does a 6 in one really make up for a 2 in another? Does that atrocious endurance hanging from a bar actually assess anything for bouldering[^endurancetest]?
 
 [^9ctest]: Magnus Midtb&oslash;&rsquo;s <a href="https://www.youtube.com/watch?v=UOBB4wkTdxQ">video</a> of getting assessed by the test creators, Martin Mobr&aring;ten and Stian Christophersen (authors of The Climbing Bible), set off endless posts and videos of climbers everywhere doing the 9c test&mdash;if I feel ambitious and bored someday, I'll compile results.
 
-[^9ctestgap]: The gap between your actual grade and this predicted grade can apparently be attributed to lack of technique and/or mobility, poor strategy or lacking mental strength. Aka, everything we can't really measure. When the climber outclimbs the estimate it’s often down to mobility and style specialization.
+[^9ctestgap]: The gap between your actual grade and this predicted grade can apparently be attributed to lack of technique and/or mobility, poor strategy or poor mental aspects. Aka, everything we can't really measure. When the climber outclimbs the estimate it’s often down to mobility and style specialization, eg. slab climbers with superb finger strength but missing pull-up and core strength.
 
 [^endurancetest]: Another <a href="https://www.substr8climbing.com/athletic-assessment">climbing assessment</a> from SUBSTR8 Climbing Performance has a more climbing specific endurance test: inclined ring pull-ups at 45&deg;, do 3 every 10s for as long as possible (up to 6min), "resting" in between always inclined. Again, this seems more relevant for route climbing.
 
@@ -48,16 +50,16 @@ The <a href="https://gripped.com/indoor-climbing/how-close-are-you-to-climbing-5
   <p>Pink is for female climbers; blue for male; purple is for all climbers.</p>
 </aside>
 
-The <a href="https://strengthclimbing.com/finger-strength-analyzer/">Climbing Finger Strength Analyzer 2.0</a> takes finger strength and pull-up strength as inputs and estimates your V grade. I get a V4 estimate with a 51% probability of climbing V5 and the assessment that my "upper body strength is quite high compared to [my] finger strength" and to stop training it in favour of improving finger strength. That's with pull up strength roughly on par to finger strength (in the common protocols); if I increase finger strength by 1.5x then my "upper body strength is on par with [my] finger strength" and, up to 2x then my "upper body strength is slightly low compared to [my] finger strength". We'll come back to this ratio.
+The <a href="https://strengthclimbing.com/finger-strength-analyzer/">Climbing Finger Strength Analyzer 2.0</a> takes finger strength and pull-up strength as inputs and estimates your V grade. I get a V4 estimate with a 51% probability of climbing V5 and the assessment that my "upper body strength is quite high compared to [my] finger strength" and to stop training it in favour of improving finger strength. 
 
 
 Lattice Training has a free <a href="https://latticetraining.com/product/my-fingers/">finger assessment</a>: given your finger strength in your preferred grip (half crimp or open hand) for a 7s on a 20mm hang, they'll "compare your data to [their] models so you can find out how your finger strength compares to other similar climbers". After submitting my half crimp finger strength, weight and highest V grade within the last two years:
 
 > Your score of 121.8% bodyweight held makes you in the expected range for your bouldering grade. We would expect people at your grade, weight and gender to be scoring around the level you achieved.
 
-Is finger strength enough? Surely pull-up strength is also important, but how many reps? Just one (as in the 9c test) or as many as 5 (as in the survey data used here)? Core strength is crucial, but how best is it assessed? There were many complaints about the difficulty jump from 20s of hanging L-sit to 5s of front lever in the 9c test. 
+Are finger strength and pull-up strength enough? Half crimp or open hand? What edge and how long a hang? 5s/20mm (9c test), 7s/20mm (Lattice) or 10s/18mm (this survey)? How many pull-up reps? Just one (9c test) or 5 (this survey)? Core strength is crucial, but how best is it assessed? There are many complaints about going from a 20s hanging L-sit to a 5s front lever in the 9c test. 
 
-Mobility is another important factor missing from the discussion so far and, sadly, also not in the dataset I'll be using. In an actual <a href="https://www.youtube.com/watch?v=AuOkMElNgtU">Lattice Training assessment</a>, of course they have tests of mobility: ankles (how far past your toes can your knee reach, at least 5", higher is better), hips (how close to the wall can your body with knees frogged, hip bone at most 10", lower is better), and shoulders (arms above the hard should pull to the ears, ideally past). The GB climbing team assessment, <a href="https://youtu.be/HRz65aplK7w?t=219">previewed by Hannah Morris</a>, tests shoulder mobility the same way, hip mobility in the same way but lying down, and ankle mobility entirely differently. They check how deeply you can squat with feet together; then, as a progression, if you can balance in and out of a pistol squat on each side. Because Hannah and her boyfriend weren't more flexible, we didn't see the full mobility progressions in the GB tests. 
+Mobility is another important factor missing from the discussion so far and, sadly, also not in the dataset I'll be using. In an actual <a href="https://www.youtube.com/watch?v=AuOkMElNgtU">Lattice Training assessment</a>, of course they have tests of mobility: ankles (how far past your toes can your knee reach, aim for at least 5", higher is better), hips (how close to the wall can your body with knees frogged, hip bone at most 10" from the wall, closer is better), and shoulders (arms above the head should pull beside the ears, ideally past them). The GB climbing team assessment, <a href="https://youtu.be/HRz65aplK7w?t=219">previewed by Hannah Morris</a>, tests shoulder mobility the same way, hip mobility in the same way but lying down, and ankle mobility entirely differently. They check how deeply you can squat with feet together; then, as a progression, if you can balance in and out of a pistol squat on each side. Because Hannah and her boyfriend weren't more flexible, we didn't see the full mobility progressions in the GB tests. 
 
 While it's fun to reverse-engineer the trends behind the <a href="https://strengthclimbing.com/finger-strength-analyzer/">Climbing Finger Strength Analyzer 2.0</a>[^reverse], to fully explore what to assess in a boulderer, I'll analyse and model a <a href="https://docs.google.com/spreadsheets/u/0/d/1J6d45EqIlIsIqNdi2X-Zl-EGFxf9d9T3R_W55xrpEAs/edit">dataset</a> that includes many strength metrics, training habits and basic climber attributes[^otherdata]. We'll see how to balance a strength profile, what progression of strength to expect going from V-lo through V-med to V-hi, what training gets suggested to improve, and that height and BMI both have a sweet spot, not too low, not too high. 
 
@@ -71,15 +73,15 @@ While it's fun to reverse-engineer the trends behind the <a href="https://streng
 ## About the Climbers in the Dataset
 
 
-
-Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearlesstofu</a> in social media, kindly submitted her survey responses as well as those of a strong climbing friend, Nelson <a href="https://www.instagram.com/aloeveraelephant/">@aloeveraelephant</a>. I'll see how typical we all are and try to assess our relative strengths and weaknesses (we're nicely spread out in max V grade which makes for especially aesthetic plots!) Then, based on my findings (and taking into what I've learned in all my covid reading), I'll present a practical training assessment including strenth targets and ratios (aka, my winter plans). 
+Special guests include: 
+Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearlesstofu</a> in social media, and her strong climbing friend, Nelson <a href="https://www.instagram.com/aloeveraelephant/">@aloeveraelephant</a>. Our data points will be highlighted against the masses surveyed anonymously to show our relative strengths and weaknesses.  
 
 
 
 
 <style>
 .float-container {
-  width: 80%; margin: auto
+  width: 100%; margin: auto
 }
 .float-child {
   width:  50%;
@@ -90,12 +92,12 @@ Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearle
   color: #333333;
 }
 
-/*.float-left {
-  min-width: 300px;
+.float-left {
+  width: 60%;
 }
 .float-right {
-  min-width: 50px;
-}*/
+  width: 40%;
+}
 
 .float-child img {
   display: inline; max-width: 100%; max-height: 100%;
@@ -109,7 +111,7 @@ Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearle
       <div class="item ">
         <div class="float-container">
           <div class="float-child float-left ">
-            <img src="{{ "/assets/images/climbing/me-s.jpg" | relative_url }}">
+            <img src="{{ "/assets/images/climbing/me.jpg" | relative_url }}" title="Me on the very wet Brothers Creek Erratic along the Baden Powell trail.">
           </div>
           <div class="float-child float-right">
             <h3>Lara, the author</h3>
@@ -119,7 +121,7 @@ Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearle
            22.7 BMI<br></p>
             <p>climbing 18 years<br> 
               bouldering ~7 years<br></p>
-            <p><a href="https://hiveclimbing.com/start-here/#explained">4-hex</a> at the Hive<br> V5 on the kilter board<br> V3 outside<br> 3-hex/V1 inside/outside is doable<br></p>
+            <p><a href="https://hiveclimbing.com/start-here/#explained">4-hex</a> at the Hive<br> V5 on the kilter board<br> V3 outside<br> 3-hex inside & V1 outside are nearly always doable<br></p>
             <p>6 hrs climbing / week<br> 
               1 hr training / week<br>
             1-2 hangboarding / week<br>
@@ -137,7 +139,7 @@ Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearle
       <div class="item active">
         <div class="float-container">
           <div class="float-child float-left ">
-            <img src="{{ "/assets/images/climbing/megan.png" | relative_url }}">
+            <img src="{{ "/assets/images/climbing/megan.jpg" | relative_url }}" title="Megan on her first outdoor V6: Fat Tire in South Lake Tahoe">
           </div>
           <div class="float-child float-right">
             <h3>Megan, <a href="https://www.instagram.com/fearlesstofu/">@fearlesstofu</a></h3>
@@ -146,9 +148,10 @@ Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearle
               neutral ape index<br>
               20.8 BMI<br></p>
             <p>climbing ~6 years<br></p>
-            <p>V8 indoors<br> 
+            <p>V8 indoors<br>
+            V6 indoors in the last 3 months<br> 
               <a href="https://www.youtube.com/watch?v=95YO-N2b48o">V7 outside</a><br> 
-              V4 is doable<br></p>
+              V4 is nearly always doable<br></p>
             <p>2 hrs / week on a <a href="https://www.instagram.com/fearlessmooncake/">moonboard</a> <br>
             no other training<br>
            both less than usual: studying 📚!</p>
@@ -164,11 +167,11 @@ Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearle
       <div class="item ">
         <div class="float-container">
           <div class="float-child float-left ">
-            <img src="{{ "/assets/images/climbing/nelson.jpg" | relative_url }}">
+            <img src="{{ "/assets/images/climbing/nelson.jpg" | relative_url }}" title="Nelson on a V6 in Columbia, CA called Triple Cracks">
           </div>
           <div class="float-child float-right">
             <h3>Nelson, <a href="https://www.instagram.com/aloeveraelephant/">@aloeveraelephant </a></h3>
-            <p>See him in "<a href="https://www.youtube.com/watch?v=HrGscD-nyMc&t=270s">Friends try my moonboard</a>" wearing orange shorts and a blue tank top, and in "<a href="https://www.youtube.com/watch?v=Q2nP8j-FhSM">We try the FOREARM CHALLENGE</a>"</p>
+            <p>See him in "<a href="https://www.youtube.com/watch?v=HrGscD-nyMc&t=270s">Friends try my moonboard</a>" and in "<a href="https://www.youtube.com/watch?v=Q2nP8j-FhSM">We try the FOREARM CHALLENGE</a>"</p>
             <p>175cm tall<br>
               +4cm ape index<br>
               22.5 BMI<br></p>
@@ -176,7 +179,7 @@ Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearle
             climbs outdoors "maybe twice a year"</p>
             <p>V11<br>
             V8, in the last 3 months<br> 
-              V7 is doable<br></p>
+              V7 is nearly always doable<br></p>
             <p>10 hrs climbing / week<br>
             no other training<br></p>
             <p>+36kg half crimp<br> 
@@ -202,7 +205,7 @@ Megan, better known as <a href="https://www.instagram.com/fearlesstofu/">@fearle
 [^otherquestions]: Training specifics such as hangboard protocols (eg. repeaters, max hangs, min edges and one-armed protocols) as well as grip types trained (eg. half crimp, open hand and others not modeled as they were too noisy); 
 
 
-The survey included another 77 women and 513 men. The women are on average lighter (58kg / 72kg), shorter (165cm /  179cm), have a shorter ape index by more than 1cm, have been climbing 4 months less, climb 15min less per week, train 20min less per week, are weaker in all measures except they can hold an L-sit longer (45s / 35s); they climb 1-2 V grades lower but their hardest grade is closer to the grade they can send 90-100% of the time. Higher V grade climbers are more likely to climb outside (nearly everyone in this dataset climbs inside). Let’s look at some more statistics visually.
+The survey included another 77 women and 513 men. The women are on average lighter (58kg / 72kg), shorter (165cm /  179cm), have a shorter ape index by more than 1cm, have been climbing 4 months less, climb 15min less per week, train 20min less per week, and are weaker in all measures except they can hold an L-sit 10s longer; they climb 1-2 V grades lower but their hardest grade is closer to the grade they can send 90-100% of the time. Higher V grade climbers are more likely to climb outside (nearly everyone in this dataset climbs inside). Let’s look at some more statistics visually.
 
 
 <div id="wrapper">
