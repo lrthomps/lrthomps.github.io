@@ -4,7 +4,7 @@ layout: page
 
 
 
-Roughly five years a data scientist after studying math and physics, now in Vancouver, BC.
+Roughly five years a data scientist after studying math and physics, now in Vancouver, BC.  
 
 In Vancouver because I love the mountains so near, prefer my snow up there, don’t mind the rain down here, and could not live in an un-walkable/un-bikeable place.
 
