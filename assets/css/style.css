@@ -241,6 +241,10 @@ aside {
     color: #29627e;
 }
 
+.float-notes {
+    color: #007bff;
+}
+
 .container {
     max-width: 850px;
     margin-left: auto;
