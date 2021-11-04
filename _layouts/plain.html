@@ -11,15 +11,18 @@
       {% include mathjax_support.html %}
     {% endif %}
 
-    <!-- {% if page.use_carousel %} -->
+    {% if page.use_carousel %}
       {% include carousel_support.html %}
-    <!-- {% endif %}  -->
+    {% endif %} 
 
     <link href='{{ "feed.xml" | relative_url }}' rel='alternate' type='application/atom+xml'>
-    <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+    
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
+    
+    <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+    
   </head>
 
   <body>

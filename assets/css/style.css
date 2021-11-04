@@ -35,6 +35,13 @@ a:focus { outline: thin dotted; }
 /* Improves readability when focused and also mouse hovered in all browsers people.opera.com/patrickl/experiments/keyboard/test */
 a:hover, a:active { outline: 0; }
 
+a:link {
+    color: #007bff;
+}
+a:visited {
+    color:  #007bff;
+}
+
 /* ============================================================================= Typography ========================================================================== */
 /* Addresses font sizes and margins set differently in IE6/7 Addresses font sizes within 'section' and 'article' in FF4+, Chrome, S5 */
 h1 { font-size: 2em; margin: 0.67em 0; }
@@ -239,6 +246,10 @@ aside {
     font-style: italic;
     font-size: 9pt;
     color: #29627e;
+}
+
+abbr[title] {
+    cursor: inherit;
 }
 
 .float-notes {
