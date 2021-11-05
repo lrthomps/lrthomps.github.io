@@ -317,7 +317,7 @@ I’ll plot these metrics and, like before, click through the carousel to see th
       </div>
       <div class="item">
         <img src="{{ "/assets/images/climbing/lsit.png" | relative_url }}">
-        <p class="caption">A further 9 climbers are cut off; L-sit times went as high as 10min including one female V3 climber who held for nearly <abbr class="float-notes" title="Just hanging from the bar that long is 9/10 points for endurance on the 9c test. 10min is off the charts!">5min</abbr>!</p>
+        <p class="caption">Self-reported L-sit times went as high as 2h46m; 12 in total exceeded the (Guiness Book) world record of 1m29s. Less than 25% reported. Be suspicious of conclusions based on it.</p>
       </div>
     </div>
     <a class="carousel-control left" href="#carousel_strengths" data-slide="prev">
@@ -357,16 +357,18 @@ What about differences in strength metrics: how should the two grips compare for
 
 ## Bouldering Predictions
 
-With a dataset of nearly 600 climbers, I could train <abbr class="float-notes" title="Several in fact, of various kinds: I started with linear regression, went to 2-4 layer dense neural networks before finally trying on random forests then boosted trees (which, of course, are usually best for this kind of tabular data). I trained many of each kind and settled on the model type that gave the most consistent feature importance estimates.">a model</abbr> to predict the hardest V grade each climber had reached given their strength metrics and training habits. Shockingly, the model was better than expected with some regression to the mean (that is, low V grade climbers were predicted high, while high V grade climbers were predicted low) with typical errors ~1-2 V grades. 
+With a dataset of nearly 600 climbers, I could train <abbr class="float-notes" title="Several in fact, of various kinds: I started with linear regression, went to 2-4 layer dense neural networks before finally trying on random forests then boosted trees (which, of course, are usually best for this kind of tabular data). I trained many of each kind and settled on the model type that gave the most consistent feature importance estimates.">a model</abbr> to predict the hardest V grade each climber had reached given their strength metrics and training habits. Shockingly, the model was better than expected, although with mild regression to the mean (that is, low V grade climbers were predicted high, while high V grade climbers were predicted low): typical errors were <2 V grades. 
 
-In predicting each of the reported bouldering grades, the model can be assessed for how important it found each feature of the climber. In nearly every model I trained for every grade, the most important feature is number of years climbed. After all: 
+In predicting each of the reported bouldering grades, the model can be assessed for how important it found each feature of the climber. In nearly every model I trained for every grade, the most important feature is number of years climbed. Next is the related # hours climbing per week. After all: 
 
 >   Climbing is the best training for climbing
+
+The most important strength metric was nearly always half crimp strength. Even though the next most touted "widsom", it's still a little surprising with this dataset: <abbr class="float-notes" title="Compare with: weighted open hand hangs ## %, weighted 5-rep pull-ups ##%, L-sit time ## %, # of pull-ups ## %; # of push-ups ## %; ## % hangboard; ## % campus board; ## % that train non-specifically">only 35%</abbr> of climbers reported weighted half crimp hangs. 
 
 Strangely, the number of pull-ups often appeared more important than the actual pull-up strength. Surely in bouldering, number of pull-ups is more of an endurance feat while 5-rep max weight is a measure of strength endurance (single rep max weighted pull-ups would better assess pure strength). If most boulders feature 5 moves, this should be the most important (pull-up) feature. The reason I think they come reversed is that 3/4 of climbers reported number of pull-ups while less than half reported weighted ones: there's just more information in the former for the model to learn from.
 That said, it's astonishing that half crimp strength was the most common second most used feature when only 35% of climbers reported it!
 
-<img src="{{ "/assets/images/climbing/feats_max_recent.png" | relative_url }}">
+<img src="{{ "/assets/images/climbing/feat_imp.png" | relative_url }}">
 
 <p class="caption">As found by the model, the most important aspect of a climber to guess their highest V grade is how long they’ve been climbing! BMI is next in importance: the predicted grade only increases for climbers with BMI &le; 19; Megan, Nelson and my predictions all go up if we increase out BMI by 0.5 (not by much though). Next we see hours climbing, max pull up reps and half crimp strength. This is <a href="https://christophm.github.io/interpretable-ml-book/feature-importance.html">permutation importance</a> so the score is the (normalized) increase in mean squared error over all climbers (the 30 held out climbers included) when each feature is random shuffled.</p>
 
@@ -374,19 +376,19 @@ That said, it's astonishing that half crimp strength was the most common second 
 <div id="carousel_preds" class="carousel slide">
     <div class="carousel-inner">
       <div class="item active">
-        <img src="{{ "/assets/images/climbing/pred_max_recent.png" | relative_url }}" >
+        <img src="{{ "/assets/images/climbing/pred.png" | relative_url }}" >
         <p class="caption">This (<a href="https://lightgbm.readthedocs.io/en/latest/">lightgbm</a>) model was trained holding out a random 30 climbers (in green) including Megan, Nelson and I: that the test climbers are predicted as well as the others is a sign the model trained well. The slight bias to predict high for lower V grade climbers and low for higher V grade climbers (known as regressing to the mean) isn't too surprising since there is a lot of missing data (unmeasured weighted hangs for instance). Megan, Nelson and I are very well predicted; reassuring since the model had all our strength metrics.</p>
       </div>
       <div class="item">
-        <img src="{{ "/assets/images/climbing/del_y_max_recent.png" | relative_url }}" >
+        <img src="{{ "/assets/images/climbing/del_y.png" | relative_url }}" >
         <p class="caption">Change no habits, even if continuing various kinds of training, if you get no stronger and just climb another year and you’ll improve by 0.5 to 1.5 V grades in your first 5 years.</p>
       </div>
       <div class="item">
-        <img src="{{ "/assets/images/climbing/del_s_max_recent.png" | relative_url }}" >
+        <img src="{{ "/assets/images/climbing/del_s.png" | relative_url }}" >
         <p class="caption">The predicted grade shift for increased strength metrics all follow a similar pattern: there are no gains (and sometimes expected losses!) for increasing strength at the lowest levels. I interpret this as the usual advice from trainers and climbers alike: to improve at climbing, at first, focus on climbing. You will naturally get stronger. Once a minimal strength is reached (10s hangs on a 20mm edge, 5 pull-ups, 10 push-ups, 5s hanging L-sit) then increasing them further yields greater gains. Once a certain strength is reached however, the gains saturate. The data sets the upper limits at hangs with body weight added, 5-rep pull-ups with less than half body weight added, 20 pull-ups, 30 push-ups, 30s of hanging L-sit. Note that this dataset is realistic limited to climbing up to V10 (very few climbers climbed harder); but <a href="https://www.instagram.com/p/B9zNGplJMyG/" target="__blank">Lattice Training reports</a> less than that finger strength for bouldering V15!</p>
       </div>
       <div class="item">
-        <img src="{{ "/assets/images/climbing/del_s2_max_recent.png" | relative_url }}" >
+        <img src="{{ "/assets/images/climbing/del_s2.png" | relative_url }}" >
         <p class="caption">The predicted grade shift for increased strength metrics all follow a similar pattern: there are no gains (and sometimes expected losses!) for increasing strength at the lowest levels. I interpret this as the usual advice from trainers and climbers alike: to improve at climbing, at first, focus on climbing. You will naturally get stronger. Once a minimal strength is reached (10s hangs on a 20mm edge, 5 pull-ups, 10 push-ups, 5s hanging L-sit) then increasing them further yields greater gains. Once a certain strength is reached however, the gains saturate. The data sets the upper limits at hangs with body weight added, 5-rep pull-ups with less than half body weight added, 20 pull-ups, 30 push-ups, 30s of hanging L-sit. Note that this dataset is realistic limited to climbing up to V10 (very few climbers climbed harder); but <a href="https://www.instagram.com/p/B9zNGplJMyG/" target="__blank">Lattice Training reports</a> less than that finger strength for bouldering V15!</p>
       </div>
     </div>
