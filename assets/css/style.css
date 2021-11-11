@@ -270,7 +270,7 @@ abbr[title] {
 }
 .row {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
 
 /* Props */
@@ -278,38 +278,58 @@ abbr[title] {
     margin: 10px 0;
 }
 #biopic {
-    grid-column: span 6;
+    grid-column: span 1;
+    text-align: right;
+}
+#big {
+    padding-top: 33%;
+    grid-column: span 1;
     text-align: right;
 }
 #bioheadline {
-    padding-top: 80px;
     padding-left: 20px;
-    grid-column: span 6;
+    grid-column: span 1;
+    align-items: center; 
+    margin: auto 0;
 }
 #bioheadline h2 {
     font-size: 18px;
     color: #666;
     margin: 5px 0 10px 0;
 }
-
-
-@media (max-width: 849px) {
-    #biopic {
-      grid-column: span 12;
-      text-align: center;
-    }
-    #bioheadline {
-      grid-column: span 12;
-      padding-top: 20px;
-      text-align: center;
-    }
-}
-
-
 #biopic img {
     width: 260px;
     height: 260px;
     border-radius: 130px;
+}
+
+#big img {
+    width: 460px;
+    height: 460px;
+    border-radius: 230px;
+}
+
+
+@media (max-width: 849px) {
+    #biopic {
+      grid-column: span 2;
+      text-align: center;
+    }
+    #big {
+        padding-top: 5px;
+      grid-column: span 2;
+      text-align: center;
+    }
+    #big img {
+        width: 260px;
+        height: 260px;
+        border-radius: 130px;
+    }
+    #bioheadline {
+      grid-column: span 2;
+      padding: 20px 0;
+      text-align: center;
+    }
 }
 
 
