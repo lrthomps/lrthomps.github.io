@@ -48,7 +48,7 @@ h1 { font-size: 2em; margin: 0.67em 0; }
 
 h2 { font-size: 1.5em; margin: 0.83em 0; }
 
-h3 { font-size: 1.17em; margin: 1em 0; }
+h3 { font-size: 1.17em; margin: 0.5em 0; }
 
 h4 { font-size: 1em; margin: 1.33em 0; }
 
@@ -57,7 +57,7 @@ h5 { font-size: 0.83em; margin: 1.67em 0; }
 h6 { font-size: 0.75em; margin: 2.33em 0; }
 
 /* Addresses styling not present in IE7/8/9, S5, Chrome */
-abbr[title] { border-bottom: 1px dotted; }
+abbr[title] { border-bottom: 1px dotted; color: #001146;}
 
 /* Addresses style set to 'bolder' in FF3+, S4/5, Chrome
 */
@@ -183,7 +183,9 @@ body { padding: 0px 0px 0px 0px; margin: 0px;
     min-height: 100%;  
     }
 
-h1, h2, h3, h4, h5, h6 { color: #333; margin: 0 0 10px; font-family: 'OpenSansRegular', "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: normal; }
+h1, h2 {margin: 20px 0 10px; }
+
+h1, h2, h3, h4, h5, h6 { color: #333; font-family: 'OpenSansRegular', "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: normal; }
 
 p, ul, ol, table, pre, dl { margin: 0 0 10px; }
 
@@ -239,7 +241,7 @@ section img {
 
 aside {
     width: 40%;
-    padding: .5rem 0 0 .5rem;
+    padding: .1rem 0 0 .5rem;
     float:  right;
     margin-left: 2rem;
     /*margin-right: 10%;*/
