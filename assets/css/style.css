@@ -108,6 +108,12 @@ sub { bottom: -0.25em; }
   text-align:left;
 }
 
+.endnotes {
+    font-size:  9pt;
+    color: #333;
+    line-height: 1.2;
+    font-style: italic;
+}
 
 /* ============================================================================= Lists ========================================================================== */
 /* Addresses margins set differently in IE6/7 */
@@ -217,7 +223,9 @@ a { font-weight: 400; text-decoration: none; }
 
 a small { font-size: 11px; color: #666; margin-top: -0.6em; display: block; }
 
-ul {  }
+.nolist { margin-left: 20px; }
+.nolist p { text-indent: -20px; }
+.orange { color: #a40; font-weight: bold;}
 
 strong { font-family: 'OpenSansBold', "Helvetica Neue", Helvetica, Arial, sans-serif !important;  }
 
@@ -225,6 +233,7 @@ strong { font-family: 'OpenSansBold', "Helvetica Neue", Helvetica, Arial, sans-s
 hr {
     margin: 50px auto;
     width: 33%;
+    border-color: #a40;
 }
 
 section {
@@ -247,10 +256,13 @@ aside {
     /*margin-right: 10%;*/
     /*margin-right: %;*/
     /*border:  1px solid #29627e;*/
-    box-shadow: inset 5px 0px 5px -5px #29627e;
+    box-shadow: inset 5px 0px 5px -5px #a40;
     font-style: italic;
     font-size: 9pt;
-    color: #29627e;
+    color: #a40;
+}
+aside h3, aside abbr[title] {
+    color: #9a6200;
 }
 
 abbr[title] {

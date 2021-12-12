@@ -3,8 +3,18 @@ layout: frontpage
 ---
 
 
+<aside><h3>
+    Data Scientist, ~programmer<br>
+    Physicist, mathematician, ~neuroscientist<br>
+    Trad climber & boulderer, (trail) runner, backcountry skiier<br>
+    Reader, ~writer<br>
+    Coffee! Cats! Dogs!
+</h3>
+<p>Contact me: laraph@<a href="https://vantech.slack.com">vantech.slack.com</a> (<a href="https://vantech.herokuapp.com/">sign up</a>); <a href="https://www.linkedin.com/in/lara-r-thompson">LinkedIn</a>; or <a href="https://www.instagram.com/lrthomps/" target="__blank">@lrthomps</a> on Instagram.</p>
+</aside>
 
-<!-- Roughly five years a data scientist after studying math and physics, now in Vancouver, BC.  
+
+Roughly five years a data scientist after studying math and physics, now in Vancouver, BC.  
 
 In Vancouver because I love the mountains so near, prefer my snow up there, don’t mind the rain down here, and could not live in an un-walkable/un-bikeable place.
 
@@ -14,8 +24,7 @@ Data Science because it combines math, programming, and problem solving always i
 
 I care deeply about people and the environment. We need products and services that help people, not those that manipulate or merely distract. Technology that means less waste and not just more stuff.
 
-Recommenders that connect people with what they might love but would never have found otherwise.
-Translations that reach across languages. Speech to text that loves accents as much I do. Models that expose bias and can go beyond. Data that can stay private and still be used for training.
+Recommenders that connect people with what they might love but would never have found otherwise. Models that expose bias and can go beyond. Data that can stay private and still be used for training.
 
-There’s so much potential and so much to learn. I link to things that I find most helpful in <a href="/resources.html">resources</a>; in various <a href="/posts.html">posts</a>, I’ll explore topics that interest me. The posts are mostly for my own reference but feel free to write if you find something interesting or confusing. I’m best contacted as <em>laraph</em> on <a href="https://vantech.slack.com">vantech.slack.com</a> (<a href="https://vantech.herokuapp.com/">vantech.herokuapp.com</a> to sign up; sometimes not working!).
- -->
+There’s so much potential and so much to learn. I link to things that I find most helpful in <a href="/resources.html">resources</a>; in various <a href="/posts.html">posts</a>, I’ll explore topics that interest me. 
+
