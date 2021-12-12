@@ -14,7 +14,7 @@ I learn best from reading, not coursera-like videos (though who didn’t enjoy A
 Starting out, I read a bunch of textbooks and as far as I know these are still good starting points:
 * <a href="http://neuralnetworksanddeeplearning.com/">Neural Networks and Deep Learning</a> by Michael Nielsen: back prop, loss functions, problems when neural networks go deep
 
-* <a href="https://www.deeplearning.ai/machine-learning-yearning/">Machine Learning Yearning</a> by Andrew Ng: how to train a model and ensure it works in the real world</
+* <a href="https://www.deeplearning.ai/machine-learning-yearning/">Machine Learning Yearning</a> by Andrew Ng: how to train a model and ensure it works in the real world
 
 * <a href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/">Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow</a> by Aurélien Géron: it’s all in the title, great book
 
