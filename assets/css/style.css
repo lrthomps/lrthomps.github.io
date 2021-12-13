@@ -261,16 +261,48 @@ aside {
     font-size: 9pt;
     color: #a40;
 }
-aside h3, aside abbr[title] {
+aside h3, aside .float-notes {
     color: #9a6200;
 }
 
-abbr[title] {
-    cursor: inherit;
+.float-notes span {
+   z-index: -1;
+   opacity: 0;
+   color: white;
+   font-style: normal;
+   text-indent: 0;
+   position: absolute;
+   margin-left: 0px;
+   margin-right: 18px;
+   padding:10px 15px;
+   border-radius:4px; 
+   border:1px solid #333;
+   background-color: rgba(20%, 20%, 20%, 0.9);
+/*   -webkit-transition: all 2s ease;
+   -moz-transition: all 2s ease;
+   -o-transition: all 2s ease;
+   transition: all 2s ease;*/
+}
+
+.float-notes:hover span {
+   z-index: 9;
+   opacity: 1;
+/*   -webkit-transition: all 2s ease;
+   -moz-transition: all 2s ease;
+   -o-transition: all 2s ease;
+   transition: all 2s ease;*/
 }
 
 .float-notes {
     color: #007bff;
+    text-decoration-style: dotted;
+    text-decoration-line: underline;
+}
+
+a[title].float-notes {
+    color: #007bff;
+    text-decoration-style: dotted;
+    text-decoration-line: underline;
 }
 
 .container {
