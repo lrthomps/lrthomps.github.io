@@ -502,7 +502,7 @@ Unweighted pull-ups are to endurance as weighted single reps are to strength, as
 (on the floor) forearm plank; (hanging from a bar) knees tucked, or legs straight (L-sit); then front lever progression: knees tucked, one leg extended, legs wide, both legs extended. Pick the hardest 1-2 you can do 5-30s.</p>
 
 <p><span class="orange">Power</span>:
-explosive pull-ups / muscle-ups for pulling power; assess your contact grip strength with system board climbs that challenge it, or on a <a href="https://mojagear.com/campus-board-training-with-eric-horst/">campus board</a>. Maybe your gym has hangboard with a time-resolved force meter.</p>
+explosive pull-ups / muscle-ups for pulling power; assess your <a href="https://www.youtube.com/watch?v=HFe4LyDihDQ" title="What is Contact Strength? (A Climbing Nerd’s Investigation) Part 1/3 from Hooper's Beta">contact strength</a> with system board climbs that challenge it, or on a <a href="https://mojagear.com/campus-board-training-with-eric-horst/">campus board</a>. Maybe your gym has hangboard with a time-resolved force meter.</p>
 
 <p><span class="orange">Legs</span>:
 <span class="float-notes">Jump taps<span>Chalk your hands and see how high you can tap a brick wall; count the bricks to measure distance.</span></span>; toe the <span class="float-notes">four corners<span>Balance on one foot and with the other nudge a small object as far forward as you can without putting weight into that foot. Then to the back, then the left and the right. It requires good balance which tests the stable leg (and core) in many positions.</span></span>; pistol squats (surely just a few are enough).</p>
