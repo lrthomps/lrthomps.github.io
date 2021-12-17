@@ -394,7 +394,7 @@ By far the most important feature is how many years a climber has been climbing 
 
 >   Climbing is the best training for climbing
 
-The top strength metrics by any measure are the number of pull-ups, half crimp strength, and the number of hours campus board training per week. Campus board training is synonymous with training for <span class="float-notes">power<span>Power is a measure of the rate of force applied; think of contact strength and how much harder it is to catch a bad hold in a lunge than to grab it statically, or think of the fast pulling strength to initiate that lunge.</span></span> so we can say:
+The top strength metrics by any measure are the number of pull-ups, half crimp strength, and the number of hours campus board training per week. Campus board training is synonymous with training for <span class="float-notes">power<span>Power is a measure of the rate of force applied; think of <a href="https://www.youtube.com/watch?v=HFe4LyDihDQ" title="What is Contact Strength? (A Climbing Nerd’s Investigation) Part 1/3 from Hooper's Beta">contact strength</a> and how much harder it is to catch a bad hold in a lunge than to grab it statically, or think of the fast pulling strength to initiate that lunge.</span></span> so we can say:
 
 >   Finger and pulling strength and power are the best predictors of climbing grade
 
