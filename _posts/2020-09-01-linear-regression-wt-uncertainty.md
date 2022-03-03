@@ -97,13 +97,17 @@ $$</p>
 <p>$$
 \pmb{\beta} \sim T( \pmb{\hat \beta}, \hat\sigma^2(\pmb{R}^T \pmb{R})^{-1}, n-p)
 $$</p>
-<p>where $T$ is the student-t distribution. If $n \gg p$, $T \to N$ for high orders and we recover the quadratic approximation (phew!).</p>
+<p>where $T$ is the student-t distribution. The sample bias corrected noise is</p>
+<p>$$
+\hat\sigma^2 = \sum {\pmb{y} - \pmb{X\beta} \over n-p-1}
+$$</p>
+<p>If $n \gg p$, $T \to N$ for high orders and we recover the quadratic approximation (phew!).</p>
 
 We can also exactly calculate the predictive posterior distribution given new samples $\tilde X$:
 <p>$$
-\pmb{\tilde y} \sim T( \tilde X \hat \beta, \hat \sigma^2 (I + \tilde X (X^TX)^{-1} \tilde X^T), n - p)
+\pmb{\tilde y} \sim T( \tilde X \hat \beta, \hat \sigma^2 (I + \tilde X (X^TX + \lambda I)^{-1} \tilde X^T), n - p)
 $$</p>
-<p>These estimates assume the model represents the data; that the underlying process generating samples is a linear function with Gaussian noise. In my tests, all data were generated this way and still the test set far too frequently fell in the distant tails. These in-sample uncertainty estimates make too many assumptions and are no replacement for cross-validation.</p>
+<p>restoring the original $X$ with $\lambda$ pulled out. These estimates assume the model represents the data; that the underlying process generating samples is a linear function with Gaussian noise. In my tests, all data were generated this way and still the test set far too frequently fell in the distant tails. These in-sample uncertainty estimates make too many assumptions and are no replacement for cross-validation.</p>
 
 <h2 id="sampling-for-prediction-uncertainty">Sampling for Uncertainty</h2>
 
