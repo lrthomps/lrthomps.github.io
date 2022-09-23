@@ -99,7 +99,7 @@ $$</p>
 $$</p>
 <p>where $T$ is the student-t distribution. The sample bias corrected noise is</p>
 <p>$$
-\hat\sigma^2 = \sum {\pmb{y} - \pmb{X\beta} \over n-p-1}
+\hat\sigma^2 = \sum ({\pmb{y} - \pmb{X\beta})^2 \over n-p-1}
 $$</p>
 <p>If $n \gg p$, $T \to N$ for high orders and we recover the quadratic approximation (phew!).</p>
 
