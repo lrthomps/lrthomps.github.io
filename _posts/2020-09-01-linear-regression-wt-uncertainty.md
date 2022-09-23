@@ -76,40 +76,40 @@ $$</p>
 
 <p>The same magic works for non-zero $\lambda$. If we augment our data with some “virtual data”,</p>
 <p>$$
-\pmb{y} \to \left[ \begin{array}{c} \pmb{y} \\ \pmb{0}\end{array}\right]\\
-\pmb{X} \to \left[ \begin{array}{c} \pmb{X} \\ \sqrt{\lambda} \pmb{I}\end{array}\right]
+\pmb{\tilde y} = \left[ \begin{array}{c} \pmb{y} \\ \pmb{0}\end{array}\right]\\
+\pmb{\tilde X} = \left[ \begin{array}{c} \pmb{X} \\ \sqrt{\lambda} \pmb{I}\end{array}\right]
 $$</p>
 <p>the sum of square residuals has absorbed the regularisation term! If $\pmb{\tilde X} = \pmb{\tilde Q \tilde R}$, the solution is exactly as before: $\pmb{\hat \beta} = \pmb{\tilde R}^{-1}\pmb{\tilde Q}^T \pmb{\tilde y}$.</p>
 
 <h2 id="uncertainty-estimation">Uncertainty Estimation</h2>
 
-<p>We would not only like the MAP estimate of the linear regression, but also the variation about it. A quadratic approximation estimates this variation using the inverse Hessian of the loss function at the minimum, the so-called Laplace approximation [8.4.1 in Murphy, 2012]. The second derivative (in the augmented $\lambda$-absorbed version, dropping tildes) is independent of $\beta$:</p>
+<p>We would not only like the MAP estimate of the linear regression, but also the variation about it. A quadratic approximation estimates this variation using the inverse Hessian of the loss function at the minimum, the so-called Laplace approximation [8.4.1 in Murphy, 2012]. The second derivative is independent of $\beta$:</p>
 
 <p>$$
 \begin{aligned}
-{1 \over 2\sigma^2}\left. {d^2 \over d\pmb{\beta}^2}(\pmb{y} - \pmb{X} \pmb{\beta})^T(\pmb{y} - 
-\pmb{X}\pmb{\beta})\right|_{MAP}  &amp;\\
-= {1 \over \hat\sigma^2}\pmb{X}^T \pmb{X} = {1 \over \hat\sigma^2}\pmb{R}^T \pmb{R} &amp;
+{1 \over 2\sigma^2}\left. {d^2 \over d\pmb{\beta}^2}(\pmb{\tilde y} - \pmb{\tilde X} \pmb{\beta})^T(\pmb{\tilde y} - 
+\pmb{\tilde X}\pmb{\beta})\right|_{MAP}  &amp;\\
+= {1 \over \hat\sigma^2}\pmb{\tilde X}^T \pmb{\tilde X} = {1 \over \hat\sigma^2}\pmb{\tilde R}^T \pmb{\tilde R} &amp;
 \end{aligned}
 $$</p>
 
-<p>The exact posterior distribution of the coefficients is $\pmb{\beta} \sim N( \pmb{\hat \beta}, \sigma^2 (\pmb{R}^T \pmb{R})^{-1})$ where the posterior of the variance is an inv-$\chi^2$ distribution. If $\sigma$ is integrated out, we get the marginal distribution of the regression coefficients,</p>
+<p>The exact posterior distribution of the coefficients is $\pmb{\beta} \sim N( \pmb{\hat \beta}, \sigma^2 (\pmb{\tilde R}^T \pmb{\tilde R})^{-1})$ where the posterior of the variance is an inv-$\chi^2$ distribution. If $\sigma$ is integrated out, we get the marginal distribution of the regression coefficients,</p>
 <p>$$
-\pmb{\beta} \sim T( \pmb{\hat \beta}, \hat\sigma^2(\pmb{R}^T \pmb{R})^{-1}, n-p)
+\pmb{\beta} \sim T( \pmb{\hat \beta}, \hat\sigma^2(\pmb{\tilde R}^T \pmb{\tilde R})^{-1}, n-p)
 $$</p>
 <p>where $T$ is the student-t distribution. The sample bias corrected noise is</p>
 <p>$$
-\hat\sigma^2 = \sum ({\pmb{y} - \pmb{X\beta})^2 \over n-p-1}
+\hat\sigma^2 = \sum {(\pmb{y} - \pmb{X \hat \beta})^2 \over n-p-1}
 $$</p>
 <p>If $n \gg p$, $T \to N$ for high orders and we recover the quadratic approximation (phew!).</p>
 
-We can also exactly calculate the predictive posterior distribution given new samples $\tilde X$:
+We can also exactly calculate the predictive posterior distribution given new samples $X^\prime$:
 <p>$$
-\pmb{\tilde y} \sim T( \tilde X \hat \beta, \hat \sigma^2 (I + \tilde X (X^TX + \lambda I)^{-1} \tilde X^T), n - p)
+\pmb{y'} \sim T(X' \hat \beta, \hat \sigma^2 (I + X' (\pmb{\tilde R}^T \pmb{\tilde R})^{-1} X'^T), n - p)
 $$</p>
-<p>restoring the original $X$ with $\lambda$ pulled out. These estimates assume the model represents the data; that the underlying process generating samples is a linear function with Gaussian noise. In my tests, all data were generated this way and still the test set far too frequently fell in the distant tails. These in-sample uncertainty estimates make too many assumptions and are no replacement for cross-validation.</p>
+<p>These estimates assume the model represents the data; that the underlying process generating samples is a linear function with Gaussian noise. In my tests, all data were generated this way and still the test set far too frequently fell in the distant tails. These in-sample uncertainty estimates make too many assumptions and are no replacement for cross-validation. Quantiles of the student-T distribution can be used to compare with the actual frequency of errors.</p>
 
-<h2 id="sampling-for-prediction-uncertainty">Sampling for Uncertainty</h2>
+<!-- <h2 id="sampling-for-prediction-uncertainty">Sampling for Uncertainty</h2>
 
 <p>The especially useful reason to use QR decomposition is in the form of the covariance matrix for $\pmb{\beta}$ because $\pmb{R}$ is  $p\times p$ and therefore allows us to transform $\pmb{\beta} = \pmb{\hat\beta} + \hat\sigma\pmb{R^{-1} z}$ where  $\pmb{z} \sim T(0, I_p, n-p)$ which can be sampled efficiently. Note that the general transformation of a normal distribution is</p>
 <p>$$
@@ -121,7 +121,7 @@ $$</p>
 <script src="https://gist.github.com/lrthomps/e72a08cc3731b53c684174d0d9be419d.js"></script>
 
 
-<p>See the complete <a href="https://github.com/lrthomps/notebooks/blob/master/rl_models.ipynb">notebook on github</a>.</p>
+<p>See the complete <a href="https://github.com/lrthomps/notebooks/blob/master/rl_models.ipynb">notebook on github</a>.</p> -->
 
 <h2 id="supplementary-notes">Supplementary Notes</h2>
 
@@ -133,8 +133,8 @@ $$</p>
 df(\lambda) &amp;= tr(X(X^T X + \lambda I)^{-1} X^T ) \\
 &amp;=  tr(X^T X(X^T X + \lambda I)^{-1} ) \\
 &amp;= tr(I - \lambda I(X^T X + \lambda I)^{-1}) \\
-&amp;= p - \lambda \; tr(R^TQ^T Q R)^{-1} \\
-&amp;= p - \lambda ||R^{-1}||_F^2
+&amp;= p - \lambda \; tr(\tilde R^T \tilde Q^T \tilde Q \tilde R)^{-1} \\
+&amp;= p - \lambda ||\tilde R^{-1}||_F^2
 \end{aligned}
 $$</p>
 <p>where in the last line a property of the Frobenius norm, $ tr (A^T A) = ||A||_F^2 $, has been used. This tells us that the effective degrees of freedom in the model is the number of predictors <em>reduced</em> by an amount proportional to $\lambda$. This makes intuitive sense!</p>
