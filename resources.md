@@ -4,7 +4,7 @@ layout: page
 
 # Data, ML, Math etc.
 
-Lasting advice from others:
+Excellent posts:
 * <a href="https://developers.google.com/machine-learning/guides/rules-of-ml/">Rules of ML</a> from Google
 * <a href="https://karpathy.github.io/2019/04/25/recipe/">A Recipe for Training Neural Networks</a> by Andrej Karpathy
 
@@ -28,11 +28,6 @@ On more specific topics, I can recommend:
 * <a href="https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/">Designing Data-Intensive Applications</a> by Martin Kleppman: brilliant book not specifically about data science. Read this to understand the difficulties navigating big data.
 
 * <a href="https://www.goodreads.com/book/show/12818088-mining-of-massive-datasets">Mining of Massive Datasets</a> by Rajaraman and Ullman: a surprising deep and thorough book on scaling algorithms to big data, covering map-reduce, stream processing, PageRank and recommenders at scale.
-
-
-Still working my way through:
-* <a href="http://www.stat.columbia.edu/~gelman/book/BDA3.pdf">Bayesian Data Analysis</a> by Gelman et. al: the most natural way to model a data rich world in the face of uncertainty
-* <a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf">The Elements of Statistical Learning</a> by Hastie et. al.: more of the same presented quite differently.
 
 Beyond purely technical topics, I also suggest:
 * <em>UX for beginners</em> as a quick intro to an important role in product development that (can) interact with data scientists
