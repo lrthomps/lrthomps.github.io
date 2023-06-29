@@ -4,7 +4,7 @@ layout: frontpage
 
 
 <aside><h3>
-    Data Scientist, ~programmer<br>
+    Data Scientist / Machine Learning Engineer<br>
     Physicist, mathematician, ~neuroscientist<br>
     Trad climber & boulderer, (trail) runner, backcountry skiier<br>
     Reader, ~writer<br>
@@ -14,7 +14,7 @@ layout: frontpage
 </aside>
 
 
-Roughly five years a data scientist after studying math and physics, now in Vancouver, BC.  
+More than 5 years a data scientist after studying math and physics, now in Vancouver, BC.  
 
 In Vancouver because I love the mountains so near, prefer my snow up there, don’t mind the rain down here, and could not live in an un-walkable/un-bikeable place.
 
