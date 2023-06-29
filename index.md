@@ -10,7 +10,7 @@ layout: frontpage
     Reader, ~writer<br>
     Coffee! Cats! Dogs!
 </h3>
-<p>Contact me: laraph@<a href="https://vantech.slack.com">vantech.slack.com</a> (<a href="https://vantech.herokuapp.com/">sign up</a>); <a href="https://www.linkedin.com/in/lara-r-thompson">LinkedIn</a>; or <a href="https://www.instagram.com/lrthomps/" target="__blank">@lrthomps</a> on Instagram.</p>
+<p>Contact me: Lara.T@vantech.discord (see <a href="https://www.meetup.com/learndatascience/">to sign up</a>); <a href="https://www.linkedin.com/in/lara-r-thompson">LinkedIn</a></p>
 </aside>
 
 
