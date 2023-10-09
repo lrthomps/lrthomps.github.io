@@ -11,9 +11,9 @@ summary: Some introductory notes on embeddings are pre-reading for our data scie
 ---
 
 
-    “The representation perspective of deep learning is a powerful view that seems to answer why deep neural networks are so effective. Beyond that, I think there’s something extremely beautiful about it: why are neural networks effective? Because better ways of representing data can pop out of optimizing layered models.”
-    
-    from [Deep Learning, NLP, and Representations](https://colah.github.io/posts/2014-07-NLP-RNNs-Representations)
+> “The representation perspective of deep learning is a powerful view that seems to answer why deep neural networks are so effective. Beyond that, I think there’s something extremely beautiful about it: why are neural networks effective? Because better ways of representing data can pop out of optimizing layered models.”
+> 
+> from [Deep Learning, NLP, and Representations](https://colah.github.io/posts/2014-07-NLP-RNNs-Representations)
 
 In machine learning, an embedding is a technique for converting data objects (such as words or images), potentially sparse, into low-dimensional vectors where each vector represents its corresponding object. This conversion process allows us to use these vectors to perform various tasks such as classification or regression. Embeddings are used widely in many areas of machine learning, including natural language processing, computer vision, and graph analysis.
 
@@ -23,25 +23,20 @@ In graph analytics, node and edge features can be combined to create graph embed
 
 ![GraphSage](/assets/images/embeddings/graphsage.png)
 
-
-
-    The “unrolled” equivalent neural network of [GraphSAGE](https://github.com/dsgiitr/graph_nets/blob/master/GraphSAGE/GraphSAGE_Code%2BBlog.ipynb). 
+<p class="caption">The “unrolled” equivalent neural network of [GraphSAGE](https://github.com/dsgiitr/graph_nets/blob/master/GraphSAGE/GraphSAGE_Code%2BBlog.ipynb)</p>
 
 In [recommender systems](https://eugeneyan.com/writing/system-design-for-discovery/), item embeddings reduce the dimensionality of the item catalog and allow for fast vector-search retrieval. New items can be cast into the item embedding space using similarity metrics based on item features before users have interacted with them at all. User embeddings alleviate the cold start problem in the same way.
 
 
 ![Movie Embeddings in a Recommender](/assets/images/embeddings/movie_embeddings.svg)
 
-
-
-    A sample DNN architecture for learning movie embeddings from collaborative filtering data. From Google crash course on [embeddings](https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings).
+<p class="caption">A sample DNN architecture for learning movie embeddings from collaborative filtering data. From Google crash course on [embeddings](https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings)</p>
 
 Embeddings may finally allow neural network approaches to beat gradient boosted trees in tabular datasets:
 
 ![Tabular embeddings that finally compete with tree algorithms](/assets/images/embeddings/tabular-embeddings.png)
 
-
-    First, continuous features are expanded into quantile bins to create higher dimensional sparse features; then, learned embeddings of these features allow the neural network to outperform CatBoost in a synthetic GBDT-friendly task. [https://arxiv.org/abs/2203.05556](https://arxiv.org/abs/2203.05556)
+<p class="caption">First, continuous features are expanded into quantile bins to create higher dimensional sparse features; then, learned embeddings of these features allow the neural network to outperform CatBoost in a synthetic GBDT-friendly task. [https://arxiv.org/abs/2203.05556](https://arxiv.org/abs/2203.05556)</p>
 
 
 ### Learning Embeddings
@@ -64,10 +59,9 @@ King - Man + Woman = Queen
 Since the underlying models are overwhelmingly linear and frequently shallow (word2vec has a single hidden layer; GloVe embeddings approximate the full word co-occurrence matrix by a low rank decomposition), we should expect embeddings to lie in a vector space where similar items will be close. 
 
 
-    “Representing features as different directions may allow _non-local generalization_ in models with linear transformations (such as the weights of neural nets), increasing their statistical efficiency relative to models which can only locally generalize.”
-
-
-    from [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/index.html)[^1], they refer to a [paper by Bengio](https://arxiv.org/abs/1206.5538) and a [blog post](https://colah.github.io/posts/2014-07-NLP-RNNs-Representations)
+> “Representing features as different directions may allow _non-local generalization_ in models with linear transformations (such as the weights of neural nets), increasing their statistical efficiency relative to models which can only locally generalize.”
+> 
+> from [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/index.html)[^1], they refer to a [paper by Bengio](https://arxiv.org/abs/1206.5538) and a [blog post](https://colah.github.io/posts/2014-07-NLP-RNNs-Representations)
 
 This linearity will only be broken when there are interactions among features. In natural language, words can combine to form an altogether different meaning: eg. “[wentelteefje](https://www.thedutchtable.com/2014/02/wentelteefjes.html)”; “to fast”; or idioms such as “to break the ice”, “to let the cat out of the bag” or “to table an issue”. But these examples are a minority, and overwhelmingly most writing (on the internet) is simple and “additive”. 
 
