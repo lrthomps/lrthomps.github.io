@@ -19,7 +19,7 @@ In machine learning, an embedding is a technique for converting data objects (su
 
 Outside of textual data, for example, there are image embeddings, audio embeddings, and graph embeddings. For example, in image recognition tasks, CNNs learn image embeddings that capture visual patterns at different scales that can then be used for image classification, retrieval, or segmentation tasks.  In audio, recall in the VALL-E paper that they used a neural audio codec model trained to compress and decompress digital audio files. The intermediate encoding is an audio embedding.
 
-In graph analytics, node and edge features can be combined to create graph embeddings that encode information about the structure and connectivity of the graph. These embeddings can be useful for solving problems like link prediction, community detection, or clustering. See <a href"https://arxiv.org/abs/1607.00653">node2Vec</a> and <a href="https://arxiv.org/abs/1706.02216">GraphSAGE</a>. 
+In graph analytics, node and edge features can be combined to create graph embeddings that encode information about the structure and connectivity of the graph. These embeddings can be useful for solving problems like link prediction, community detection, or clustering. See [node2Vec](https://arxiv.org/abs/1607.00653) and [GraphSAGE](https://arxiv.org/abs/1706.02216). 
 
 ![GraphSage](/assets/images/embeddings/graphsage.png)
 
@@ -45,14 +45,14 @@ Much like the original [word2vec](https://www.tensorflow.org/tutorials/text/word
 
 The surrogate task doesn’t have to be the task you want the embeddings for; it should however depend on factors/features that are important for your downstream task. Eg. for the [chairs dataset](https://www.di.ens.fr/willow/research/seeing3Dchairs/), if your surrogate model classifies the chair orientation, the resulting embeddings would do poorly to predict the chair style. 
 
-Furthermore, if you finetune your general purpose embeddings to a specific task, don’t expect them to still be useful for other tasks, [eg.](https://itnext.io/changes-of-embeddings-during-fine-tuning-c22aa1615921)
+Furthermore, if you finetune your general purpose embeddings to a specific task, don’t expect them to still be useful for other tasks, see [here](https://itnext.io/changes-of-embeddings-during-fine-tuning-c22aa1615921) as an example.
 
 
 ### Vectors Properties of Embeddings
 
 The famous example popularized in the [word2vec paper](https://arxiv.org/abs/1301.3781) (but first appearing in [Linguistic Regularities in Continuous Space Word Representations](https://aclanthology.org/N13-1090/))
 
-King - Man + Woman = Queen
+<p style="text-align: center;">King - Man + Woman = Queen</p>
 
 (though apparently, that expression requires [tweaking](https://blog.esciencecenter.nl/king-man-woman-king-9a7fd2935a85)). Why would the embeddings lie in a vector space? Frankly, the better question is: why wouldn’t they?
 
