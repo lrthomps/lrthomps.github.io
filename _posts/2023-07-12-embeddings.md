@@ -39,7 +39,7 @@ Embeddings may finally allow neural network approaches to beat gradient boosted 
 <p class="caption">First, continuous features are expanded into quantile bins to create higher dimensional sparse features; then, learned embeddings of these features allow the neural network to outperform CatBoost in a synthetic GBDT-friendly task. <a href="https://arxiv.org/abs/2203.05556">https://arxiv.org/abs/2203.05556</a></p>
 
 
-### Learning Embeddings
+## Learning Embeddings
 
 Much like the original [word2vec](https://www.tensorflow.org/tutorials/text/word2vec) or more modern language models, a surrogate task can be used to train embeddings: for sequences, predicting masked items (as in a [MLM](https://huggingface.co/docs/transformers/main/tasks/masked_language_modeling) like BERT) or predicting next items (as in a [causal language model](https://huggingface.co/docs/transformers/main/tasks/language_modeling) like the GPT family); for tabular data, the surrogate task can be the prediction of one column based on the others; for image data, predicting the category of image is a common task. In a recommender task, predicting the rating a user will assign an item is a good task if such labels are available; predicting an implicit signal such as if they’ll choose an item from the selection or how long they’ll watch a video once they start it. Often, items selected can form a sequence and many of methods from language modelling can be used, eg. [BERT4Rec](https://arxiv.org/abs/1904.06690).
 
@@ -48,7 +48,7 @@ The surrogate task doesn’t have to be the task you want the embeddings for; it
 Furthermore, if you finetune your general purpose embeddings to a specific task, don’t expect them to still be useful for other tasks, see [here](https://itnext.io/changes-of-embeddings-during-fine-tuning-c22aa1615921) as an example.
 
 
-### Vectors Properties of Embeddings
+## Vectors Properties of Embeddings
 
 The famous example popularized in the [word2vec paper](https://arxiv.org/abs/1301.3781) (but first appearing in [Linguistic Regularities in Continuous Space Word Representations](https://aclanthology.org/N13-1090/))
 
@@ -66,7 +66,7 @@ Since the underlying models are overwhelmingly linear and frequently shallow (wo
 This linearity will only be broken when there are interactions among features. In natural language, words can combine to form an altogether different meaning: eg. “[wentelteefje](https://www.thedutchtable.com/2014/02/wentelteefjes.html)”; “to fast”; or idioms such as “to break the ice”, “to let the cat out of the bag” or “to table an issue”. But these examples are a minority, and overwhelmingly most writing (on the internet) is simple and “additive”. 
 
 
-#### References
+## References
 
 [Representation Learning Without Labels](https://icml.cc/virtual/2020/tutorial/5751), excellent tutorial series at ICML 2020. 
 
