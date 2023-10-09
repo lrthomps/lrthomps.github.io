@@ -19,24 +19,24 @@ In machine learning, an embedding is a technique for converting data objects (su
 
 Outside of textual data, for example, there are image embeddings, audio embeddings, and graph embeddings. For example, in image recognition tasks, CNNs learn image embeddings that capture visual patterns at different scales that can then be used for image classification, retrieval, or segmentation tasks.  In audio, recall in the VALL-E paper that they used a neural audio codec model trained to compress and decompress digital audio files. The intermediate encoding is an audio embedding.
 
-In graph analytics, node and edge features can be combined to create graph embeddings that encode information about the structure and connectivity of the graph. These embeddings can be useful for solving problems like link prediction, community detection, or clustering. See [node2Vec](https://arxiv.org/abs/1607.00653) and [GraphSAGE](https://arxiv.org/abs/1706.02216). 
+In graph analytics, node and edge features can be combined to create graph embeddings that encode information about the structure and connectivity of the graph. These embeddings can be useful for solving problems like link prediction, community detection, or clustering. See <a href"https://arxiv.org/abs/1607.00653">node2Vec</a> and <a href="https://arxiv.org/abs/1706.02216">GraphSAGE</a>. 
 
 ![GraphSage](/assets/images/embeddings/graphsage.png)
 
-<p class="caption">The “unrolled” equivalent neural network of [GraphSAGE](https://github.com/dsgiitr/graph_nets/blob/master/GraphSAGE/GraphSAGE_Code%2BBlog.ipynb)</p>
+<p class="caption">The “unrolled” equivalent neural network of <a href="https://github.com/dsgiitr/graph_nets/blob/master/GraphSAGE/GraphSAGE_Code%2BBlog.ipynb">GraphSAGE</a></p>
 
 In [recommender systems](https://eugeneyan.com/writing/system-design-for-discovery/), item embeddings reduce the dimensionality of the item catalog and allow for fast vector-search retrieval. New items can be cast into the item embedding space using similarity metrics based on item features before users have interacted with them at all. User embeddings alleviate the cold start problem in the same way.
 
 
 ![Movie Embeddings in a Recommender](/assets/images/embeddings/movie_embeddings.svg)
 
-<p class="caption">A sample DNN architecture for learning movie embeddings from collaborative filtering data. From Google crash course on [embeddings](https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings)</p>
+<p class="caption">A sample DNN architecture for learning movie embeddings from collaborative filtering data. From Google crash course on <a href="https://developers.google.com/machine-learning/crash-course/embeddings/obtaining-embeddings">embeddings</a></p>
 
 Embeddings may finally allow neural network approaches to beat gradient boosted trees in tabular datasets:
 
 ![Tabular embeddings that finally compete with tree algorithms](/assets/images/embeddings/tabular-embeddings.png)
 
-<p class="caption">First, continuous features are expanded into quantile bins to create higher dimensional sparse features; then, learned embeddings of these features allow the neural network to outperform CatBoost in a synthetic GBDT-friendly task. [https://arxiv.org/abs/2203.05556](https://arxiv.org/abs/2203.05556)</p>
+<p class="caption">First, continuous features are expanded into quantile bins to create higher dimensional sparse features; then, learned embeddings of these features allow the neural network to outperform CatBoost in a synthetic GBDT-friendly task. <a href="https://arxiv.org/abs/2203.05556">https://arxiv.org/abs/2203.05556</a></p>
 
 
 ### Learning Embeddings
