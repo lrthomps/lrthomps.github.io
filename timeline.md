@@ -12,7 +12,7 @@ layout: page
             <img src="assets/images/timeline/tableau.png" />
         </div>
         <div class="desc">
-            Currently at Tableau / Salesforce: I started out on the Explain Data feature team; then after major re-org, a brief stint with the Einstein Discovery team, I've been working with two teams part of Tableau Pulse: the team developing insights that are the heart of Tableau Pulse and the team working on GAI features. 
+            Currently at Tableau / Salesforce: I started out on the Explain Data feature team; then after a few re-orgs including a brief stint with the Einstein Discovery team, I've been working on Tableau Pulse with the team developing insights that are the heart of Tableau Pulse and the team working on GAI features. 
         </div>
     </div>
     <div class="entry row">
@@ -38,7 +38,7 @@ layout: page
             <img src="assets/images/timeline/ubc.png"/>
         </div>
         <div class="desc">
-            Back to UBC, joining Kurt Haas's neurioscience lab to do analysis work. I started attending a data science paper reading meetup that I still attend / help organize.
+            Back to UBC, joining Kurt Haas's neurioscience lab to do analysis work. I started attending a data science paper reading meetup that I still attend / help organize; find us on <a href="https://discord.gg/nmX5ZsmV">discord</a>.
         </div>
     </div>
     <div class="entry row">
