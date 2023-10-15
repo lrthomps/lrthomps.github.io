@@ -2,7 +2,6 @@
 layout: page
 ---
 
-<link rel="stylesheet" type="text/css" href="style.css">
 <div id="history" class="container">
     <div class="entry row">
         <div class="timespan">
@@ -10,7 +9,7 @@ layout: page
         </div>
         <div class="ico">
             <div class="entry-dot"></div>
-            <img src="assets/tableau.png" />
+            <img src="assets/images/timeline/tableau.png" />
         </div>
         <div class="desc">
             Currently at Tableau / Salesforce: I started out on the Explain Data feature team; then after major re-org, a brief stint with the Einstein Discovery team, I've been working with two teams part of Tableau Pulse: the team developing insights that are the heart of Tableau Pulse and the team working on GAI features. 
@@ -22,7 +21,7 @@ layout: page
         </div>
         <div class="ico">
             <div class="entry-dot"></div>
-            <img src="assets/neurio.jpg" />
+            <img src="assets/images/timeline/neurio.jpg" />
         </div>
         <div class="desc">
             <p>My first data science position. I was hired to improve their appliance disaggregation (separating the real+reactive electrical signal of a house into the constituent appliances). My first prototype outperformed their deployed version but it was based on edge detection and edge pairing, and didn't work in many homes (e.g. with heaters that cycle on and off at high frequency and varying amplitude). A U-Net model with attention could learn to separate individual appliances well but we still needed data per appliance type, sometimes even per make and model (after heating and cooling, dryers and fridges are the biggest power consumers and both are fairly distinctive, but not always; e.g. the sharp initial spike an old fridge cycling one is nearly completely suppressed in an ultra-efficient modern fridge).</p>
@@ -36,7 +35,7 @@ layout: page
         </div>
         <div class="ico">
             <div class="entry-dot"></div>
-            <img src="assets/ubc.png"/>
+            <img src="assets/images/timeline/ubc.png"/>
         </div>
         <div class="desc">
             Back to UBC, joining Kurt Haas's neurioscience lab to do analysis work. I started attending a data science paper reading meetup that I still attend / help organize.
@@ -48,7 +47,6 @@ layout: page
         </div>
         <div class="ico">
             <div class="entry-dot"></div>
-            <!-- <img src="assets/ubc.png"/> -->
         </div>
         <div class="desc">
             Decided to leave physics; spent time in the mountains; spent a winter housesitting on Galiano & working as a barista at the local bakery. I still cannot make proper foam. It's ok, I make an excellent pour over!
@@ -60,7 +58,7 @@ layout: page
         </div>
         <div class="ico">
             <div class="entry-dot"></div>
-            <img src="assets/mit.svg" />
+            <img src="assets/images/timeline/mit.svg" />
         </div>
         <div class="desc">
             Postdoc with Patrick Lee looking for quantum spin glass signatures. This work involved some tricky numerics to theoretically support measured experimenal signatures in a candidate quantum spin glass. I lost my taste for physics despite the incredible group
@@ -72,7 +70,7 @@ layout: page
         </div>
         <div class="ico">
             <div class="entry-dot"></div>
-            <img src="assets/ubc.png"/>
+            <img src="assets/images/timeline/ubc.png"/>
         </div>
         <div class="desc">
             MSc / PhD in Condensed Matter Theory with Philip Stamp <br />
@@ -85,7 +83,7 @@ layout: page
         </div>
         <div class="ico">
             <div class="entry-dot"></div>
-            <img src="assets/waterloo.png"/>
+            <img src="assets/images/timeline/waterloo.png"/>
         </div>
         <div class="desc">
             BSc / BMath double in Physics & Applied Math w/t Pure Math Minor w/t co-op. 

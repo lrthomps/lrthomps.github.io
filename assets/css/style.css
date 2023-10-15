@@ -312,6 +312,7 @@ a[title].float-notes {
     padding-left: 15px;
     padding-right: 15px;
 }
+
 @media (min-width: 850px) {
     .container {
         min-width: 830px;
@@ -320,6 +321,58 @@ a[title].float-notes {
 .row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+
+/* for timeline */
+#history {
+    .row {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+    }
+}
+.entry-dot {
+    position: absolute;
+    top: 0px;
+    left: -8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 7px;
+    background-color: #cfcfcf;
+    border: 2px solid white;
+}
+.timespan {
+    grid-column: span 2;
+    font-size: 14px;
+    text-align: right;
+    padding-right: 5px;
+    color: #bbb;
+}
+.desc {
+    grid-column: span 9;
+    vertical-align: top;
+    font-size: 17px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    padding-top: 0px;
+}
+.desc p {
+    margin-top: 0;
+    padding-top: 0;
+}
+.ico {
+    grid-column: span 1;
+    vertical-align: top;
+    border-left: 2px solid #cfcfcf;
+    position: relative;
+}
+.ico img {
+    /* border-radius: 5px; */
+    width: 100%;
+    background-color: #fff;
+    max-width: 60px;
+    /* max-height: 32px; */
+    margin-left: 10px;
 }
 
 /* Props */
