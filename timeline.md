@@ -49,7 +49,7 @@ layout: page
             <div class="entry-dot"></div>
         </div>
         <div class="desc">
-            Decided to leave physics; spent time in the mountains; spent a winter housesitting on Galiano & working as a barista at the local bakery. I still cannot make proper foam. It's ok, I make an excellent pour over!
+            Spent time in the climbing mountains; housesitting on Galiano, working as a barista at the local bakery. I still cannot make proper foam. It's ok, I make an excellent pour over!
         </div>
     </div>
     <div class="entry row">
@@ -61,7 +61,7 @@ layout: page
             <img src="assets/images/timeline/mit.svg" />
         </div>
         <div class="desc">
-            Postdoc with Patrick Lee looking for quantum spin glass signatures. This work involved some tricky numerics to theoretically support measured experimenal signatures in a candidate quantum spin glass. I lost my taste for physics despite the incredible group
+            Postdoc with Patrick Lee looking for quantum spin glass signatures. This work involved some tricky numerics to theoretically support measured experimenal signatures in a candidate quantum spin glass. MIT was such an incredible place with hallways full of students studying or even dancing at random. I taught at the winter school run by MITOC: ice climbing (that I was new to!), winter hiking and camping (in a quinzhee rather the snow caves I was more used to in the BC mountains); then lead climbing in the summer. 
         </div>
     </div>
     <div class="entry row">
