@@ -12,7 +12,7 @@ layout: page
             <img src="assets/images/timeline/tableau.png" />
         </div>
         <div class="desc">
-            Currently at Tableau / Salesforce: I started out on the Explain Data feature team; then after a few re-orgs including a brief stint with the Einstein Discovery team, I've been working on Tableau Pulse with the team developing insights that are the heart of Tableau Pulse and the team working on GAI features. 
+            Currently at Tableau / Salesforce: I started out on the Explain Data feature team; I was briefly on the Einstein Discovery team. Since the summer, I've been working on Tableau Pulse across two teams: one developing insights that are the heart of Tableau Pulse and the other working on GAI features. 
         </div>
     </div>
     <div class="entry row">
@@ -24,9 +24,9 @@ layout: page
             <img src="assets/images/timeline/neurio.jpg" />
         </div>
         <div class="desc">
-            <p>My first data science position. I was hired to improve their appliance disaggregation (separating the real+reactive electrical signal of a house into the constituent appliances). My first prototype outperformed their deployed version but it was based on edge detection and edge pairing, and didn't work in many homes (e.g. with heaters that cycle on and off at high frequency and varying amplitude). A U-Net model with attention could learn to separate individual appliances well but we still needed data per appliance type, sometimes even per make and model (after heating and cooling, dryers and fridges are the biggest power consumers and both are fairly distinctive, but not always; e.g. the sharp initial spike an old fridge cycling one is nearly completely suppressed in an ultra-efficient modern fridge).</p>
-            <p>Home electricity monotoring enables smarter solar + battery usage: I devised control algorithms for various tarif structures. E.g. Solar panels produce peak power midday while most homes have peak consumption in the evenings; storing the excess in a battery for later, when tarifs are higher, offsets the cost and better utilizes the solar generation. For all tarifs, I compared against optimal in-hindsight control to quantify regret; mostly, optimal control is possible in most homes because the battery is generally small enough it's always worth fully charging and saving for the evening. </p>
-            <p>By the end of my three years I was leading an ML team of 4 but none of our projects were getting into the product.</p>
+            <p>My first gig outside of academia. I was hired to improve their appliance disaggregation (separating the real+reactive electrical signal of a house into the constituent appliances). My first prototype outperformed their deployed version but it was based on edge detection and edge pairing, and didn't work in many homes (e.g. with heaters that cycle on and off at high frequency and varying amplitude). A U-Net model with attention could learn to separate individual appliances well but we still needed data per appliance type, sometimes even per make and model (after heating and cooling, dryers and fridges are the biggest power consumers and both are fairly distinctive, but not always; e.g. the sharp initial spike of an old fridge cycling on is nearly completely suppressed in an ultra-efficient modern fridge).</p>
+            <p>Home electricity monitoring enables smarter solar + battery usage: I devised control algorithms for various tariff structures. E.g. Solar panels produce peak power midday while most homes have peak consumption in the evenings; storing the excess in a battery for later, when tarifs are higher, offsets the cost and better utilizes the solar generation. For all tarifs, I compared against optimal in-hindsight control to quantify regret; mostly, optimal control is possible in most homes because the battery is generally small enough it's always worth fully charging and saving for the evening. </p>
+            <p>By the end of my three years I was leading an ML team of 4 but left for greater things in a bigger company to learn more.</p>
         </div>
     </div>
     <div class="entry row">
