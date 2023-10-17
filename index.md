@@ -4,17 +4,17 @@ layout: frontpage
 
 
 <aside><h3>
-    Data Scientist / Machine Learning Engineer<br>
-    Physicist, mathematician, ~neuroscientist<br>
-    Trad climber & boulderer, (trail) runner, backcountry skiier<br>
-    Reader, ~writer<br>
+    Principal Machine Learning Scientist / Engineer<br>
+    Studied physics, math, ~neuroscience<br>
+    Bouldering >> trad climbing, running<br>
+    Read a lot, write some<br>
     Coffee! Cats! Dogs!
 </h3>
-<p>Contact me: Lara.T@vantech.discord (see <a href="https://www.meetup.com/learndatascience/">to sign up</a>); <a href="https://www.linkedin.com/in/lara-r-thompson">LinkedIn</a></p>
+<p>Contact me: Lara.T@vantech.discord (<a href="https://discord.gg/nmX5ZsmV">sign up</a>); <a href="https://www.linkedin.com/in/lara-r-thompson">LinkedIn</a></p>
 </aside>
 
 
-More than 5 years a data scientist after studying math and physics, now in Vancouver, BC.  
+Many years a data scientist after studying math and physics, now in Vancouver, BC.  
 
 In Vancouver because I love the mountains so near, prefer my snow up there, don’t mind the rain down here, and could not live in an un-walkable/un-bikeable place.
 

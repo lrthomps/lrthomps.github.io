@@ -384,7 +384,7 @@ a[title].float-notes {
     text-align: right;
 }
 #big {
-    padding-top: 33%;
+    padding-top: 50px;
     grid-column: span 1;
     text-align: right;
 }
