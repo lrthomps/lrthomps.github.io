@@ -1,6 +1,7 @@
 project:
   type: website
-
+  output-dir: docs
+  
 website:
   title: "Lara Thompson:: **M**L/**A**I/**D**ata **Scientist**"
   navbar:
