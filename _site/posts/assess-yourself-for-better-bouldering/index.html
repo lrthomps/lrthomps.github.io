@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Lara Thompson">
+<meta name="dcterms.date" content="2021-12-15">
+<meta name="description" content="Analysis of a climbing survey dataset to test the wisdom of the crowd in how best to improve at climbing and assess training progress.">
+
+<title>Assess Yourself for Better Bouldering – Lara Thompson:: ML/AI/Data Scientist</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Lara Thompson:: <strong>M</strong>L/<strong>A</strong>I/<strong>D</strong>ata <strong>Scientist</strong></span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">CV-ish</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/lrthomps"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/lara-r-thompson/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.instagram.com/lrthomps/"> <i class="bi bi-instagram" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Assess Yourself for Better Bouldering</h1>
+            <p class="subtitle lead">Data-Backed Training Advice</p>
+                  <div>
+        <div class="description">
+          Analysis of a climbing survey dataset to test the wisdom of the crowd in how best to improve at climbing and assess training progress.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">machine learning</div>
+                <div class="quarto-category">climbing</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-body">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Lara Thompson </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 15, 2021</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full column-body" id="quarto-document-content">
+
+
+
+
+
+<p>This summer, I got stronger with some “<span class="float-notes">base<span>Base training is meant to increase training volume slowly, improve general fitness, and lay a good foundation for sport-specific training. A better base leads into more effective training (theoretically).</span></span>” training, pull-ups, push-ups and core circuits, and <span class="float-notes">broke<span>I’ve reached 3-hex multiple times through my climbing years never with any training, just through climbing; with training, I went from 4 to 10 pull-ups / 10 to 15 push-ups / 7 to 30s in a hanging L-sit; from struggling on half the 3-hexes to reliably getting a few 4-hexes. I should mention that I’ve been this strong and fit before but never climbing at the grade! So climbing practice over the many years has meant I mostly just need to be stronger (this time).</span></span> my 3-<a href="https://hiveclimbing.com/start-here/#explained">hex</a> (V2-V4) plateau. Instead of continuing with <span class="float-notes">climbing<span>Usually split to first build strength and then to build power.</span></span> specific training, I spent a few months adjusting to that new strength; aka, reaping the benefits. After a decade of being warned against <span class="float-notes">hangboarding<span>On the common fear of hangboarding, in Beastmaking, Ned Feehally writes, “[fingerboard training] is the safest way of training finger strength as it is very controlled, you can apply the load slowly and let go at any time”.</span></span> and (worse) <span class="float-notes">campus boarding<span>On the ubiquity of campus boarding, Ned writes, “modern climbing walls have developed so far and become so good that the campus board seems massively dated;” instead, he suggests campusing routes and training on a system board.</span></span>—“you’ll injure yourself!”—why not just continue with the same training? It works!</p>
+<p>The first two hints against this plan come from the <a href="https://gripped.com/indoor-climbing/how-close-are-you-to-climbing-5-15d/">9c “ultimate” climbing test</a> and the <a href="https://strengthclimbing.com/finger-strength-analyzer/">Climbing Finger Strength Analyzer 2.0</a>:</p>
+<ul>
+<li>my “9c score” is <span class="float-notes">14<span>Which corresponds to a sport climbing grade of 7b ~ 5.12b but I don’t sport climb…MEC translates that to ~V5.</span></span>, 6 coming from core alone</li>
+<li>and my “upper body strength is <em>quite high</em> compared to [my] finger strength” when it is already <span class="float-notes"><em>lower</em><span>Comparing max weighted 5 pull-ups with 10s 19mm half crimp maxhangs.</span></span> than my finger strength</li>
+</ul>
+<p>Looks like my core and pulling training have already outpaced my finger training.</p>
+
+<div class="no-row-height column-margin column-container"><section id="reading-plots" class="level3">
+<h3 class="anchored" data-anchor-id="reading-plots">Reading plots</h3>
+<p>If you see a bar chart, I’m counting climbers per value (eg. per V grade, per number of years, or per number of hours), or showing some amount per category.</p>
+<p>If you see a scatter plot, each circle is one climber from the dataset with coordinates of eg. height versus V grade. The superposed line shows the average (height) over climbers (at each V grade) or the trend line when the data is too noisy.</p>
+<p>Pink is for female climbers; blue for male; purple is for both pooled when the data is sparse.</p>
+<p>Most of the plots are across tabs: select each tab to view them all.</p>
+<p>Also: <span class="float-notes">hover over me<span>Many technical comments, asides, and personal anecdotes can be found associated with the double-dash underlined text. Skip them for a 12min read; read all to add another 7min; and since pictures are ~1000 words, with all the plots you get nearly another 2 hours!</span></span></p>
+</section></div><p>Consider a parallel <span class="float-notes">story<span>Drawn from The Science and Practice of Strength Training</span></span> of a shot putter training to throw a 7kg shot. He trains to bench press more and more, 50kg then 150kg—it’s improving his throws!—200kg, 300kg—and yet he can throw no further. He got stronger, yes, but what he needed was more power.</p>
+<p>But what is the ideal strength profile of a boulderer? How much finger strength? How much pulling strength? How much power? More is surely better but what is a good balance progressing from V-lo through V-mid to V-hi? What about push-ups, legs and endurance? Surely it depends on my specific goals and likely on my height, arm span, and hand size also, but general estimates would still help guide my training.</p>
+<p>In this post, I’ll analyse and model a <a href="https://docs.google.com/spreadsheets/u/0/d/1J6d45EqIlIsIqNdi2X-Zl-EGFxf9d9T3R_W55xrpEAs/edit">dataset</a> collected from a survey on Reddit, including many <span class="float-notes">strength<span>Half-crimp and open hand 10s max hangs on 18mm edge; 5-rep pull-up max weight; max hanging L-sit time; # pull-ups / push-ups.</span></span> metrics, <span class="float-notes">training<span>Training specifics included hangboard protocols (eg. repeaters, max hangs, min edges, one-armed protocols, etc.), grip types trained (eg. half crimp, open hand, etc.); endurance training protocols (4x4, threshold intervals, feet on campusing, etc.); non-specific training (upper body pulling and pushing, core, legs and antagonists); other activities (running, yoga, skiing, martial arts, etc); and the number of sessions and hours per week doing various kinds of training.</span></span> habits and basic climber <span class="float-notes">attributes<span>Height, weight, arm span, years climbing, indoors vs outdoors, and various bouldering and climbing grades.</span></span>. We’ll see how these climbers balance and progress their strengths through the grades; how they train at each stage; and see that height and BMI both have a <span class="float-notes">sweet spot<span>Most aspects in a complex system have a ‘sweet spot’: any time there are competing factors at play, the optimum is somewhere in the middle when neither penalty is too extreme. Weight scales very loosely as a cube of height; muscles is quadratic in height. If this were the only factor at play, then, in bodyweight sports, shorter would be strictly better (think gymnastics): this would give a max strength scaling with weight with power 0.666, analysing world record athletes finds a power of 0.63 – close! In climbing, reach is still important and increases with height linearly. Balancing the two opposing factors, we should find an optimal height and corresponding weight. BMI is weight over height <em>squared</em> so it too should increase for similarly strong athletes (in a bodyweight sport) with increasing height and it too will have an optimum by the same arguments.</span></span>, not too low, not too high.</p>
+<p><em>What about <span class="float-notes">mobility<span>Mobility is the stability and strength through your full range of motion.</span></span>? Although certainly quantifiable, no mobility assessments are in the dataset I’ll be using, so my analysis will not consider it, but more on this later.</em></p>
+<section id="meet-the-climbers" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="meet-the-climbers">Meet the Climbers</h2>
+<p>Special guests include: Megan, better known as <span class="citation" data-cites="fearlesstofu">@fearlesstofu</span> in social media, and her strong climbing friend, Nelson <a href="https://www.instagram.com/aloeveraelephant/"><span class="citation" data-cites="aloeveraelephant">@aloeveraelephant</span></a>. Our data points will be highlighted against the anonymous climbers in the survey to show our relative strengths and weaknesses; you can compare findings against examples of our climbing, Megan especially on her <a href="https://www.youtube.com/fearlesstofu">YouTube channel</a> or on <a href="https://www.instagram.com/fearlesstofu/">Instagram</a>.</p>
+<div class="column-page">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Megan</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Nelson</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Lara</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="megan.jpg" class="img-fluid figure-img" width="600"></p>
+<figcaption>Megan on her first outdoor V6: Fat Tire in South Lake Tahoe</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<dl>
+<dt>Metrics</dt>
+<dd>
+156cm tall
+</dd>
+<dd>
+neutral ape index
+</dd>
+<dd>
+20.8 BMI
+</dd>
+<dd>
+climbing ~6 years
+</dd>
+<dt>Grades</dt>
+<dd>
+V8 indoors
+</dd>
+<dd>
+V6 indoors in the last 3 months
+</dd>
+<dd>
+<a href="https://www.youtube.com/watch?v=95YO-N2b48o">V7 outside</a>
+</dd>
+<dd>
+V4 is nearly always doable indoors
+</dd>
+<dt>Training</dt>
+<dd>
+2 hrs / week on a <a href="https://www.instagram.com/fearlessmooncake/" target="__blank">moonboard</a>
+</dd>
+<dt>Strength Metrics</dt>
+<dd>
++12kg half crimp
+</dd>
+<dd>
++26.26kg open hand
+</dd>
+<dd>
++4kg 5rep pull-ups
+</dd>
+<dd>
+10 pull-ups
+</dd>
+<dd>
+14 push-ups
+</dd>
+<dd>
+38s hanging L-sit
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="nelson.jpg" class="img-fluid figure-img" width="600"></p>
+<figcaption>Nelson on a V6 in Columbia, CA called Triple Cracks</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<dl>
+<dt>Metrics</dt>
+<dd>
+175cm tall
+</dd>
+<dd>
++4cm ape index
+</dd>
+<dd>
+22.5 BMI
+</dd>
+<dd>
+climbing ~5 years
+</dd>
+<dd>
+climbs outdoors “maybe 2x / year”
+</dd>
+<dt>Grades</dt>
+<dd>
+V11
+</dd>
+<dd>
+V8, in the last 3 months
+</dd>
+<dd>
+V7 is nearly always doable
+</dd>
+<dt>Training</dt>
+<dd>
+10 hrs climbing / week
+</dd>
+<dd>
+no other training
+</dd>
+<dt>Strength Metrics</dt>
+<dd>
++36kg half crimp
+</dd>
+<dd>
++48kg open hand
+</dd>
+<dd>
++28kg 5rep pull-ups
+</dd>
+<dd>
+18 pull-ups
+</dd>
+<dd>
+24 push-ups
+</dd>
+<dd>
+27s hanging L-sit
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="lara.jpg" class="img-fluid figure-img" width="600"></p>
+<figcaption>Me on the very wet Brothers Creek Erratic along the Baden Powell trail.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<dl>
+<dt>Metrics</dt>
+<dd>
+168cm tall
+</dd>
+<dd>
+-4cm ape index
+</dd>
+<dd>
+22.4 BMI
+</dd>
+<dd>
+climbing 18 years
+</dd>
+<dd>
+bouldering ~7 years
+</dd>
+<dt>Grades</dt>
+<dd>
+4-hex (V4-V6) at the Hive
+</dd>
+<dd>
+V5 on the kilter board
+</dd>
+<dd>
+V3 outside / outdoor V1 are nearly always doable
+</dd>
+<dt>Training</dt>
+<dd>
+6-8 hrs climbing / week
+</dd>
+<dd>
+1-2 hr training / week
+</dd>
+<dd>
+ran ~1200km in 2021
+</dd>
+<dt>Strength Metrics</dt>
+<dd>
++30lbs half crimp
+</dd>
+<dd>
++4lbs open hand
+</dd>
+<dd>
++25lbs 5rep pull-ups
+</dd>
+<dd>
+10 pull-ups
+</dd>
+<dd>
+19 push-ups
+</dd>
+<dd>
+30s hanging L-sit
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The survey included another 513 men and 77 women. V6 is the most common grade for these climbers who are typically in their first 4 years of climbing. Climbing grades rise with the number of years and plateau after around 5 years. Higher V grade climbers are more likely to <span class="float-notes">climb outside<span>Nearly everyone in this dataset climbs inside but about half of the ‘strong’ climbers also climb outside. I started with trad climbing and came indoors during thesis time. For those that started inside, I strongly suggest trying bouldering on real rock. It’ll challenge your route reading infinitely more, the footwork is almost always harder and the variety of grips you’ll practice is endless.</span></span>. The women’s V grades cluster at V3, V5 and V9, familiar as common plateaus; generally, in the much larger and wider dataset at Lattice Training, these fall at <a href="https://latticetraining.com/2017/08/30/milestone-grades/">V6 and V8</a>.</p>
+<p>Higher V grade male climbers tend to be shorter while higher V grade female climbers tend to be taller; they asymptotically meet in the middle:</p>
+<blockquote class="blockquote">
+<p>The ideal height is ~<span class="float-notes">170cm<span>Alex Megos, 173cm; Nalle Hukkataival, 173cm; Daniel Woods, 170cm; Stefano Ghisolfi, 170cm; Colin Duffy, 168cm. Akiyo Noguchi, 168cm; Janja Garnbret, 164cm; Shauna Coxsey, 163cm; Oriane Bertone, 164cm. But: Jimmy Webb, 183cm; Adam Ondra, 185cm; Jan Hojer, 188cm; Dean Potter, 196cm; and: Sean Bailey, 163cm; Brooke Raboutou, 158cm; Natalia Grossman, 157cm; Lynn Hill, 157cm; Ashima Shiraishi, 155cm; Laura Rogora, 152cm.</span></span> and +5-10 ape index.—<a href="https://youtu.be/8-5yuVuDFzU?t=2620">Adam Ondra</a></p>
+</blockquote>
+<p>…though he discusses the merits of <span class="float-notes">short vs tall<span>Short climbers must learn creative solutions early for lack of reach and puts them on a path for better technique. Being tall isn’t that big an advance – it’s the long arms that it comes with that are. Overall, some climbs suit short people better; others suit tall people better. Climb to your strengths!</span></span>, <span class="float-notes">long vs short arms<span>Long arms are good for their long reach but worse in every other aspect: harder lock-offs, harder underclings, require more leverage and more torque.</span></span>, and being a <span class="float-notes">little light<span>…for better endurance sport climbing</span></span> vs a <span class="float-notes">little more muscled<span>…to be a stronger boulderer.</span></span> <a href="https://www.youtube.com/watch?v=yFfkOM8RgAU" title="Adam Ondra #38: What is the best body type for climbing?">here</a>.</p>
+<p>There are <span class="float-notes">more climbers with +ve<span>Apparently this generalizes to non-climbers: up to 5% longer is normal (the climbers here average 1% longer arm span than height). There are regional and gender differences, and shrinkage with age [Quanjer, 2014].</span></span> index than -ve. <span class="float-notes">BMI<span>BMI is a crude scaling of weight and height (about as accurate as when the physicist ‘approximates the cow by a sphere’). It doesn’t differentiate muscle from fat and muscle is 20% heavier per volume than fat. That said, for many problems, the scaling works, and the cow may as well be a sphere.</span></span> trends downward with increasing V grade in men (from &gt;25 to 22) while in women the trend tips slightly upward (from &lt;18 to ~21). An optimal BMI for bouldering may be ~<span class="float-notes">21-22<span>Only two boulderers have climbed V17: Daniel Woods, 21.2; and Nalle Hukkataival, 22.7; I can’t get (adult) numbers for any V15 female climbers (Ashima Shiraishi has climbed 2; Kaddi Lehman and Oriane Bertone have each climbed one); strong V14 climbers include Shauna Coxsey, 21.8; and Alex Puccio, 23.1. Others that are primarily boulderers that commonly make ‘top 10’ lists: Guiliano Cameroni, 19.6; Jimmy Webb, 23.3; Dai Koyomada, 21.3; Adam Ondra, 20.7.</span></span>.</p>
+<p>The women are on average lighter (58kg vs 72kg), shorter (165cm vs 179cm), have &gt;1cm shorter ape index, have been climbing 4 months less, climb 15min less per week, train 20min less per week, and are weaker in all measures except they can hold an L-sit 10s longer; they climb 1-2 V grades lower but their hardest grade is closer to the grade they can climb 90-100% of the time.</p>
+<p>The highest V grade climbers climb roughly twice as much per week as beginners. Beginners don’t train at all, while the highest V grade climbers train 5-8 hours per week on average.</p>
+<p>In the table, you can <span class="float-notes">see<span>If you have trouble understanding these plots and you happen to also climb at the Hive, track me down and I might be able to help.</span></span> these statistics visually (click through to see all the figures).</p>
+<div class="column-page">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Grades</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Indoor vs Outdoors</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Years</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Grade vs Years</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-5" role="tab" aria-controls="tabset-2-5" aria-selected="false">Height</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-6" role="tab" aria-controls="tabset-2-6" aria-selected="false">Ape Index</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-7-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-7" role="tab" aria-controls="tabset-2-7" aria-selected="false">BMI</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-8-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-8" role="tab" aria-controls="tabset-2-8" aria-selected="false">Climbing</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-9-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-9" role="tab" aria-controls="tabset-2-9" aria-selected="false">Training</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="histogram_by_grade.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Looking at the number of climbers by max recent V grade, V6 / V3 are the most common grades for men / women, but we have climbers up to V14 / V9.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="histogram_by_inoutdoor.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>If we break down those grades by who climbs indoors vs outdoors we find that most strong climbers (also) climb outside whereas the majority of beginners only climb inside. A few men only climb outside.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="histogram_by_year.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>The number of climbers that have climbed more than 4 years drops off sharply. Megan has 6 years and Nelson has 5. For me, ~<a class="float-notes" title="2003, a low 5th class up the Tête Nord du Replat, and Bim bam boum in the Vercors; 2004, Lion's Way 5.6, Pigeon W Ridge 5.4, 1/2 of Bugaboo Spire, a trip to the Bugaboos; 2006-8, started leading trad up to 5.9, mountains up to AD-; 2010, end of Ph.D., bouldering in indoors, pushing trad to a single 5.10c, Exasperator, maybe now buried?; 2011-12, at MIT, bouldering &amp; route-setting at an on-campus cooperative + outdoor bouldering / sport / trad / ice climbing; 2014, back in Van, learn to hand jam properly but visit Indian Creek twice and learn otherwise; 2018-now, bouldering regularly at the Hive; 2021, bouldering outside regularly for the first summer. So how many years are relevant to bouldering? 18yrs? 3yrs? Funny enough, both years fit the trend in the next plot; later, modelling will learn likewise not to differentiate heavily between 3 and >15 yrs of climbing.">3-18 years</a>.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="grade_by_year.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>There’s a wide spread of grades among climbers with the same number of years of climbing experience but the average grade by year shows an upward trend. The women’s curve looks noisy because there aren’t enough <a class="float-notes" title="The number of women climbing rose rapidly from almost none to 10% in the 2000s (using 8a.nu as a proxy) and another few percent since then. This survey was conducted on Reddit which compounds the issue: 62% of Reddit users are male, while the remaining 38% are female. Having 13% women respond is actually not bad.">respondents</a>.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-5-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="height.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>A wide range of heights is common for the middling grades but the scatter funnels down to around 170cm. Adam Ondra and Ashima Shiraishi are strong outliers.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-6-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="apeindex.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Ape index trends higher with increasing grades but the scatter is 5x wider so I won’t let my -4cm be an excuse (though my arm span is <em>shorter</em> than Ashima’s!).</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-7" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-7-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bmi.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Looking at BMI vs V grade, the men trend downward while the women trend slowly <em>upward</em>; the noise narrows just as height did.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-8" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-8-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="hoursclimbing.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Left: Climbers by # of hours climbing per week is fairly noisy with 4/6 hours being the most common for women/men. Right: Climbers at higher grades climb more.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-2-9" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-9-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="hourstraining.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Left: Climbers by # of hours spent training (of all kinds) is noisier still with &lt; 6/8 most likely for women/men. Right: Climbers at higher grades train more.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="not-all-surveyed-v-grades-are-the-same" class="level2">
+<h2 class="anchored" data-anchor-id="not-all-surveyed-v-grades-are-the-same">Not All Surveyed V Grades are the Same</h2>
+<p>Climbers submitted three different grades: max ever, recent max (in the last 3 months ), and the grade that’s “doable” 90-100% of the time. Grading gets more complicated when we consider <a href="https://boulderingboss.com/indoor-vs-outdoor-bouldering-is-there-a-difference-in-v-grades/">indoor vs outdoor</a> (or moonboard vs kilter board for that matter).</p>
+<p>Max ever V grade is problematic: the climber may have sent it years ago and their current strength and habits aren’t what they once were. The spread is as wide as 4 V grades for a climber of 15 years and, generally, <span class="float-notes">wider<span>Although a few climbers claimed the opposite: that their recent max is higher than their max ever. Presumably, they read the survey questions wrong and I reversed their grades.</span></span> at higher V grades.</p>
+<p>The doable grade is highly subjective. Should we consider all styles? Or just the style we love and climb well. What about the reachy climbs if you’re short, or the overly compressed climbs if you’re tall? Just how peaky is your <a href="https://hiveclimbing.com/blog/climbing-pyramid/">climbing pyramid</a>? Do you always get beta from others before trying? The spread from doable grade to max ever is as wide as 5 V grades; on average, the spread is wider at the higher grades. Doable grade against max recent shows the same <span class="float-notes">widening<span>A few climbers claim higher doable grade than max recent, surely impossible. I filtered out the climbers that answered ‘I don’t boulder’ for either question. If they’re bouldering at all, they could have climbed at least one problem at their doable grade.</span></span> spread.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Max vs Max Recent</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Doable vs Max</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Doable vs Max Recent</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="max_recent.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>When we compare max ever V grade to hardest in the last 3 months, the spread is as high as 4 V grades. The spread widens with more years climbing (tiny inset).</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="doable_max.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>The doable V grade vs max ever V grade is funnel-shaped: the wider gaps are more common at higher grades. Megan may be underestimating or her height may disadvantage her on too many climbs.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="doable_recent.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Doable vs max recent V grade is again funnel-shaped. The few (blue) points above the dashed (1:1) line claimed a higher doable grade than max recent.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>All plots and analysis hereafter will consider only max recent V grade.</p>
+</section>
+<section id="how-strong-are-the-climbers" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="how-strong-are-the-climbers">How Strong are the Climbers?</h2>
+<p>Finger strength is the most correlated feature we have to climbing grade. The numbers are similar for men and women and <span class="float-notes">agree<span>Though Lattice Training uses 7s/20mm max hangs vs 10s/18mm max hangs gathered by this survey.</span></span> fairly well with the climbers from <a href="https://www.instagram.com/p/B9zNGplJMyG/" target="__blank">Lattice Training</a>: each V grade requires adding another 8% of body weight to max hangs; to climb 9c would require ~<span class="float-notes">1.1<span>That’s a hang with 110% of bodyweight added, or 210% total weight.</span></span>. Silence, the first 9c, was put up by Adam Ondra with max hangs of 112%; Bibliographie, briefly the second 9c, was first climbed by Alex Megos whose max hangs are an astonishing 132%.</p>
+<p>While finger strength didn’t show a big gender difference, the normalized weight added to 5 pull-ups is <span class="float-notes">10-20% more<span>Either the women make do with less pulling strength or they prefer problems that don’t require it.</span></span> for male climbers at any given grade. Pulling strength increases with grade up to around <span class="float-notes">0.8<span>80% of bodyweight, in agreement with the pulling to finger strength ratio recommended by the Climbing Finger Strength Analyzer 2.0 (0.75) and the Lattice Training finger strength estimate of 1.1 to climb 9c, where 0.8 ~ 0.75*1.1.</span></span> at the highest grades. For any given grade, the male climbers seem to do twice as many pull-ups or push-ups as the women. Despite many over-achievers, more modest goals of 20-25 pull-ups and 30-40 push-ups seem sufficient for climbing. Less than 25% submitted their L-sit time and many <span class="float-notes">suspiciously<span>Were they just guessing or did they get bored and give up?</span></span> answered an even 30s and 60s and 12 with times exceeding the world record.</p>
+<p>Here are the same metrics visually; like before, click through the tabs to see them all.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Finger Strength</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">5-rep Weighted Pullups</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false"># Pullups / Pushups</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false">L-sit (s)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="maxfinger.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Both Megan and Nelson seem to have more finger strength than their recent grade merits, but both fall perfectly on the trendline using their max ever V grades (8, 11).</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="5reppullups.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>For 5-rep pull-up strength, the women trend a steady 0.2 (or 20% of bodyweight) below the men. Ideally, this strength should be less than finger strength and we’ll see later that, in higher V grade climbers, it is.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pull_pushups.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Number of pull-ups (left) and push-ups (right) by grade. A further eight male climbers are cut off in the right plot, one claiming 286 push-ups!</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lsit.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Self-reported L-sit times went as high as 2h46m; 12 in total exceeded the world record of 1m29s (during COVID raised to 1m46s, not by a climber). Less than 25% reported. Be suspicious of conclusions based on it.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="grip-positions.png" class="img-fluid figure-img"></p>
+<figcaption>Reproduced with the permission of Lattice Training Ltd.</figcaption>
+</figure>
+</div>
+</div></div><p>What about differences in strength metrics: how does finger strength compare with pulling strength? And how do they compare as we get stronger? How do half crimp and open hand compare for finger strength?</p>
+<p>When finger and pulling strength are still low, pulling strength exceeds finger strength in both women and men. As they increase, women quickly develop <span class="float-notes">far more<span>Megan has more than 6x finger strength than pulling strength!</span></span> stronger fingers; the men develop equal finger strength only when both are ~50% body weight. In the strongest climbers, finger strength settles at roughly double pulling strength.</p>
+<p>The difference between <span class="float-notes">half crimp<span>Not to be confused with full crimp that engages the thumb.</span></span> and <span class="float-notes">open hand<span>Not to be confused with 3 finger drag that drops the pinky.</span></span> max hangs may average out to zero but less than a third of <span class="float-notes">those<span>35% of climbers gave half crimp max hangs, 28% gave open hand max hangs while 25% gave both: which tips the balance another 10% in favour of half crimps. To compare, 46% gave their 5-rep pull-up max weight; 29% gave both weighted pull-ups and a max hang in either grip.</span></span> reporting both had them within <span class="float-notes">5%<span>The arbitrary metric used for acceptable left/right strength asymmetry seems like a reasonable buffer to use here.</span></span> of each other. In Beastmaking, Ned suggests that hand anatomy plays a role in which grip a climber favours. Full- and half-crimp are generally the stronger grip but open hand places less strain on the finger pulleys.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Finger vs Pulling Strength</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Open vs Half Crimp</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="finger_by_pull.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>The ratio of finger strength to 5-rep pull-ups plotted against finger strength (1:1, equal strengths, along the dashed line). Climbers in this plot provided both weighted pull-ups and a max hang in either grip (leaving only 233/16 men/women).</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="delta_fingers.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>The difference between open and half crimp strengths is very noisy but mostly averages out; there’s a slight trend to stronger open hand in the stronger climbers (only 136/9 men/women provided both max hangs).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="bouldering-predictions" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="bouldering-predictions">Bouldering Predictions</h2>
+<p>With this dataset of nearly <span class="float-notes">600<span>Dropping a few with suspicious data including those claiming to have broken world records.</span></span> climbers, I could train a <span class="float-notes">model<span>Several in fact, of various kinds: I started with linear regression, went to 2-4 layer dense neural networks before settling on random forests then boosted trees (which, of course, are usually best for tabular data like this). I trained many of each kind, keeping various subsets of climber features, and settled on a model that gave consistent feature influences.</span></span> to predict the hardest recent V grade of each climber given their strength metrics and training habits. The model has only mild <span class="float-notes">regression to the mean<span>Low V grade climbers are predicted high, while high V grade climbers are predicted low.</span></span>, surprising since there were many metrics that weren’t provided; typical errors were &lt;2 V grades.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>A simple way to assess feature importance is with correlation with grade (numbers are using only climbers that provide that feature). The model can better utilize a feature if more climbers provide it (percentage that did in brackets):</p>
+<ul>
+<li>
+open hand strength, 0.64 (28%)
+</li>
+<li>
+half crimp strength, 0.59 (35%)
+</li>
+<li>
+# pull-ups, 0.49 (78%)
+</li>
+<li>
+year, 0.43 (all)
+</li>
+<li>
+hrs climbing per week, 0.32 (all)
+</li>
+<li>
+# hangboard/campus board sessions per week, 0.34/0.3 (all, 56%/26% do)
+</li>
+<li>
+L-sit time, 0.31 (31%)
+</li>
+<li>
+5-rep pull-up strength, 0.29 (46%)
+</li>
+<li>
+hrs training per week, 0.26 (all, 46% train endurance, 79% train strength)
+</li>
+<li>
+# push-ups, 0.13 (61%)
+</li>
+<li>
+BMI, -0.13 (all)
+</li>
+</ul>
+</div></div><p>The <span class="float-notes">feature <em>importance</em><span>Calculated by shuffling the values of that feature among all climbers and seeing how much worse the predictions are on average. The range each feature can take varies widely, and shuffling can give an entirely unreasonable shift in a given climber. Years vary from 0 to 15 and BMI from 15 to 30, and yet most of us can’t wait a year to improve and fret over BMI increments of a few pounds. Compare that to hrs on the campus board per week that varies from 0 to 5 where half an hour can make a difference.</span></span> estimates how much the model relies on it for predictions; feature <em>influence</em> is the average gains for a standard small shift in that feature.</p>
+<p>By far the most important feature is how many years a climber has been climbing and, next in importance, is the number of hours climbing per week. After all:</p>
+<blockquote class="blockquote">
+<p>Climbing is the best training for climbing</p>
+</blockquote>
+<p>The top strength metrics by any measure are the number of pull-ups, half crimp strength, and the number of hours campus board training per week. Campus board training is synonymous with training for <span class="float-notes">power<span>Power is a measure of the rate of force applied; think of <a href="https://www.youtube.com/watch?v=HFe4LyDihDQ" title="What is Contact Strength? (A Climbing Nerd’s Investigation) Part 1/3 from Hooper's Beta">contact strength</a> and how much harder it is to catch a bad hold in a lunge than to grab it statically, or think of the fast pulling strength to initiate that lunge.</span></span> so we can say:</p>
+<blockquote class="blockquote">
+<p>Finger and pulling strength and power are the best predictors of climbing grade</p>
+</blockquote>
+<p>Consistently important and somewhat influential, we find BMI. For climbers with BMI &lt; 20 (&gt;25), raising (lowering) BMI always increases the expected grade; in between, predictions go up or down depending on the individual. The largest prediction changes were for climbers that didn’t provide many strength metrics; for the three of us that did, BMI influence was <span class="float-notes">tiny<span>I saw the largest gains: by lowering my BMI by 0.5 (aka, losing 3lbs), my predicted grade increases by 0.17.</span></span>.</p>
+<p>Both feature assessments entirely ignore the <span class="float-notes">correlation<span>And among all the other features too. Features that are strongly correlated: number of pull-ups and pull-up strength (0.50), number of pull-ups and number of push-ups (0.44), years climbing and half crimp strength (0.34), BMI and number of push-ups (0.24), etc.</span></span> of BMI to the strength metrics: being <span class="float-notes">lighter<span>Furthermore, the denominator in the normalized metrics further amplifies any weight loss.</span></span> makes all body-weight exercises easier; while having more muscle more than compensates for the added weight. There’s a limit in both lines of thinking: we should only lose excess fat and muscle and keep a safe weight for optimal recovery; we should only gain muscle beneficial to climbing and carefully balance muscle strength. To quote Tomoa from <a href="https://www.v-publishing.co.uk/books/climbing/beastmaking/">Beastmaking</a>:</p>
+<blockquote class="blockquote">
+<p>After trying to reinforce a specific skill or train a body part, it is found that it made the total balance of the body corrupted. —Tomoa Narasaki</p>
+</blockquote>
+<p>To estimate the maximum expected gains of each climber, we can add up all the positive influences. These gains diminish with grade; but, luckily (if true), Megan, Nelson and I have high estimated gains for our V grade.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Feature Influence</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Feature Importance</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">Max Gains</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-4" role="tab" aria-controls="tabset-6-4" aria-selected="false">Predictions</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="d_per_gender.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>The feature influence considers the change in expected grade for a shift in a given feature. An extra half hour on the campus board has the greatest effect.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="feat_imp.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>The <a href="https://christophm.github.io/interpretable-ml-book/feature-importance.html">permutation importance</a> of each feature gives the (normalized) increase in <a class="float-notes" title="Averaged over all climbers, the 30 held out climbers included.">mean</a> squared error when that feature is randomly shuffled. Given that the error nearly doubles, ‘years’ is a very important feature.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="max_gains.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>With the step shifts used to assess feature influence, adding up the positive steps each climber can take defines their maximal gains. The gains per climber go down with grade.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-6-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-4-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pred.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>This <a href="https://lightgbm.readthedocs.io/en/latest/">lightgbm</a> model was trained holding out a random 30 climbers (in green) including Megan, Nelson and me: that the test climbers are predicted as well as the others is a sign the model trained well.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>The influence of each feature depends on the profile of a given climber. Here are the gains by feature for Megan, Nelson and I as examples. Of course, we won’t suddenly climb harder by <span class="float-notes">changing<span>The influence of changing training and getting stronger is not something this dataset can answer since it only has a single snapshot of each climber in their present state.</span></span> training habits; rather, these are the nearest profiles to us that the model expects to have the biggest jump in grade and we might expect good results if we emulate them (and we trust the model and the dataset).</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Megan</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Nelson</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false">Lara</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="d_megan.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>The expected feature influence for Megan’s <a class="float-notes" title="Her open hand strength is roughly twice her half crimp strength and 6.5x her pulling strength; her L-sit time is 38s; lately, she isn't training and climbing very little.">profile</a>: more pull-ups; power training; and increase both grips with emphasis on her dominant open hand grip.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="d_nelson.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>The expected feature influence for Nelson’s <a class="float-notes" title="His open hand strength > half crimp strength > pulling strength but with better balance than either Megan or I; his L-sit time is 27s; lately, he doesn't train but climbs 10hrs per week.">profile</a>: biggest gains to strengthen his half crimp; start power training; and increase his L-sit time. The predicted gains from losing 1.5kg don’t seem worth it.</figcaption>
+</figure>
+</div>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="d_lara.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>The expected feature influence for my <a class="float-notes" title="My half crimp strength > pulling strength >> open hand strength; my L-sit time is 30s; lately, I do some training and climb 6-8hrs per week.">profile</a>: power training, more pull-ups, increase half crimp strength, climb more, increase 5-rep pull-up strength, lose 3lbs, and more push-ups.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="your-data-next" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="your-data-next">Your Data Next</h2>
+<p>We’ve studied these climbers and, although we haven’t discovered an ideal training progression, rough strength scales emerged that agree with intuition and the training literature. Are you more like Megan with &gt;6x stronger fingers than pulling strength? Or like the handful of climbers that can add nearly their full bodyweight to 5 pullups and yet only climb V4? Assess yourself to see your strength profile: how balanced is it and how does it compare to the grades you’re climbing? As you progress, how does your climbing improve with increased strength?</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<h3 class="anchored">
+Ongoing data to collect
+</h3>
+<ul>
+<li>
+indoor, system board and outdoor grades: new milestones and <span class="float-notes">sends/attempts<span>Attempts are good to track, especially for problems eventually climbed, but not all attempts are equal. Sends are definitely more stable to track.</span></span> per session (as <span class="float-notes">sum(grades)<span>Maximize this to train for endurance.</span></span> and <span class="float-notes">avg(grades)<span>Maximize this to train for power and better technique. Best to increase sum(V) first with doable grades, then to hold that steady as try to increase avg(V).</span></span>)
+</li>
+<li>
+grade by the style of climb (slab, overhang, compression, dynamic)
+</li>
+<li>
+training sessions, protocol details, and how it felt
+</li>
+<li>
+day by day, how do you feel? tired, aching? strong!
+</li>
+<li>
+resting heart rate each morning
+</li>
+<li>
+sleep quality
+</li>
+</ul>
+</div></div><p>Test as many aspects as you like, but do not <span class="float-notes">train<span>They fail to serve if you start to train to them specifically (max hangs being an exception), aka you overfit if you train to the test. For instance, ‘core’ is more than the muscles of your torso; it’s the entire chain of muscles that lets you hold tension from hands to feet. Assessing with hanging L-sits doesn’t cover the entire chain; the front lever comes closer, but neither covers the full variety of positions you’ll hopefully get into bouldering.</span></span> to them. Assess once per training cycle to influence how you train in the next one; twice a year to monitor your progress if you’re training by climbing.</p>
+<blockquote class="blockquote">
+<p>If you are still getting stronger and better by just climbing, then just climb!</p>
+</blockquote>
+<p>From one assessment to the next, look for trends in your response to different training stimuli. When you start to plateau with a given exercise, try a more advanced progression, if any, or just switch things up (eg. max hangs to repeaters). Monitor your load capacity and <span class="float-notes">increase<span>If training gets you fitter and hence capable of more training (hurray!) or you’re sleeping and eating better, and practicing active recovery.</span></span>/<span class="float-notes">decrease<span>Because other stressors in life come up, or you have more opportunity to go climbing! Or you have a trail race coming up that you also have to train for.</span></span> as necessary. It’s safer to aim low and recover well for each session than to aim high and risk injury and overtraining.</p>
+<div class="nolist">
+<p>
+<strong>Max hangs</strong> in half crimp, open hand, on a sloper, pinching, etc.: 7-10s on a 20mm edge. One arm or two depends on how much weight you need to add; at some point, it makes more sense to take a little weight off and assess one-armed, with the added benefit of checking for left/right asymmetries.
+</p>
+<p>
+<strong>Mobility</strong>: <span class="float-notes">hamstrings<span>Forward bend though it isolates the hamstrings better on the floor and, with a strap, pull your leg straight and measure the angle it makes with the floor. 60-70° is tight; 90° is ok; 105° is awesome.</span></span>; <span class="float-notes">ankles<span>How far past your toes can your knee reach; aim for at least 5”, higher is better.</span></span>; <span class="float-notes">hip turnout<span>How close to the wall can your body get with knees frogged, thighs parallel to the floor; hip bones should be at most 10” from the wall, closer is better.</span></span>; <span class="float-notes">high step<span>How high can you step with your body about a foot from the wall? Make sure not to lean sideways!</span></span>; <a href="https://www.youtube.com/watch?v=gsz3BLAkkQ4" title="Can You Pass These Simple Shoulder Mobility Tests? (Recommendations for Climbers!) from Hooper's Beta">shoulders</a>
+</p>
+<p>
+<strong>Pull-ups</strong>: Unweighted pull-ups are to endurance as weighted single reps are to strength, as 5-rep weighted pull-ups are to strength endurance. Aim for 5-rep strength around 80% of single rep strength, and single rep strength 75-100% of finger strength.
+</p>
+<p>
+<strong>Core</strong>: (on the floor) forearm plank; (hanging from a bar) knees tucked, or legs straight (L-sit); then front lever progression: knees tucked, one leg extended, legs wide, both legs extended. Pick the hardest 1-2 you can do 5-30s.
+</p>
+<p>
+<strong>Power</strong>: explosive pull-ups / muscle-ups for pulling power; assess your <a href="https://www.youtube.com/watch?v=HFe4LyDihDQ" title="What is Contact Strength? (A Climbing Nerd’s Investigation) Part 1/3 from Hooper's Beta">contact strength</a> with system board climbs that challenge it, or on a <a href="https://mojagear.com/campus-board-training-with-eric-horst/">campus board</a>. Maybe your gym has hangboard with a time-resolved force meter.
+</p>
+<p>
+<strong>Legs</strong>: <span class="float-notes">Jump taps<span>Chalk your hands and see how high you can tap a brick wall; count the bricks to measure distance.</span></span>; toe the <span class="float-notes">four corners<span>Balance on one foot and with the other nudge a small object as far forward as you can without putting weight into that foot. Then to the back, then the left and the right. It requires good balance which tests the stable leg (and core) in many positions.</span></span>; pistol squats (surely just a few are enough).
+</p>
+<p>
+<strong>Push-ups / Dips</strong>: Useful for mantelling but stop at 20-40. Don’t neglect the other <a href="https://www.youtube.com/watch?v=bEaqJ4Cc1Fo" title="Killer Home Shoulder Circuit for Rock Climbers (LONG) // from Gumby to Sharma from Hooper's Beta">antagonists</a>.
+</p>
+</div>
+<p>Assess your strengths and train your weakest aspects. Finger strength? Pull-ups? Body tension? Steep compression climbs? Scary slab climbs? All/none of them? Which are most crucial for your next goal? What are the <span class="float-notes">lowest<span>Usually the big muscles respond the fastest to training. Any weakness that you’ve never trained will likely see fast improvement once you start.</span></span> hanging fruit or which take the <span class="float-notes">longest<span>Finger strength develops slowly and is arguably the most important. Mobility may come easily for you but it’s hard-won tiny gains for me; you can never be too mobile (but you can be too flexible).</span></span> and should be ongoing?</p>
+</section>
+<section id="ml-conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="ml-conclusions">ML Conclusions</h2>
+<p>
+We have a single snapshot of each climber, not their individual progression, certainly not the interventions (aka, the training) they undertook to progress in their climbing. That means our models are merely descriptive and cannot make “causal” conclusions. Still, we can expect that, if not on an individual level, then at least in aggregate, the (mean) V6 climber progresses into a V9 climber, and might progress into a V12 climber, so that the model is at least a progressive description.
+</p>
+<p>
+A model is only as good as the dataset it learns from: while ours clearly found stronger climbers climbed harder grades, it found that all forms of endurance, <a href="https://www.youtube.com/watch?v=_XONhxQ-Gbk" title="Super easy leg training to climb better in the cave AND on slab - Hooper's Beta Ep. 8">leg</a>, core, and mobility training <em>lowered</em> expected grade. These are the biases and habits of these climbers, at best a snapshot of training advice from a decade ago; certainly not how the <a href="https://www.youtube.com/channel/UCx3XxWczzWgm1bLmgdeQJMw" title="Tomoa / Akiyo / Ikedai on YouTube">elite</a> <a href="https://www.youtube.com/channel/UC84S_JcTHwx_NBu84qWH0Xg" title="Ross &amp; Tim on YouTube">climbers</a> <a href="https://www.youtube.com/channel/UCZ4_7FcmF_Kahg05ppmzL7g" title="Sofya Yokoyama on YouTube">train</a> today.
+</p>
+<p>
+Other datasets exist, most notably the scrapped submissions from 8a.nu <a href="https://www.kaggle.com/dcohen21/8anu-climbing-logbook">downloadable</a> from Kaggle. I have plans to test a graph neural network to look for climbing cliques, correlated climb progressions, etc.
+</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="grade_vs_year_8a_wt_AS_AO.png" class="img-fluid figure-img"></p>
+<figcaption>As a quick comparison, with only mild data massaging, the grade vs <span class="float-notes">adjusted<span>Somewhat skewed as the data is actually years on 8a.nu that I adjusted using the trend of grade vs years on 8a.nu; this should still underestimate the number of years climbing since the only data I have on each climber begins when they join the site. Some join from the start, others wait until their first V10.</span></span> years climbing. The trends are reassuringly similar to ours. Each climber now has one point per year that they posted to <a href="https://www.8a.nu">8a.nu</a>.</figcaption>
+</figure>
+</div>
+</section>
+<section id="resources-and-references" class="level2">
+<h2 class="anchored" data-anchor-id="resources-and-references">Resources and References</h2>
+<p>
+<a href="https://latticetraining.com">Lattice Training</a> released an interesting <a href="https://www.instagram.com/p/B9zNGplJMyG/" target="__blank">finger strength vs V grade</a> that compared well with our climbers. They offer a free <a href="https://latticetraining.com/product/my-fingers/">finger assessment</a> if you want to compare your finger strength against their dataset (and add to it). A <a href="https://www.youtube.com/watch?v=AuOkMElNgtU" title="Tom Vs. Joe who is the strongest || Lattice training symposium ft. Tom Randall">video</a> with the Bobats showed them going through a thorough Lattice Training assessment that included various measures of strength, power, endurance, and mobility.
+</p>
+<p>
+The Substr8 Climbing Performance <a href="https://www.substr8climbing.com/athletic-assessment">assessment</a> includes the plank, max hangs, number of pull-ups, and an interesting test of strength endurance: do 3 inclined ring pull-ups at 45° every 10s for as long as possible (up to 6min), “resting” in between but always inclined.
+</p>
+<p>
+Steve Bechtel at <a href="https://www.climbstrong.com">Climb Strong</a> has a good intro to <a href="https://www.climbstrong.com/education-center/quantifying-bouldering-sessions/">Quantifying Bouldering Sessions</a>, including monitoring sum/average of the grades sent per session, mentioned in the text, and “session density”, sum(V)/duration of session, as a quick measure of load.
+</p>
+<p>
+Sorely missing in my analysis and poorly treated in most training books: improving your mobility for climbing (and life) may actually yield the greatest gains. Climbing specific routines from <a href="https://latticetraining.com">Lattice Training</a> (<a href="https://www.youtube.com/watch?v=lvErtoi9NCY">overview</a>, <a href="https://www.youtube.com/watch?v=tf_FkzgLHp0">shoulders</a> and <a href="https://www.youtube.com/watch?v=FIXJZhQz4V8">lower body</a>) and <a href="https://www.hoopersbeta.com/">Hooper’s Beta</a> (<a href="https://www.youtube.com/watch?v=ZhyBhad0zRM">shoulders</a>, <a href="https://www.youtube.com/watch?v=f86QMiSMaZ4">hips</a> and <a href="https://www.youtube.com/watch?v=_yk_EMQDM_Q">lower body</a>); or if you prefer a program, I’m in level 2/3 of <a href="https://www.youtube.com/user/Calisthenicmovement">Calisthenic Movement</a>’s <a href="https://www.calimove.com/p/mobility">mobility program</a> and very pleased with my progress and how well it goes with climbing.
+</p>
+<h3 class="anchored">
+Books and Papers
+</h3>
+<p>
+<a href="https://www.v-publishing.co.uk/books/climbing/beastmaking/">Beastmaking</a>: a fingers-first approach to becoming a better climber, by Ned Feehally. Certainly biased toward climbing foremost, supplemented with hangboard and system board training, he explains from grip outward how to train strength, power, core and footwork. Although he emphasizes the importance of mobility, he doesn’t cover this well.
+</p>
+<p>
+<a href="https://us.humankinetics.com/products/science-and-practice-of-strength-training-3rd-edition">The Science and Practice of Strength Training</a> is a wonderful, (nearly fully) self-contained book on strength training intended for coaches and trainers to learn how personalize training for individuals. Discusses strength vs power in detail; strength scaling with weight; strength through muscle systems about a joint (or multiple joints). Pleases my inner physicist and yet the math is fairly straightforward and should be alright for most.
+</p>
+<p>
+<a href="https://www.patagonia.ca/product/training-for-the-new-alpinism/BK695.html">Training for the New Alpinism</a> by Steve House and Scott Johnston. For anyone interested in self-coaching for, possibly, multiple disciplines (aka, trail running and bouldering), this book explains the physiology of endurance vs strength training and the phases of each training cycle. The athlete tales are great reads and the (mountain) photos are spectacular.
+</p>
+<p>
+<a href="https://erj.ersjournals.com/content/44/4/905">All-age relationship between arm span and height in different ethnic groups</a>, Philip H. Quanjer, et. al.&nbsp;European Respiratory Journal 2014 44: 905-912
+</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

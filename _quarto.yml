@@ -1,0 +1,24 @@
+project:
+  type: website
+
+website:
+  title: "Lara Thompson:: **M**L/**A**I/**D**ata **Scientist**"
+  navbar:
+    right:
+      - about.qmd
+      - icon: github
+        href: https://github.com/lrthomps
+      - icon: linkedin
+        href: https://www.linkedin.com/in/lara-r-thompson/
+      - icon: instagram
+        href: https://www.instagram.com/lrthomps/
+format:
+  html:
+    theme: 
+      light: cosmo
+      dark: [cosmo, theme-dark.scss]
+    css: styles.css
+    max-width: 500px
+
+
+

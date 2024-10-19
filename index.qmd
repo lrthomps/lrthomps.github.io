@@ -1,0 +1,28 @@
+---
+title: "LT:: MAD Scientist"
+listing:
+  id: posts
+  contents: posts
+  sort: 
+    - "date desc"
+    - "title"
+  type: default
+  fields: [date, title, description, reading-time]
+  categories: true
+  sort-ui: false
+  filter-ui: false
+page-layout: full
+format:
+  html:
+    template-partials: 
+      - title-block.html
+---
+
+:::{.column-body}
+I post stuff sporadically: notes for papers we're reading at the [Learn Data Science Meetup](https://www.meetup.com/learndatascience/); data analysis of something fun; write up of concepts I worked through. 
+
+
+:::{#posts}
+:::
+
+:::

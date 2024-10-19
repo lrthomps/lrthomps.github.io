@@ -1,0 +1,39 @@
+---
+title: 2024 Update
+subtitle: best laid plans...
+date: 2024-10-19
+categories: ["other"]
+description: Random list of updates and imminent plans.
+---
+
+Currently working on:
+
+* Completing / writing up / deploying the boulder recommender that I started while taking [Stanford CS224U](https://online.stanford.edu/courses/xcs224u-natural-language-understanding), [online lectures](https://www.youtube.com/playlist?list=PLoROMvodv4rOwvldxftJTmoR3kRcWkJBp) (from my cohort!) + [github](https://github.com/cgpotts/cs224u)
+
+* [Stanford CS236](https://www.youtube.com/playlist?list=PLoROMvodv4rPOWA-omMM6STXaWW4FvJT8); next: [Stanford CS230](https://www.youtube.com/playlist?list=PLoROMvodv4rNjRoawgt72BBNwL2V7doGI); [immunology course](https://www.youtube.com/playlist?list=PLc_SwOK0df2UnB3UvyDeEqVvtFEAEjLyJ)? The lectures are typically lightweight enough to watch while exercising
+
+* [NaNoWriMo](https://nanowrimo.org/) if only to get my time travel story down as a short story or novella
+
+* [finger strength](https://coreclimber.com/training/program/finger-advanced/)
+
+* another half marathon in a [race](https://www.tryevents.ca/chilly-chase) or unofficially looping Stanley park, aiming to break 1:45 (last time managed 1:49 but that was with a lot of downhill! Just beating that time on flat would be great. In fact, that race *still* has my fastest 5km effort according to [Strava](https://www.strava.com/athletes/30984218): I should beat that too!)
+
+Workwise:
+
+* Still at Tableau. In early 2023, when all the layoffs happened, we lost our ML manager and the ML team was dissolved and moved to Salesforce. I was on the Einstein Discovery team for a few months when they realized they had no ML expertise left in Tableau and I was brought back. I've since helped bring back 2 more of the original team and hired another 3 ML people to Tableau. Tableau even has a VP AI now!
+
+* We're considered "tech flex" and required to come in 10 days a quarter (but that may go up?).  
+
+* I had so much holiday I'm taking a week off every month Aug-Dec this year!
+
+Techwise:
+
+* Switched the site to [Quarto](https://quarto.org): so easy, so pretty, and \<*coming here soon*\> interactive vizzes!
+
+* After a year or 2-3(?) of Ubuntu desktop, I went back to Mac OS with a macbook air 
+
+* ~3 years ago, I tried an iPhone and did I ever regret it! While I like iOS on my iPad,on the phone it was dreadful (after android) and the photos weren't even that good. I promptly replaced it with a Sony that takes much better photos
+
+* Now using VS Code (since I work in more than just Python).
+
+* Tried the [Arc](https://arc.net/) browser and want to like it... Was a Firefox devotee but recently switching to [Brave](https://brave.com) because of the built in ad blocking that works in iOS (for watching lectures in youtube on my ipad without interrupting ads while sweating on the elliptical / peloton).

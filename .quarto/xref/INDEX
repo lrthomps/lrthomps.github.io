@@ -1,0 +1,44 @@
+{
+  "posts/post-with-code/index.qmd": {
+    "index.html": "c565b391"
+  },
+  "posts/welcome/index.qmd": {
+    "index.html": "846fd8f6"
+  },
+  "index.qmd": {
+    "index.html": "5588e617"
+  },
+  "about.qmd": {
+    "about.html": "34ffccf5"
+  },
+  "posts/embeddings/index.qmd": {
+    "index.html": "58104bff"
+  },
+  "posts/assess-yourself-for-better-bouldering/index.md": {
+    "index.html": "1143eae7"
+  },
+  "posts/reading-recommendations.qmd": {
+    "reading-recommendations.html": "11d7d7b9"
+  },
+  "posts/how-bad-is-top-K/index.qmd": {
+    "index.html": "736134ba"
+  },
+  "posts/data-where/index.qmd": {
+    "index.html": "f21bf3aa"
+  },
+  "posts/assess-yourself-for-better-bouldering/index.qmd": {
+    "index.html": "8a2fb413"
+  },
+  "posts/gpu-for-ml-only.qmd": {
+    "gpu-for-ml-only.html": "6e6b8b8c"
+  },
+  "posts/going-jekyll-free-2020.md": {
+    "going-jekyll-free-2020.html": "fd4dee8d"
+  },
+  "posts/learning-to-learn-without-forgetting-summary.md": {
+    "learning-to-learn-without-forgetting-summary.html": "a39263af"
+  },
+  "posts/2024-plans.qmd": {
+    "2024-plans.html": "7fb4b19f"
+  }
+}
