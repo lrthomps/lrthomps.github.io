@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Lara Thompson">
+<meta name="dcterms.date" content="2020-09-01">
+<meta name="description" content="Everyone uses linear regression whether they admit it or not. Here I review the math behind it with estimates of uncertainty.">
 
-<title>LT:: MAD Scientist – Lara Thompson:: ML/AI/Data Scientist</title>
+<title>Linear Regression with Uncertainty – Lara Thompson:: ML/AI/Data Scientist</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,29 +23,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,35 +105,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-posts .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-description','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-posts'] = new List('listing-posts', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -130,17 +136,17 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Lara Thompson:: <strong>M</strong>L/<strong>A</strong>I/<strong>D</strong>ata <strong>Scientist</strong></span>
     </a>
   </div>
@@ -151,7 +157,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">CV-ish</span></a>
   </li>  
   <li class="nav-item compact">
@@ -178,269 +184,275 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Linear Regression with Uncertainty</h1>
+                  <div>
+        <div class="description">
+          Everyone uses linear regression whether they admit it or not. Here I review the math behind it with estimates of uncertainty.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">machine learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Lara Thompson </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 1, 2020</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(10)</span></div><div class="category" data-category="climbing">climbing <span class="quarto-category-count">(1)</span></div><div class="category" data-category="datasets">datasets <span class="quarto-category-count">(1)</span></div><div class="category" data-category="machine learning">machine learning <span class="quarto-category-count">(7)</span></div><div class="category" data-category="other">other <span class="quarto-category-count">(3)</span></div></div></div>
+    
 <!-- main -->
-<main class="content page-columns page-full column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
-<div class="column-body-outset-left centered">
-<img src="avatar.jpg" class="big-round" alt="">
-<div>
-<p>Studied physics, math, ~neuroscience; now do ML.</p> 
-<p>Boulder and run, read a lot, write some, always learning.</p>
-<p class="justified">
-ML because it felt natural after physics, closer to what matters in the day to day, exciting in how powerful it can be, challenging in how badly it can fail; mixing math, programming, and problem solving to create products and services that help people rather than manipulate or merely distract, and build technology that means less waste and instead of yet more stuff.
+
+
+
+<p>
+Linear regression is probably the least sexy machine learning model and yet it’s a veritable playground for learning. I think every data scientist has used fit at least once and yet how many know how to get per prediction estimates of uncertainty? I didn’t before I had to do a code review for the stats engine behind Explain Data in Tableau. Now I do and, to record my notes for future me and others, to note the limitations, here we go!
 </p>
-</div>
-</div>
+<p><img src="rl_error.png" class="img-fluid"></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LinearRegression().fit(X_train, y_train)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>plt.plot(x_train[:, <span class="dv">0</span>], y_train, <span class="st">'o'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>plt.plot(x_train[:, <span class="dv">0</span>], model.predict(X_train), <span class="st">'.k'</span>, label<span class="op">=</span><span class="st">'train'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>plt.plot(x_test[:, <span class="dv">0</span>], y_test, <span class="st">'o'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x_train[:, <span class="dv">0</span>], model.predict(X_test), <span class="st">'.k'</span>, label<span class="op">=</span><span class="st">'test'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>
+While the rest of the world is racing after neural networks (that can be defined just as succinctly), learning about back prop and minimising non-convex problems, these notes will deal only with convex minimisation that furthermore can be solved via matrix manipulations. They’ll cover:
+</p>
+<ul>
+<li>
+the statistical assumptions behind ordinary least squares (OLS)
+</li>
+<li>
+the link with Bayesian linear regression and ridge regression
+</li>
+<li>
+a numerically stable QR decomposition solution
+</li>
+<li>
+reusing that decomposition to estimate coefficient uncertainty
+</li>
+</ul>
+<h2 id="formalising-the-problem" class="anchored">
+Formalising the Problem
+</h2>
+<p>
+Suppose we have a dataset with <span class="math inline">\(p\)</span> features and <span class="math inline">\(n\)</span> examples, <span class="math inline">\(\pmb{X} \in \Bbb{R}^{n \times p}\)</span>, and a single target, <span class="math inline">\(\pmb{y} \in \Bbb{R}^n\)</span> . The goal is the find a model of the form <span class="math inline">\(\pmb{y} = \pmb{X\beta}\)</span> with minimum reconstruction error, that is,
+</p>
+<p>
+<span class="math display">\[
+\pmb{\hat \beta} = \textrm{argmin}_\beta ||\pmb{y} - \pmb{X\beta}||_2
+\]</span>
+</p>
+<p>
+An intercept is modelled as an a constant unit “feature”.
+</p>
+<p>
+This is equivalent to assuming that the generating process (per sample) is
+</p>
+<p>
+<span class="math display">\[
+y \sim N(\pmb{\beta x}, \sigma^2) = {1 \over \sigma \sqrt{2\pi}} e^{-{1\over 2} \left({y - \pmb{\beta x} \over \sigma} \right)^2}
+\]</span>
+</p>
+<p>
+e.g.&nbsp;the noise is normal. To solve the statistical version, we minimise the log-likelihood which gives us back the sum of squared errors, ignoring extra terms involving <span class="math inline">\(\sigma\)</span> that are usually dropped by setting <span class="math inline">\(\sigma=1\)</span>.
+</p>
+<p>
+If the number of features is large or the dataset is small, we can add regularisation: an <span class="math inline">\(L_1\)</span> penalty gives a Lasso model with sparsity in coefficients; with an <span class="math inline">\(L_2\)</span> penalty, we have a ridge regression which can be solved as easily as OLS. To solve a Lasso model, gradient descent is often used with line search.
+</p>
+<p>
+The model is now specified by the minimisation:
+</p>
+<p>
+<span class="math display">\[
+\begin{aligned}
+\hat \beta = \textrm{argmin}_\beta {1 \over 2\sigma^2} \Big( \Big.(\pmb{y}  &amp;- \pmb{X} \pmb{\beta})^T(\pmb{y} - \pmb{X}\pmb{\beta}) \\ &amp; \Big.+ \lambda \pmb{\beta}^T \pmb{\beta} \Big) + \log\sqrt{2\pi}\sigma
+\end{aligned}
+\]</span>
+</p>
+<p>
+In OLS <span class="math inline">\(\sigma\)</span> is usually set to 1. The last term can be seen as a regulariser: the first term will pull <span class="math inline">\(\sigma\)</span> up to counter the error term.
+</p>
+<p>
+The Bayesian regression assumes a prior on the coefficients <span class="math inline">\(\pmb{\beta} \sim N(0, \tau^2)\)</span>, and, for simplicity, an uninformative prior on <span class="math inline">\(\sigma\)</span>. The posterior is then the product of the likelihood with this prior and the MAP estimate, or maximum <em>a posteriori</em> probability, is again found by minimising the log-posterior. This reduces to the same form as ridge regression with <span class="math inline">\(\lambda = \sigma^2 /\tau^2\)</span>.
+</p>
+<h2 id="qr-decomposition" class="anchored">
+QR Decomposition
+</h2>
+<p>
+The minimum of an unconstrained function can be found by setting the first derivative(s) to zero:
+</p>
+<p>
+<span class="math display">\[
+\begin{aligned}
+{d \over d{\pmb{\beta}}} \left( (\pmb{y} - \pmb{X} \pmb{\beta})^T(\pmb{y} - \pmb{X}\pmb{\beta}) + \lambda \pmb{\beta}^T \pmb{\beta} \right) &amp;= 0 \\
+{d \over d{\pmb{\beta}}}\left(\pmb{\beta}^T \pmb{X}^T \pmb{X} \pmb{\beta}
+- 2\pmb{\beta}^T \pmb{X}^T \pmb{y} + \lambda \pmb{\beta}^T \pmb{\beta}\right) &amp;= 0\\
+2\pmb{X}^T \pmb{X} \pmb{\beta} -2\pmb{X}^T \pmb{y} + 2\lambda \pmb{\beta} &amp;=0
+\end{aligned}
+\]</span>
+</p>
+<p>
+so that
+</p>
+<p>
+<span class="math display">\[
+\pmb{\hat \beta} = (\pmb{X}^T \pmb{X} + \lambda \pmb{I})^{-1}\pmb{X}^T \pmb{y}
+\]</span>
+</p>
+<p>
+Consider the QR decomposition of <span class="math inline">\(\pmb{X}\)</span> first in the <span class="math inline">\(\lambda = 0\)</span> limit: <span class="math inline">\(\pmb{X} = \pmb{QR}\)</span> where <span class="math inline">\(\pmb{Q} \in \Bbb{R}^{n \times p}\)</span> is an orthonormal matrix, that is, <span class="math inline">\(\pmb{Q}^T\pmb{Q} = \pmb{I}\)</span> (assuming <span class="math inline">\(n\ge p\)</span>), and <span class="math inline">\(\pmb{R}\in \Bbb{R}^{p \times p}\)</span> is upper triangular. The solution simplifies to <span class="math inline">\(\pmb{\hat \beta} = \pmb{R}^{-1}\pmb{Q}^T \pmb{y}\)</span>.
+</p>
+<p>
+The same magic works for non-zero <span class="math inline">\(\lambda\)</span>. If we augment our data with some “virtual data”,
+</p>
+<p>
+<span class="math display">\[
+\pmb{\tilde y} = \left[ \begin{array}{c} \pmb{y} \\ \pmb{0}\end{array}\right]\\
+\pmb{\tilde X} = \left[ \begin{array}{c} \pmb{X} \\ \sqrt{\lambda} \pmb{I}\end{array}\right]
+\]</span>
+</p>
+<p>
+the sum of square residuals has absorbed the regularisation term! If <span class="math inline">\(\pmb{\tilde X} = \pmb{\tilde Q \tilde R}\)</span>, the solution is exactly as before: <span class="math inline">\(\pmb{\hat \beta} = \pmb{\tilde R}^{-1}\pmb{\tilde Q}^T \pmb{\tilde y}\)</span>.
+</p>
+<h2 id="uncertainty-estimation" class="anchored">
+Uncertainty Estimation
+</h2>
+<p>
+We would not only like the MAP estimate of the linear regression, but also the variation about it. A quadratic approximation estimates this variation using the inverse Hessian of the loss function at the minimum, the so-called Laplace approximation [8.4.1 in Murphy, 2012]. The second derivative is independent of <span class="math inline">\(\beta\)</span>:
+</p>
+<p>
+<span class="math display">\[
+\begin{aligned}
+{1 \over 2\sigma^2}\left. {d^2 \over d\pmb{\beta}^2}(\pmb{\tilde y} - \pmb{\tilde X} \pmb{\beta})^T(\pmb{\tilde y} -
+\pmb{\tilde X}\pmb{\beta})\right|_{MAP}  &amp;\\
+= {1 \over \hat\sigma^2}\pmb{\tilde X}^T \pmb{\tilde X} = {1 \over \hat\sigma^2}\pmb{\tilde R}^T \pmb{\tilde R} &amp;
+\end{aligned}
+\]</span>
+</p>
+<p>
+The exact posterior distribution of the coefficients is <span class="math inline">\(\pmb{\beta} \sim N( \pmb{\hat \beta}, \sigma^2 (\pmb{\tilde R}^T \pmb{\tilde R})^{-1})\)</span> where the posterior of the variance is an inv-<span class="math inline">\(\chi^2\)</span> distribution. If <span class="math inline">\(\sigma\)</span> is integrated out, we get the marginal distribution of the regression coefficients,
+</p>
+<p>
+<span class="math display">\[
+\pmb{\beta} \sim T( \pmb{\hat \beta}, \hat\sigma^2(\pmb{\tilde R}^T \pmb{\tilde R})^{-1}, n-p)
+\]</span>
+</p>
+<p>
+where <span class="math inline">\(T\)</span> is the student-t distribution. The sample bias corrected noise is
+</p>
+<p>
+<span class="math display">\[
+\hat\sigma^2 = \sum {(\pmb{y} - \pmb{X \hat \beta})^2 \over n-p-1}
+\]</span>
+</p>
+<p>
+If <span class="math inline">\(n \gg p\)</span>, <span class="math inline">\(T \to N\)</span> for high orders and we recover the quadratic approximation (phew!).
+</p>
+We can also exactly calculate the predictive posterior distribution given new samples <span class="math inline">\(X^\prime\)</span>:
+<p>
+<span class="math display">\[
+\pmb{y'} \sim T(X' \hat \beta, \hat \sigma^2 (I + X' (\pmb{\tilde R}^T \pmb{\tilde R})^{-1} X'^T), n - p)
+\]</span>
+</p>
+<p>
+These estimates assume the model represents the data; that the underlying process generating samples is a linear function with Gaussian noise. In my tests, all data were generated this way and still the test set far too frequently fell in the distant tails. These in-sample uncertainty estimates make too many assumptions and are no replacement for cross-validation. Quantiles of the student-T distribution can be used to compare with the actual frequency of errors.
+</p>
+<!-- <h2 id="sampling-for-prediction-uncertainty">Sampling for Uncertainty</h2>
+
+<p>The especially useful reason to use QR decomposition is in the form of the covariance matrix for $\pmb{\beta}$ because $\pmb{R}$ is  $p\times p$ and therefore allows us to transform $\pmb{\beta} = \pmb{\hat\beta} + \hat\sigma\pmb{R^{-1} z}$ where  $\pmb{z} \sim T(0, I_p, n-p)$ which can be sampled efficiently. Note that the general transformation of a normal distribution is</p>
+<p>$$
+z \sim N(\mu, \Sigma) \to y = Az \sim N(A\mu, A\Sigma A^T)
+$$</p>
+<p>We’re ready to get back to code!</p>
 
 
-<div class="column-body">
-<p>I post stuff sporadically: notes for papers we’re reading at the <a href="https://www.meetup.com/learndatascience/">Learn Data Science Meetup</a>; data analysis of something fun; write up of concepts I worked through.</p>
-<div id="listing-posts" class="quarto-listing quarto-listing-container-default">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="other" data-listing-date-sort="1729321200000" data-listing-file-modified-sort="1729363930581" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="368">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-plans.html" class="no-external">2024 Update</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-plans.html" class="no-external">best laid plans…</a>
-</div>
-<div class="listing-description">
-<a href="./posts/2024-plans.html" class="no-external">Random list of updates and imminent plans.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2024-plans.html" class="no-external">
-<div class="listing-date">
-Oct 19, 2024
-</div>
-<div class="listing-reading-time">
-2 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="machine learning" data-listing-date-sort="1689145200000" data-listing-file-modified-sort="1729354741780" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="844">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/embeddings/index.html" class="no-external">Embeddings</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/embeddings/index.html" class="no-external">They aren’t just for text</a>
-</div>
-<div class="listing-description">
-<a href="./posts/embeddings/index.html" class="no-external">Some introductory notes on embeddings as pre-reading for our data science paper reading group.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/embeddings/index.html" class="no-external">
-<div class="listing-date">
-Jul 12, 2023
-</div>
-<div class="listing-reading-time">
-5 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="machine learning" data-listing-date-sort="1688454000000" data-listing-file-modified-sort="1729358416516" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1503">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/how-bad-is-top-K/index.html" class="no-external">How Bad is Top-K Recommendation under Competing Content Creators?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/how-bad-is-top-K/index.html" class="no-external">Introduction for Newbies and Summary for the Rushed</a>
-</div>
-<div class="listing-description">
-<a href="./posts/how-bad-is-top-K/index.html" class="no-external">Backround notes on recommenders from a game theory / bandit learning perspective to help people understand this week’s paper.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/how-bad-is-top-K/index.html" class="no-external">
-<div class="listing-date">
-Jul 4, 2023
-</div>
-<div class="listing-reading-time">
-8 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="machine learning,climbing" data-listing-date-sort="1639555200000" data-listing-file-modified-sort="1729354916993" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="33" data-listing-word-count-sort="6564">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/assess-yourself-for-better-bouldering/index.html" class="no-external">Assess Yourself for Better Bouldering</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/assess-yourself-for-better-bouldering/index.html" class="no-external">Data-Backed Training Advice</a>
-</div>
-<div class="listing-description">
-<a href="./posts/assess-yourself-for-better-bouldering/index.html" class="no-external">Analysis of a climbing survey dataset to test the wisdom of the crowd in how best to improve at climbing and assess training progress.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/assess-yourself-for-better-bouldering/index.html" class="no-external">
-<div class="listing-date">
-Dec 15, 2021
-</div>
-<div class="listing-reading-time">
-33 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="machine learning,datasets" data-listing-date-sort="1599980400000" data-listing-file-modified-sort="1729354735895" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1208">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/data-where/index.html" class="no-external">Data is everywhere!</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/data-where/index.html" class="no-external">Uh, where again?</a>
-</div>
-<div class="listing-description">
-<a href="./posts/data-where/index.html" class="no-external">Last night I was on a data science career panel (of awesome ladies!) as part the Vancouver Datajam 2020 and I promised (as I’ve been meaning to do for a while…) to post a list of data resources.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/data-where/index.html" class="no-external">
-<div class="listing-date">
-Sep 13, 2020
-</div>
-<div class="listing-reading-time">
-7 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="other" data-listing-date-sort="1599807600000" data-listing-file-modified-sort="1729355414230" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1040">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/gpu-for-ml-only.html" class="no-external">GPU for ML only on Ubuntu</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/gpu-for-ml-only.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/gpu-for-ml-only.html" class="no-external">To go against the grain, you have to fight.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/gpu-for-ml-only.html" class="no-external">
-<div class="listing-date">
-Sep 11, 2020
-</div>
-<div class="listing-reading-time">
-6 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="other" data-listing-date-sort="1599462000000" data-listing-file-modified-sort="1729356359941" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="621">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/going-jekyll-free-2020.html" class="no-external">Site overhaul to get <strike>rid of</strike> Jekyll</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/going-jekyll-free-2020.html" class="no-external">…and get things working again!</a>
-</div>
-<div class="listing-description">
-<a href="./posts/going-jekyll-free-2020.html" class="no-external">If you know html+css, why use a framework? Turns out, a few reasons.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/going-jekyll-free-2020.html" class="no-external">
-<div class="listing-date">
-Sep 7, 2020
-</div>
-<div class="listing-reading-time">
-4 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="machine learning" data-listing-date-sort="1598943600000" data-listing-file-modified-sort="1729366008185" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1306">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/linear-regression-with-uncertainty/index.html" class="no-external">Linear Regression with Uncertainty</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/linear-regression-with-uncertainty/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/linear-regression-with-uncertainty/index.html" class="no-external">Everyone uses linear regression whether they admit it or not. Here I review the math behind it with estimates of uncertainty.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/linear-regression-with-uncertainty/index.html" class="no-external">
-<div class="listing-date">
-Sep 1, 2020
-</div>
-<div class="listing-reading-time">
-7 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="machine learning" data-listing-date-sort="1568876400000" data-listing-file-modified-sort="1729358445121" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="301">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/reading-recommendations.html" class="no-external">References for Data, ML, Math etc.</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/reading-recommendations.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/reading-recommendations.html" class="no-external">Some dated and more or less relevant references to get started in ML.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/reading-recommendations.html" class="no-external">
-<div class="listing-date">
-Sep 19, 2019
-</div>
-<div class="listing-reading-time">
-2 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="machine learning" data-listing-date-sort="1566975600000" data-listing-file-modified-sort="1729358437505" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="805">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning-to-learn-without-forgetting-summary.html" class="no-external">Learning to learn without forgetting: a summary</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning-to-learn-without-forgetting-summary.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/learning-to-learn-without-forgetting-summary.html" class="no-external">Bullet-point form summary of this excellent paper. Contributions include a memory store of past examples; balances learning of new updates with recall of these stored examples; continual (online) learning in supervised and reinforcement learning settings.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning-to-learn-without-forgetting-summary.html" class="no-external">
-<div class="listing-date">
-Aug 28, 2019
-</div>
-<div class="listing-reading-time">
-5 min
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</div>
+<script src="https://gist.github.com/lrthomps/e72a08cc3731b53c684174d0d9be419d.js"></script>
 
+
+<p>See the complete <a href="https://github.com/lrthomps/notebooks/blob/master/rl_models.ipynb">notebook on github</a>.</p> -->
+<h2 id="supplementary-notes" class="anchored">
+Supplementary Notes
+</h2>
+<h3 id="effective-degrees-of-freedom" class="anchored">
+Effective “degrees of freedom”
+</h3>
+<p>
+The effective degrees of freedom in a regularised model is <span class="math inline">\(df(\lambda) = \textrm{tr}\pmb{S}\)</span> where <span class="math inline">\(\hat y = \pmb{S} y\)</span>. Evaluating in terms of the original data,
+</p>
+<p>
+<span class="math display">\[
+\begin{aligned}
+df(\lambda) &amp;= tr(X(X^T X + \lambda I)^{-1} X^T ) \\
+&amp;=  tr(X^T X(X^T X + \lambda I)^{-1} ) \\
+&amp;= tr(I - \lambda I(X^T X + \lambda I)^{-1}) \\
+&amp;= p - \lambda \; tr(\tilde R^T \tilde Q^T \tilde Q \tilde R)^{-1} \\
+&amp;= p - \lambda ||\tilde R^{-1}||_F^2
+\end{aligned}
+\]</span>
+</p>
+<p>
+where in the last line a property of the Frobenius norm, $ tr (A^T A) = ||A||_F^2 $, has been used. This tells us that the effective degrees of freedom in the model is the number of predictors <em>reduced</em> by an amount proportional to <span class="math inline">\(\lambda\)</span>. This makes intuitive sense!
+</p>
+<h3 id="aic" class="anchored">
+AIC
+</h3>
+<p>
+We’ll need a few definitions to clarify just what errors we can estimate given a certain training dataset. Assuming the target satisfies a probabilistic generating process, repeat measurements of the same predictors will vary; predictions of these <em>in-sample</em> examples yield an <em>in-sample prediction error</em>. For examples that aren’t in the training set, we are more concerned with the <em>out-of-sample prediction error</em>.
+</p>
+<p>
+The Akaike information criterion (AIC) is an estimate of <em>in-sample</em> prediction error (some texts claim out-of-sample but Hastie assures us otherwise in chapter 7). The definition and evaluation for linear regression is
+</p>
+<p>
+<span class="math display">\[
+\begin{aligned}
+AIC  &amp;=  2p - 2E[loglik]\\
+&amp;=2p + 2\log \sqrt{2\pi} \hat\sigma  
++ {1\over (n-p)} \sum_{i=1}^n \left( {y - \hat y(x) \over \hat\sigma} \right)^2\\
+&amp;=  2p + 1 + 2\log \sqrt{2\pi} \hat\sigma
+\end{aligned}
+\]</span>
+</p>
+<p>
+The Bayesian information criterion (BIC) is similar but replaces <span class="math inline">\(2p \to \log n \; p\)</span> and favours small models.
+</p>
+<h2 id="references" class="anchored">
+References
+</h2>
+<p>
+K. P. Murphy. <em>Machine Learning: a Probabilistic Perspective</em>. The MIT Press, 2012.
+</p>
+<p>
+T. Hastie, R. Tibshirani, and J. Friedman. <em>The Elements of Statistical Learning</em>. Springer, 2009.
+</p>
 
 
 

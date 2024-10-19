@@ -40,5 +40,8 @@
   },
   "posts/2024-plans.qmd": {
     "2024-plans.html": "7fb4b19f"
+  },
+  "posts/linear-regression-with-uncertainty/index.qmd": {
+    "index.html": "58b76598"
   }
 }
