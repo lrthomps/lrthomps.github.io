@@ -17,7 +17,7 @@ CURRENT
 ::: {.desc}
 Machine Learning Scientist / Engineer building models to predict lightning so we can fight fires before they start. It works 🤯.
 
-Bouldering (yet!) more and more (regularly getting up to ~V3-V5; also finding harder and harder V2). Ran a 1:43:47 half but proceeded to tweak a glute the next week.
+Bouldering more and more (regularly getting up to ~V3-V5; also finding harder and harder V2s). Ran a 1:43:47 half but proceeded to tweak a glute the next week.
 :::
 :::
 ::: {.row}
@@ -32,7 +32,7 @@ PREVIOUS
 ::: {.desc}
 Principal Machine Learning Scientist / Engineer at Tableau / Salesforce. I started out on the Explain Data feature team then I was briefly on the Einstein Discovery team.  Since the summer, I've been working on Tableau Pulse developing insights that are the heart of Tableau Pulse and architecting new GAI features. 
 
-Bouldering loads and ran the Enchantments in-a-day (many hours); ran a semi-fast 10km (48:20).
+Bouldering loads; ran the Enchantments in-a-day (many hours); ran a semi-fast 10km (48:20).
 :::
 :::
 ::: {.row}
