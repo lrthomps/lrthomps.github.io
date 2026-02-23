@@ -63,6 +63,41 @@
     "text": "Currently working on:\n\nCompleting / writing up / deploying the boulder recommender that I started while taking Stanford CS224U, online lectures (from my cohort!) + github\nStanford CS236; next: Stanford CS230; immunology course? The lectures are typically lightweight enough to watch while exercising\nNaNoWriMo if only to get my time travel story down as a short story or novella\nfinger strength\nanother half marathon in a race or unofficially looping Stanley park, aiming to break 1:45 (last time managed 1:49 but that was with a lot of downhill! Just beating that time on flat would be great. In fact, that race still has my fastest 5km effort according to Strava: I should beat that too!)\n\nWorkwise:\n\nStill at Tableau. In early 2023, when all the layoffs happened, we lost our ML manager and the ML team was dissolved and moved to Salesforce. I was on the Einstein Discovery team for a few months when they realized they had no ML expertise left in Tableau and I was brought back. I’ve since helped bring back 2 more of the original team and hired another 3 ML people to Tableau. Tableau even has a VP AI now!\nWe’re considered “tech flex” and required to come in 10 days a quarter (but that may go up?).\nI had so much holiday I’m taking a week off every month Aug-Dec this year!\n\nTechwise:\n\nSwitched the site to Quarto: so easy, so pretty, and &lt;coming here soon&gt; interactive vizzes!\nAfter a year or 2-3(?) of Ubuntu desktop, I went back to Mac OS with a macbook air\n~3 years ago, I tried an iPhone and did I ever regret it! While I like iOS on my iPad,on the phone it was dreadful (after android) and the photos weren’t even that good. I promptly replaced it with a Sony that takes much better photos\nNow using VS Code (since I work in more than just Python).\nTried the Arc browser and want to like it… Was a Firefox devotee but recently switching to Brave because of the built in ad blocking that works in iOS (for watching lectures in youtube on my ipad without interrupting ads while sweating on the elliptical / peloton)."
   },
   {
+    "objectID": "posts/Notes on ETA Prediction with GNNs in GMaps.html",
+    "href": "posts/Notes on ETA Prediction with GNNs in GMaps.html",
+    "title": "Notes on ETA Prediction with GNNs in GMaps",
+    "section": "",
+    "text": "[ETA Prediction with Graph Neural Networks in Google Maps]https://arxiv.org/abs/2108.11482"
+  },
+  {
+    "objectID": "posts/Notes on ETA Prediction with GNNs in GMaps.html#weather-prediction",
+    "href": "posts/Notes on ETA Prediction with GNNs in GMaps.html#weather-prediction",
+    "title": "Notes on ETA Prediction with GNNs in GMaps",
+    "section": "Weather Prediction",
+    "text": "Weather Prediction\nNote that Google came out with a GNN approach for weather prediction in 2022 (the next year)."
+  },
+  {
+    "objectID": "posts/Notes on ETA Prediction with GNNs in GMaps.html#metagradients",
+    "href": "posts/Notes on ETA Prediction with GNNs in GMaps.html#metagradients",
+    "title": "Notes on ETA Prediction with GNNs in GMaps",
+    "section": "MetaGradients",
+    "text": "MetaGradients\nIntroduced in RL.Essentially, slowly learn your hyperparameters while learning your model. We should read the RL paper if we want more details."
+  },
+  {
+    "objectID": "posts/Notes on ETA Prediction with GNNs in GMaps.html#exponential-moving-average",
+    "href": "posts/Notes on ETA Prediction with GNNs in GMaps.html#exponential-moving-average",
+    "title": "Notes on ETA Prediction with GNNs in GMaps",
+    "section": "Exponential Moving Average",
+    "text": "Exponential Moving Average\nThe hardest aspect of training was the high variance of model performance throughout training, something common to RL. To battle this they applied an exponential moving average to all model parameters for later evaluation and serving."
+  },
+  {
+    "objectID": "posts/Notes on ETA Prediction with GNNs in GMaps.html#segments-super-segments-extended-super-segments",
+    "href": "posts/Notes on ETA Prediction with GNNs in GMaps.html#segments-super-segments-extended-super-segments",
+    "title": "Notes on ETA Prediction with GNNs in GMaps",
+    "section": "Segments, Super-Segments & Extended Super-Segments",
+    "text": "Segments, Super-Segments & Extended Super-Segments\nSegments ~ 50-100m, super-segments are ~ 20 segments and modeling with extended super-segments allowed them to adjust ETA estimation given traffic further away that might still affect your route."
+  },
+  {
     "objectID": "posts/assess-yourself-for-better-bouldering/index.html",
     "href": "posts/assess-yourself-for-better-bouldering/index.html",
     "title": "Assess Yourself for Better Bouldering",
@@ -161,11 +196,305 @@
     "text": "Footnotes\n\n\nToy Models of Superposition is an insightful writeup and I highly recommend reading!↩︎"
   },
   {
+    "objectID": "posts/Summary_ VALL-E.html",
+    "href": "posts/Summary_ VALL-E.html",
+    "title": "VALL-E Notes",
+    "section": "",
+    "text": "Neural Codec Language Models are Zero-Shot Text to Speech Synthesizers"
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#text-to-speech",
+    "href": "posts/Summary_ VALL-E.html#text-to-speech",
+    "title": "VALL-E Notes",
+    "section": "Text to speech",
+    "text": "Text to speech\n\nVALL-E1 is an example of a text-to-speech (TTS) model, the sort of thing that gets used when Siri or your GPS talks to you. The input is text, the output is speech.\nTTS has a long history and modern versions can sound quite good, but the generated voice comes from one of a small set of pretrained voices that are baked in.\nLet’s listen to some examples. First, here is a human reading this sentence:\nThus did this humane and right-minded father comfort his unhappy daughter; and her mother embracing her again did all she could to soothe her feelings.\nHuman reading\nHere are some examples from some of the best commercially available TTS systems:\nGoogle Text to Speech (neural2)\nElevenLabs (Arnold)\nCoqui (Alberto)"
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#voice-cloning",
+    "href": "posts/Summary_ VALL-E.html#voice-cloning",
+    "title": "VALL-E Notes",
+    "section": "Voice cloning",
+    "text": "Voice cloning\n\nInstead of doing TTS with a specific, pretrained voice, VALL-E does voice cloning: given an example of a person’s voice, do TTS that sounds like that person. In the past, this has typically required tens to hundreds of hours of high-quality speech data.\nHere are some examples of what that can do. The quality depends a lot on the input quality of the voice recording being cloned.\nCoqui - Malcolm (voiceover artist)\nCoqui - Bruce (me!)"
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#voice-conversion",
+    "href": "posts/Summary_ VALL-E.html#voice-conversion",
+    "title": "VALL-E Notes",
+    "section": "Voice conversion",
+    "text": "Voice conversion\n\nFor completeness, I will mention a related thing that people do: voice conversion. This is where you take a recording of someone talking (or singing) and change the voice to sound like someone else. You go directly from speech to speech. This has the advantage of preserving the prosody (pacing and expression) of the original.\nIt’s probably harder to do because software for it is less common. VALL-E doesn’t do it."
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#encodec",
+    "href": "posts/Summary_ VALL-E.html#encodec",
+    "title": "VALL-E Notes",
+    "section": "EnCodec",
+    "text": "EnCodec\nA lot of the heavy lifting in VALL-E is done by FAIR’s EnCodec. It provides a new way to do audio compression using neural networks. Audio samples are here. I haven’t quite figured out EnCodec—it does well in their subjective and objective evaluations, but the samples sound pretty artifact-y to me. I think the audio quality of VALL-E has a lot to do with EnCodec.\nIn VALL-E, EnCodec is used to (1) create embeddings of the audio prompt and audio training data, and then (2) to turn predicted embeddings back into audio."
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#residual-vector-quantization",
+    "href": "posts/Summary_ VALL-E.html#residual-vector-quantization",
+    "title": "VALL-E Notes",
+    "section": "Residual Vector Quantization",
+    "text": "Residual Vector Quantization\n\nThe general idea of vector quantization (VQ) is to cluster the embeddings and find the centroids of the clusters. The centroids are labeled, forming a codebook. For a given embed vector, you give it the label of the closest centroid. For VALL-E, the centroids are learning during training.\nThe net result is that the embed vectors that come from the EnCodec latent space are transformed into a “vocabulary” of discrete symbols that are amenable to language modeling.\nWith residual vector quantization (RVQ), you first do VQ with an embed vector, then apply VQ (with a different codebook) to the residual = the difference between the centroid and the original vector. You can repeat this process, and VALL-E does, for a total of 8 VQ operations for each embed. The terminology for the output of each VQ step slips around a bit, but let’s stick with “audio code”. The first level audio code is the “primary” one, the others are “residuals”.\nThe general idea is that the primary audio codes capture the linguistic content while the residuals capture the speaker characteristics. I don’t think there is any direct evidence that this is true, but it’s a reasonable hypothesis. Because of these different interpretations, there are different models for each, described below."
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#the-ar-transformer",
+    "href": "posts/Summary_ VALL-E.html#the-ar-transformer",
+    "title": "VALL-E Notes",
+    "section": "The AR transformer",
+    "text": "The AR transformer\nThe autoregressive (AR) transformer is like a GPT language model: it is a decoder-only transformer that predicts the next primary audio code given the previous codes, and is conditioned on the text phonemes and the audio prompt.\nIt is trained like a regular GPT model to generate acoustic codes, but conditioned on ground truth codes. To create training data, they process Libri-Light to create pairs of acoustic code data and phoneme data, from the audio and text transcript respectively. They give the model the text transcript as an input. In addition to the loss (cross-entropy or whatever) for predicting the next acoustic code, there is a loss term to compare the generated code to the ground-truth acoustic code derived from the audio.\nHow does it get started? The 3-second acoustic prompt provides the first few acoustic codes.\nThe intuition is that because the primary audio codes are related to the linguistic content, they should be handled like a text generation task."
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#the-nar-transformer",
+    "href": "posts/Summary_ VALL-E.html#the-nar-transformer",
+    "title": "VALL-E Notes",
+    "section": "The NAR transformer",
+    "text": "The NAR transformer\nThe non-autoregressive transformer (NAR) is more like a language translation model (encoder-decoder transformer) where the entire input is processed at once. It is applied to the residual audio codes. The intuition is that the residuals relate to the speaker characteristics that are sort of independent of what is being said, so there is less dependence on previously generated codes, and they can be processed all at once."
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#how-novel-is-it",
+    "href": "posts/Summary_ VALL-E.html#how-novel-is-it",
+    "title": "VALL-E Notes",
+    "section": "How novel is it?",
+    "text": "How novel is it?\nI thought maybe this is the first time that anyone had used language modeling for TTS, but I think Google’s AudioLM has some of the same ideas. Still, it’s a very interesting new direction that seems to have a lot of potential."
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#is-a-3-second-prompt-the-only-option",
+    "href": "posts/Summary_ VALL-E.html#is-a-3-second-prompt-the-only-option",
+    "title": "VALL-E Notes",
+    "section": "Is a 3-second prompt the only option?",
+    "text": "Is a 3-second prompt the only option?\nThey also tested with 5 and 10 second prompts. No surprise—it works a bit better with longer prompts."
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#whats-up-with-the-continual-version",
+    "href": "posts/Summary_ VALL-E.html#whats-up-with-the-continual-version",
+    "title": "VALL-E Notes",
+    "section": "What’s up with the “continual” version?",
+    "text": "What’s up with the “continual” version?\nI think this means the acoustic prompt is based on text that matches the text. For VALL-E-continual, you could give the voice-prompt person the script. They read the first 3 seconds and that becomes the voice prompt. The text input starts after the 3 seconds that the person spoke.\nThis gives semantic continuity to the whole process. It seems to help a bit."
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#what-determines-the-speed-of-the-generated-speech",
+    "href": "posts/Summary_ VALL-E.html#what-determines-the-speed-of-the-generated-speech",
+    "title": "VALL-E Notes",
+    "section": "What determines the speed of the generated speech?",
+    "text": "What determines the speed of the generated speech?\nThis is not described explicitly in the paper and I’m not completely clear on this. It probably happens in the AR model. The acoustic prompt will have a certain speaking speed which is reflected in the number of acoustic codes for each phoneme.\nAcoustic codes are created at a fixed rate of 75 Hz, so about 13 ms each. Phonemes can be from 5 - 670 ms, so typically there are many more acoustic codes than phonemes."
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#the-loss-function-is-based-on-acoustic-codes.-if-it-included-a-term-to-compare-the-generated-speech-with-the-training-samples-could-that-improve-the-audio-quality",
+    "href": "posts/Summary_ VALL-E.html#the-loss-function-is-based-on-acoustic-codes.-if-it-included-a-term-to-compare-the-generated-speech-with-the-training-samples-could-that-improve-the-audio-quality",
+    "title": "VALL-E Notes",
+    "section": "The loss function is based on acoustic codes. If it included a term to compare the generated speech with the training samples, could that improve the audio quality?",
+    "text": "The loss function is based on acoustic codes. If it included a term to compare the generated speech with the training samples, could that improve the audio quality?\nGood idea. They should try that. 🙂\nIt’s a bit tricky though because most audio comparisons require sample-aligned inputs and outputs. Due to the vagaries of the timing of the generated speech, such a comparison might be difficult."
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#if-you-run-vall-e-again-on-the-same-text-the-output-will-be-different.-why",
+    "href": "posts/Summary_ VALL-E.html#if-you-run-vall-e-again-on-the-same-text-the-output-will-be-different.-why",
+    "title": "VALL-E Notes",
+    "section": "If you run VALL-E again on the same text, the output will be different. Why?",
+    "text": "If you run VALL-E again on the same text, the output will be different. Why?\nLike GPT text models, it is because the AR model takes random samples from the predicted distribution of the next acoustic code."
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#why-do-they-train-their-own-asr",
+    "href": "posts/Summary_ VALL-E.html#why-do-they-train-their-own-asr",
+    "title": "VALL-E Notes",
+    "section": "Why do they train their own ASR?",
+    "text": "Why do they train their own ASR?\nProbably because they need alignment data. During training, the loss function compares the generated acoustic codes with ground truth codes derived from voice recordings that are paired with transcriptions. Because the transcriptions are processed on phoneme boundaries, the acoustic data needs to be aligned with those boundaries. This is the reason for the “forced alignment” that was mentioned."
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#is-rvq-disentangling",
+    "href": "posts/Summary_ VALL-E.html#is-rvq-disentangling",
+    "title": "VALL-E Notes",
+    "section": "Is RVQ disentangling?",
+    "text": "Is RVQ disentangling?\nI don’t have an answer. I think the authors are implying that the primary code and the residual codes disentangle linguistic information from speaker characteristics. Are they saying that? How would you go about finding evidence for or against that hypothesis?"
+  },
+  {
+    "objectID": "posts/Summary_ VALL-E.html#footnotes",
+    "href": "posts/Summary_ VALL-E.html#footnotes",
+    "title": "VALL-E Notes",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThe name is an homage to DALL-E which is a mashup of WALL-E and Dali. I wouldn’t say that VALL-E makes a whole lot of sense as a name.↩︎\nBy contrast, “few-shot” would mean it hadn’t seen the voice during training, but was given a few examples of the new voice, a corresponding transcription, and the desired output. This would be a kind of fine-tuning.↩︎"
+  },
+  {
+    "objectID": "posts/VanillaNet Notes.html",
+    "href": "posts/VanillaNet Notes.html",
+    "title": "VanillaNet Notes",
+    "section": "",
+    "text": "[VanillaNet: the Power of Minimalism in Deep Learning]https://arxiv.org/abs/2305.12972\nFirst some very introductory notes for the newbies. Since this paper is fairly short and not nearly as difficult to read as the last one, we may as well go deep on the topics it does cover.\nBtw, I first heard of this paper from (the firehose that is) marktechpost."
+  },
+  {
+    "objectID": "posts/VanillaNet Notes.html#inductive-bias-translational-invariance1",
+    "href": "posts/VanillaNet Notes.html#inductive-bias-translational-invariance1",
+    "title": "VanillaNet Notes",
+    "section": "Inductive Bias: Translational Invariance1",
+    "text": "Inductive Bias: Translational Invariance1\nThe no-free-lunch theorem for machine learning (Wolpert et al., 1997; Baxter, 2000) basically says that some set of preferences (or inductive bias) over the space of all functions is necessary to obtain generalization, that there is no completely general-purpose learning algorithm, that any learning algorithm will generalize better on some distributions and worse on others. Typically, given a particular dataset and loss function, there are many possible solutions (e.g. parameter assignments) to the learning problem that exhibit equally “good” performance on the training points. Given a finite training set, the only way to generalize to new input configurations is then to rely on some assumptions or preferences about the solution we are looking for. An important question for AI research aiming at human-level performance then is to identify inductive biases that are most relevant to the human perspective on the world around us. Inductive biases, broadly speaking, encourage the learning algorithm to prioritise solutions with certain properties.\n–from “Inductive Biases for Deep Learning of Higher-Level Cognition” by Goyal & Bengio (2020)\n\nFor example, a convolutional feature can learn to detect an eye no matter where it is in the image using the same “eye” detector translated across the image, firing when it covers an eye."
+  },
+  {
+    "objectID": "posts/VanillaNet Notes.html#vanishing-gradients",
+    "href": "posts/VanillaNet Notes.html#vanishing-gradients",
+    "title": "VanillaNet Notes",
+    "section": "Vanishing Gradients",
+    "text": "Vanishing Gradients\nThe vanishing gradient problem is a common issue that arises when training deep neural networks with many layers of neurons. It occurs when the gradients of the error function become so small that they approach zero, making it difficult for the network to learn from the available data. This can lead to poor performance and slow convergence during training.\nThere are several reasons why this might happen:\n\nExcessive layer depth: As the number of layers increases, the gradients have to pass through more nodes before reaching the output layer. With each node, there is a chance for the gradients to be shrunk or even cancelled out entirely.\n\nNonlinear activation functions: Activation functions such as ReLU and sigmoid are used to introduce nonlinearity into the network. However, these functions also reduce the magnitude of the gradients passing through them.\n\nInitialization issues: Improper initialization of the weights and biases can cause some units to become stuck in local minima or maxima, which leads to difficulty in updating their parameters.\n\nLack of regularization: Regularization techniques like dropout and weight constraints help prevent overfitting by reducing the capacity of the model. When not properly applied, this can result in flat regions in the loss landscape where gradients disappear.\nTo address the vanishing gradients problem, there are various approaches that can be taken. Some of these include:\n\n\n\nReduce layer depth: One way to mitigate the effect of excessive layer depth is to use fewer layers, which will make it easier for gradients to flow through the network.\n\nUse better activations: Certain activation functions are less prone to causing gradient decay, such as tanh, softplus, and ELUs. Additionally, architectural choices like residual connections and skip connections can improve the flow of information throughout the network.\n\nInitialize carefully: Properly initializing the weights and biases can significantly impact the success of your model. Techniques such as Xavier/He uniform initialization, Glorot normal initialization, and Kaiser initialization can help ensure that your model is well-behaved and easy to train.\n\nApply regularization: Regularization techniques such as weight decay, Dropout, Batch Normalization, and Early Stopping can help control the model’s complexity and avoid overfitting. These methods encourage the network to generalize better and prevent the formation of bad local optima.\n\nChange learning rate schedule: Increasing the learning rate at the beginning of training can help overcome the vanishing gradients problem, but doing so too aggressively can lead to exploding gradients in the opposite direction. Using a cosine annealing schedule or Adaptive Learning Rates can help smooth out the learning process and achieve better results.\n–from Guanaco when asked to explain the vanishing gradients problem\n\nVanillaNet chose to circumvent the issue by limiting the depth of their model."
+  },
+  {
+    "objectID": "posts/VanillaNet Notes.html#complex-model-additions-not-used-in-vanillanet",
+    "href": "posts/VanillaNet Notes.html#complex-model-additions-not-used-in-vanillanet",
+    "title": "VanillaNet Notes",
+    "section": "Complex Model Additions (not used in VanillaNet)",
+    "text": "Complex Model Additions (not used in VanillaNet)\n\nShortcuts, or Skip Connections\nResidual blocks combine the output from a non-linear layer (dx) with a skip connection (x) to learn “residuals” in the block, the (small?) change required, rather than the full output (x + dx). Without skip connections, information gets lost as it travels from the bottom layers to the top layers of the network. Skip connections allow the network to learn features at various levels of abstraction and combine them to create more accurate predictions.\n\nThe skip connections can be done in various ways. The important aspect is bringing the signal across layers unchanged so that the intermediate layers only need to learn the change from that signal – this works very well if the “residuals” are simpler than the full signal.\n\n\nSelf-Attention\nSelf-attention is a mechanism used in machine learning to focus on the most relevant parts of an image. It involves a network of neural connections that process information in a non-linear way, allowing it to identify patterns and features that are relevant to the task at hand. It was first introduced in Attention is all you need [Vaswani et al., 2017], where they introduced the first Transformer model. More generally, attention was first introduced in NLP for RNN models in the paper Neural Machine Translation by Jointly Learning to Align and Translate [Bahdanau et al., 2014].\nLearn them more deeply by coding self attention from scratch."
+  },
+  {
+    "objectID": "posts/VanillaNet Notes.html#general-comments",
+    "href": "posts/VanillaNet Notes.html#general-comments",
+    "title": "VanillaNet Notes",
+    "section": "General comments",
+    "text": "General comments\nThe authors may have done something interesting, but they claim much more than they provide objective evidence for. They also make sweeping self-congratulatory subjective assessments that put me in a bad mood."
+  },
+  {
+    "objectID": "posts/VanillaNet Notes.html#the-general-idea",
+    "href": "posts/VanillaNet Notes.html#the-general-idea",
+    "title": "VanillaNet Notes",
+    "section": "The general idea",
+    "text": "The general idea\nWe live in a world where it seems to be all-transformers-all-the-time for language models and nothing-but-resnets for image tasks. Lots of people find it hard to wrap their heads around transformers, so avoiding them might seem appealing. (But really, they are not that hard to understand.) The authors are really allergic to skip connections for some reason, so they would like to not use ResNets.\nThey focus on image tasks (classification, object detection, segmentation) where convolutional neural networks (CNNs), like ResNets, have traditionally been strong and are still widely used. The best models are very deep (i.e., have lots of layers).\nTheir approach is to make several tradeoff decisions that are different from the usual ones.\n\nThey go wide instead of deep.\n\nThey add some training complexity in exchange for benefits at inference time.\n\nThey add complexity to the activation functions instead of relying on depth to provide non-linearity.\n\nThey do not use skip connections (like ResNet) or self-attention (like Transformers). Just plain old (vanilla!) CNN layers.\n\nTheir main claim to simplicity is #4."
+  },
+  {
+    "objectID": "posts/VanillaNet Notes.html#how-can-something-so-simple-still-work",
+    "href": "posts/VanillaNet Notes.html#how-can-something-so-simple-still-work",
+    "title": "VanillaNet Notes",
+    "section": "How can something so simple still work?",
+    "text": "How can something so simple still work?\nBecause it’s not that simple, really. They avoid some commonly used architectural features, but they add complexity elsewhere.\n\nThey end up with more, not fewer, parameters and it takes more FLOPs to run.\n\nThey use a “series activation function” with several components rather than a single function. (This seems novel and may be useful in other contexts.)\n\nThey use a “deep training technique” that starts with a deeper model but ends up shallow.\n\nTheir model has a larger activation region—i.e., it sees more of the input data. (This is not convincingly demonstrated.)"
+  },
+  {
+    "objectID": "posts/VanillaNet Notes.html#why-is-it-better",
+    "href": "posts/VanillaNet Notes.html#why-is-it-better",
+    "title": "VanillaNet Notes",
+    "section": "Why is it better?",
+    "text": "Why is it better?\nThe authors make the following claims. Many are backed by theoretical arguments rather than empirical evidence.\n\nfaster (they do demonstrate this)\n\neasier to deploy (vague statement—no evidence provided)\n\nsmaller memory requirements, something about off-chip memory traffic (not vague, but no evidence provided)\n\nbetter interpretability (vague statement—no evidence provided)\n\nimproved flexibility (vague statement—no evidence provided)\n\nstrong baselines (it does achieve comparable performance to deeper architectures)\n\nIf you find some of these claims surprising given the “why does it work” reasons above, I’m with you.\nI am not the best person to assess the theoretical arguments that are made. I look forward to hearing from others who are closer to implementation issues."
+  },
+  {
+    "objectID": "posts/VanillaNet Notes.html#code-dive-into-vanillanets",
+    "href": "posts/VanillaNet Notes.html#code-dive-into-vanillanets",
+    "title": "VanillaNet Notes",
+    "section": "Code dive into VanillaNets",
+    "text": "Code dive into VanillaNets\nhttps://www.youtube.com/watch?v=o8pJcvL8Lw8 quick code dive into VanillaNet, 2x speed watch recommended, it’s just uploaded so the youtube transcription isn’t ready yet.\nThe notebook is on kaggle, as free gpu etc.\nI like this paper well!\nEspecially the “train big, deploy small” part.\n1st of all it’s very useful not only for production, kaggle competition, as stacking many CNNs heavily during inference time is common practice for every team.\nI didn’t pay too much attention to its assortment of performance metrics in every detail.(Who really cares about imagenet anyway and they just did coco detection) As such simplicity might end up improving more and more downstream tasks. Eg. most GANs are using residual blocks as basic unit, I don’t know what they would be under Vanilla block, same for all UNet as in most of the diffusion models.\nIts trend is also like transformer against gated RNN based structure on NLP, as simpler structure permits more intense FLOPs.\nLooking forward to other paper/experiments popping out around this paper."
+  },
+  {
+    "objectID": "posts/VanillaNet Notes.html#rays-more-annoying-afternotes",
+    "href": "posts/VanillaNet Notes.html#rays-more-annoying-afternotes",
+    "title": "VanillaNet Notes",
+    "section": "Ray’s more annoying afternotes",
+    "text": "Ray’s more annoying afternotes\nHmmmm, that YMCA joke really cracked me up, but no.\nA series activation, the word `series`, means different grid/ pixel input in the surrounding, in no way I imagine it would do the YMCA thing. Maybe it’s because I failed to see it. In this situation it’s a little different than, say, the ax^2 +bx^3 break the linearity (YMCA pattern).\nThe non-linearity and its relationship with ReLU as the Deep Learning Book explained it (in an early chapter of that book with a cover printed with many flowers). It means usually the linear layer can process most signals with most of the gates well ( AND, OR, NOR etc), but in no way it can perform XOR gate, with ReLU, it can, it can break pattern of 1 element of input increase in value can only push the output only in one direction, hence the non-linearity. And Non-Linearity means most of the signals can enjoy a complete set of gates when combined with other signals.\nSo in this paper, my guess is if x_i increases delta_x, it can push the y_ to be bigger or smaller, not depends on the scale of the delta_x (per YMCA), but its surroundings.\nBtw good notes fellas, enjoy your narrations."
+  },
+  {
+    "objectID": "posts/VanillaNet Notes.html#footnotes",
+    "href": "posts/VanillaNet Notes.html#footnotes",
+    "title": "VanillaNet Notes",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nInvariance means that the result doesn’t matter where the cat is; an equivariant model looks everywhere for a cat in the same way but fires specifically where the cat is. A convolutional layer is actually equivariant; if we then aggregate over all positions, the result is invariant.↩︎"
+  },
+  {
+    "objectID": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html",
+    "href": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html",
+    "title": "Improving Training Stability for Multitask Ranking Models in Recommender Systems",
+    "section": "",
+    "text": "Pure gradient descent involves calculating the loss over the entire training set and updating model weights according to\ngt = 𝛁wℒ\nwt+1 = wt - η gt\nwhere gt is the gradient of the loss with respect to the model parameters. Stochastic gradient descent updates the model weights for each batch of training data; it’s stochastic because the update from each batch is merely an approximation to the update of the entire training set."
+  },
+  {
+    "objectID": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#vanilla-stochastic-gradient-descent",
+    "href": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#vanilla-stochastic-gradient-descent",
+    "title": "Improving Training Stability for Multitask Ranking Models in Recommender Systems",
+    "section": "",
+    "text": "Pure gradient descent involves calculating the loss over the entire training set and updating model weights according to\ngt = 𝛁wℒ\nwt+1 = wt - η gt\nwhere gt is the gradient of the loss with respect to the model parameters. Stochastic gradient descent updates the model weights for each batch of training data; it’s stochastic because the update from each batch is merely an approximation to the update of the entire training set."
+  },
+  {
+    "objectID": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#training-instability",
+    "href": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#training-instability",
+    "title": "Improving Training Stability for Multitask Ranking Models in Recommender Systems",
+    "section": "Training Instability",
+    "text": "Training Instability\nThe paper described instabilities under GD in a toy 2d model.\n\nWhen there’s high curvature (steep gradient walls that quickly get steeper), if the learning rate is too large, then the model weights will bounce from side to side into those steeper and steeper gradients that push them further and further from the minimum. When training with a fixed learning rate, if there is any chance of high curvature for any model weights, you must use a small enough learning rate to avoid such instabilities but then training can be (very!) slow.\nA more complex model (deeper/wider) is more likely to have high curvature; a model with more channels (e.g. mixture of experts, multi-task) has more chances that one of them becomes unstable. Shifting distribution in sequential training means gradient updates are larger because the model is constantly out-of-date. And everyone wants to train faster."
+  },
+  {
+    "objectID": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#adagrad",
+    "href": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#adagrad",
+    "title": "Improving Training Stability for Multitask Ranking Models in Recommender Systems",
+    "section": "Adagrad",
+    "text": "Adagrad\nAdaGrad is an optimizer that adapts the learning rate for each parameter: parameters with more large updates will shrink the learning rate faster. In its update rule, Adagrad modifies the general learning rate at each time step for every parameter based on the past gradients for\nGt = Gt-1 + gt2\nwt+1 = wt - (Gt + ϵ)-1/2 η gt\nwhere Gt is an accumulator, typically initialized to 0.1, and, notably, always positive.\nThe benefit of AdaGrad is that it eliminates the need to manually tune the learning rate; most leave it at a default value of 0.01. Its main weakness is the accumulation of the squared gradients in the denominator. Since every added term is positive, the accumulated sum keeps growing during training, causing the learning rate to shrink and becoming infinitesimally small."
+  },
+  {
+    "objectID": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#gradient-clipping",
+    "href": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#gradient-clipping",
+    "title": "Improving Training Stability for Multitask Ranking Models in Recommender Systems",
+    "section": "Gradient Clipping",
+    "text": "Gradient Clipping\nIn SGD, and other optimizers, the gradients can be clipped to fall within a given range:\n\nIn the caricature instability in Figure 3, part of the problem are the exploding gradients; gradient clipping shortcuts that aspect."
+  },
+  {
+    "objectID": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#adaptive-gradient-clipping-adagrad",
+    "href": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#adaptive-gradient-clipping-adagrad",
+    "title": "Improving Training Stability for Multitask Ranking Models in Recommender Systems",
+    "section": "Adaptive Gradient Clipping, AdaGrad",
+    "text": "Adaptive Gradient Clipping, AdaGrad\nThe issue with gradient clipping is that training is “extremely sensitive to the choice of the clipping threshold 𝜆, requiring fine-grained tuning for different layers. What’s worse, the threshold 𝜆 needs to be re-tuned when model structure, batch size, or learning rate is changed.”\nThe update should never be too large compared to the values they are updating. To ensure this, the gradients can be clipped in a parameter dependent way:\n\nThe largest update is a fraction of the current weight. This adapts the clipping to all model layers without fine-tuning."
+  },
+  {
+    "objectID": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#lamb-layer-wise-adaptive-moments-b",
+    "href": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#lamb-layer-wise-adaptive-moments-b",
+    "title": "Improving Training Stability for Multitask Ranking Models in Recommender Systems",
+    "section": "LAMB, Layer-wise Adaptive Moments (B?)",
+    "text": "LAMB, Layer-wise Adaptive Moments (B?)\nInspired by Accurate, Large Minibatch SGD: Training ImageNet in 1 Hour that introduced LARS, in Large Batch Optimization for Deep Learning: Training BERT in 76 minute LAMB was introduced.\nSynchronous SGD on large minibatches benefits from reduced variance of the stochastic gradients used in SGD. This allows one to use much larger learning rates in SGD, typically of the order square root of the minibatch size. Surprisingly, recent works have demonstrated that up to certain minibatch sizes, linear scaling of the learning rate with minibatch size can be used to further speed up the training [referring to LARS].\n–from LAMB\nThe update in the LAMB optimizer doesn’t depend at all on the magnitude of the gradient. Instead, the update is scaled to the magnitude of the parameter:\n\n\nYes, but\nIn The Marginal Value of Adaptive Gradient Methods in Machine Learning, they find that SGD and SGD with momentum converge to solutions with lower generalization error even when the adaptive optimizers converge to lower training loss."
+  },
+  {
+    "objectID": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#warm-start",
+    "href": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#warm-start",
+    "title": "Improving Training Stability for Multitask Ranking Models in Recommender Systems",
+    "section": "Warm Start",
+    "text": "Warm Start\nWhen the parameters are changing rapidly, e.g. at the start of training, a large learning rate can lead to instabilities. First noted in the ResNet paper (?) and theoretically motivated later, an initial “warm-up” period of slower learning can ease the network into a better local region of parameter space."
+  },
+  {
+    "objectID": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#a-few-other-optimizers",
+    "href": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#a-few-other-optimizers",
+    "title": "Improving Training Stability for Multitask Ranking Models in Recommender Systems",
+    "section": "A few other optimizers",
+    "text": "A few other optimizers\nThe authors of this paper had better success with AdaGrad than more modern and common optimizers. To round out these notes let’s review a few of these:\n\nAdam tracks first and second moments of the gradients, corrects for bias, and updates as\n\nWorth mentioning in the context of this paper is Adamax/AdamaxW which is Adam/AdamW but with infinity norms.\nAdafacter proposes an approximation of the accumulator that’s cheaper to track than the full G and introduce update clipping\nAdaBelief interprets the moving average of the gradient as the prediction of the gradient at the next time step: if the observed gradient greatly deviates from the prediction, the current observation isn’t trusted and scaled down more; if the observed gradient is close to the prediction, it’s trusted and not scaled down as much.\nRMSProp, first proposed by Geoffrey Hinton in a coursera lecture, came before Adam and after AdaGrad. It tracks ~vt same as Adam and addresses the diminishing learning rate in AdaGrad.\n\nLion, (EvoLved Sign Momentum), discovered through symbolic program search (along with the acronym), tracks momentum only to train as good/better models faster in image classification, vision-language contrastive learning, diffusion models and various language models."
+  },
+  {
+    "objectID": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#clippy-this-paper",
+    "href": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#clippy-this-paper",
+    "title": "Improving Training Stability for Multitask Ranking Models in Recommender Systems",
+    "section": "Clippy, this paper",
+    "text": "Clippy, this paper\nInstead of clipping gradients, Clippy limits the magnitude of updates directly. Noting that instabilities can start in one channel and then propagate to others, instead of the usual L2 norm they use L∞, the infinity norm (aka, the maximum):\n\nThe clipping is per layer, not global, so this max picks out the largest gradient per layer to normalize the updates across that layer."
+  },
+  {
+    "objectID": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#but-gradient-descent-the-ultimate-optimizer",
+    "href": "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html#but-gradient-descent-the-ultimate-optimizer",
+    "title": "Improving Training Stability for Multitask Ranking Models in Recommender Systems",
+    "section": "But: Gradient Descent: The Ultimate Optimizer",
+    "text": "But: Gradient Descent: The Ultimate Optimizer\nInstead of tracking gradients and updates and modifying a fixed learning rate, the learning rate can be optimized alongside the model. This introduces a meta-learning rate as a new parameter but it too can be meta-meta-learning, introducing a meta-meta-learning rate. “ The possibility of doing so recursively ad infinitum to obtain an optimization algorithm that is highly robust to the human-chosen hyperparameter was hypothesized by Baydin et al. (2018). They provide a sneaky code update applicable to all optimizers (in pytorch) and test their stacked optimizers on a single layer network with MNIST, the ResNet50 model with ImageNet and a character-level RNN on the Tolstoy dataset: in all but extreme cases, their final test error was comparable or better than hand-tuned training schedules.\nIt would be very interesting to test the stacked optimizers on the toy multitask ranking models of our current paper."
+  },
+  {
     "objectID": "posts/reading-recommendations.html",
     "href": "posts/reading-recommendations.html",
     "title": "References for Data, ML, Math etc.",
     "section": "",
     "text": "Excellent posts:\n\nRules of ML from Google\nA Recipe for Training Neural Networks by Andrej Karpathy\n\nI learn best from reading, not coursera-like videos (though who didn’t enjoy Andrew Ng’s course?). Papers are important to keep up with the latest, but to fill in the background usually left unexplained and to expose the bits I never knew I didn’t know: I turn to textbooks.\nStarting out, I read a bunch of textbooks and as far as I know these are still good starting points:\n\nNeural Networks and Deep Learning by Michael Nielsen: back prop, loss functions, problems when neural networks go deep\nMachine Learning Yearning by Andrew Ng: how to train a model and ensure it works in the real world\nHands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow by Aurélien Géron: it’s all in the title, great book\n\nOn more specific topics, I can recommend:\n\nInterpretable Machine Learning by Christoph Molnar: discusses the inherently explainable models and how to interpret black-box models.\nReinforcement Learning by Sutton and Barto: a slow building up of concepts to some of the most powerful RL algorithms and the language to understand the latest research.\nDesigning Data-Intensive Applications by Martin Kleppman: brilliant book not specifically about data science. Read this to understand the difficulties navigating big data.\nMining of Massive Datasets by Rajaraman and Ullman: a surprising deep and thorough book on scaling algorithms to big data, covering map-reduce, stream processing, PageRank and recommenders at scale.\n\nBeyond purely technical topics, I also suggest:\n\nUX for beginners as a quick intro to an important role in product development that (can) interact with data scientists\nWeapons of Math Destruction on the damage of unacknowledged bias in models\nGödel’s Proof because it’s linked to the “No free lunch” theorem and generally mind-blowing"
+  },
+  {
+    "objectID": "posts/Free Lunch.html",
+    "href": "posts/Free Lunch.html",
+    "title": "There ain’t no such thing as a free lunch",
+    "section": "",
+    "text": "[No Free Lunch Theorems for Optimization]https://georgemaciunas.com/wp-content/uploads/2012/07/Wolpert_NLFoptimization-1.pdf, D.H. Wolpert, W.G. Macready.\nA bar offering a free lunch will likely charge more for drinks. If an algorithm performs well on a certain class of problems then it necessarily pays for that with degraded performance on the set of all remaining problems.\nTheorem 1 states that for any two algorithms the sum of the probability of a given sample over all loss functions is equal. Or:\nFor any pair of algorithms, the average expected performance over all cost functions is equal.\n“If an algorithm performs better than random search on some class of problems then in must perform worse than random search on the remaining problems. Thus comparisons reporting the performance of a particular algorithm with a particular parameter setting on a few sample problems are of limited utility. While such results do indicate behavior on the narrow range of problems considered, one should be very wary of trying to generalize those results to other problems.”\nThis allows still for problems to exist such that algorithm 1 fares much better than algorithm 2 where no problems exist in which 2 performs much better than 1; there must be many many problems for which 2 does (only) somewhat better than 1 for balance out."
+  },
+  {
+    "objectID": "posts/Free Lunch.html#applications",
+    "href": "posts/Free Lunch.html#applications",
+    "title": "There ain’t no such thing as a free lunch",
+    "section": "Applications!",
+    "text": "Applications!\n\nInformation Theory\nTheorem 3: What fraction of problems yield the same sample losses? (Independent of algorithm according to NFL!) this is related to the entropy of the distribution of sample losses.\nTheorem 4: Given a specific problem (actually, only the distribution of losses it gives), what fraction of algorithms will yield a particular sample loss distribution? This is related to the Kullback–Liebler distance between the distributions of the problem and the sample losses.\n\n\nPerformance Metrics\nTheorem 7: For a given problem with m oracle evaluations, the fraction of algorithms that find a minimum (wlog) &gt; eps is a simple function of fraction of cost evaluations over the entire search domain that are &gt; eps.\nOne can then compare an algorithm to all others (including random): * given m oracle evaluations on a particular run, what fraction of algorithms would have found a larger minimum (done worse)? * given m steps, how many further k steps until the algorithm finds a smaller minimum? how does this compare with the expected number of points searched at random? In particular, the expected random search takes 1/z(d) - 1 steps, where z(d) is the fraction of the remaining search space with a loss lower than the current loss. * how does the algorithm compare with random throughout the entirety of its search? are there “hard/slow” parts?"
+  },
+  {
+    "objectID": "posts/Free Lunch.html#notation",
+    "href": "posts/Free Lunch.html#notation",
+    "title": "There ain’t no such thing as a free lunch",
+    "section": "Notation",
+    "text": "Notation\nx is a point in the search space\ny is the cost\nf is the loss function such that f(x) = y\nThe time-ordered “sample” of size m (that is, a search with m distinct visited points, wasteful duplication of oracle calls are ignored) is given by {(d_m^x(0), d_m^y(0)), … ((d_m^x(m), d_my(m))}. d_mx(i) indicates the X value of the ith successive element in a sample of size m and d_m^y(i) is its associated cost or Y value.\nP(f) is a prior distribution encoding what we know for a given class of problem about the behaviour of its cost function.\nP(d_m^y | f, m, a) is the probability of a given sample of size m for loss function f directed by algorithm a"
   },
   {
     "objectID": "posts/data-where/index.html",
@@ -207,6 +536,6 @@
     "href": "index.html",
     "title": "Lara Thompson:: **M**L/**A**I/**D**ata **Scientist**",
     "section": "",
-    "text": "Studied physics, math, ~neuroscience; now do ML. \nBoulder and run, read a lot, write some, always learning.\n\n  ML because it felt natural after physics, closer to what matters in the day to day, exciting in how powerful it can be, challenging in how badly it can fail;\n  mixing math, programming, and problem solving to create products and services that help people rather than manipulate or distract them, \n  and build technology that means less waste instead of yet more stuff.\n\n\n\n\n\n\nI post stuff sporadically: notes for papers we’re reading at the Learn Data Science Meetup; data analysis of something fun; write up of concepts I worked through.\n\n\n\n\n\n2024 Update\n\n\nbest laid plans…\n\n\nRandom list of updates and imminent plans.\n\n\n\n\n\nOct 19, 2024\n\n\n2 min\n\n\n\n\n\n\n\nEmbeddings\n\n\nThey aren’t just for text\n\n\nSome introductory notes on embeddings as pre-reading for our data science paper reading group.\n\n\n\n\n\nJul 12, 2023\n\n\n5 min\n\n\n\n\n\n\n\nHow Bad is Top-K Recommendation under Competing Content Creators?\n\n\nIntroduction for Newbies and Summary for the Rushed\n\n\nBackround notes on recommenders from a game theory / bandit learning perspective to help people understand this week’s paper.\n\n\n\n\n\nJul 4, 2023\n\n\n8 min\n\n\n\n\n\n\n\nAssess Yourself for Better Bouldering\n\n\nData-Backed Training Advice\n\n\nAnalysis of a climbing survey dataset to test the wisdom of the crowd in how best to improve at climbing and assess training progress.\n\n\n\n\n\nDec 15, 2021\n\n\n33 min\n\n\n\n\n\n\n\nData is everywhere!\n\n\nUh, where again?\n\n\nLast night I was on a data science career panel (of awesome ladies!) as part the Vancouver Datajam 2020 and I promised (as I’ve been meaning to do for a while…) to post a list of data resources.\n\n\n\n\n\nSep 13, 2020\n\n\n7 min\n\n\n\n\n\n\n\nLinear Regression with Uncertainty\n\n\n\n\n\nEveryone uses linear regression whether they admit it or not. Here I review the math behind it with estimates of uncertainty.\n\n\n\n\n\nSep 1, 2020\n\n\n7 min\n\n\n\n\n\n\n\nReferences for Data, ML, Math etc.\n\n\n\n\n\nSome dated and more or less relevant references to get started in ML.\n\n\n\n\n\nSep 19, 2019\n\n\n2 min\n\n\n\n\n\n\n\nLearning to learn without forgetting: a summary\n\n\n\n\n\nBullet-point form summary of this excellent paper. Contributions include a memory store of past examples; balances learning of new updates with recall of these stored examples; continual (online) learning in supervised and reinforcement learning settings.\n\n\n\n\n\nAug 28, 2019\n\n\n5 min\n\n\n\n\n\n\nNo matching items"
+    "text": "Studied physics, math, ~neuroscience; now do ML. \nBoulder and run, read a lot, write some, always learning.\n\n  ML because it felt natural after physics, closer to what matters in the day to day, exciting in how powerful it can be, challenging in how badly it can fail;\n  mixing math, programming, and problem solving to create products and services that help people rather than manipulate or distract them, \n  and build technology that means less waste instead of yet more stuff.\n\n\n\n\n\n\nI post stuff sporadically: notes for papers we’re reading at the Learn Data Science Meetup; data analysis of something fun; write up of concepts I worked through.\n\n\n\n\n\n2024 Update\n\n\nbest laid plans…\n\n\nRandom list of updates and imminent plans.\n\n\n\n\n\nOct 19, 2024\n\n\n2 min\n\n\n\n\n\n\n\nImproving Training Stability for Multitask Ranking Models in Recommender Systems\n\n\neg. Making it easier to train complex models fast\n\n\nNotes for a Data Science Meetup, background info for the Clippy paper.\n\n\n\n\n\nAug 14, 2023\n\n\n6 min\n\n\n\n\n\n\n\nEmbeddings\n\n\nThey aren’t just for text\n\n\nSome introductory notes on embeddings as pre-reading for our data science paper reading group.\n\n\n\n\n\nJul 12, 2023\n\n\n5 min\n\n\n\n\n\n\n\nHow Bad is Top-K Recommendation under Competing Content Creators?\n\n\nIntroduction for Newbies and Summary for the Rushed\n\n\nBackround notes on recommenders from a game theory / bandit learning perspective to help people understand this week’s paper.\n\n\n\n\n\nJul 4, 2023\n\n\n8 min\n\n\n\n\n\n\n\nVALL-E Notes\n\n\n\n\n\nNotes for the Data Science Meetup discussing VALL-E.\n\n\n\n\n\nMar 19, 2023\n\n\n9 min\n\n\n\n\n\n\n\nAssess Yourself for Better Bouldering\n\n\nData-Backed Training Advice\n\n\nAnalysis of a climbing survey dataset to test the wisdom of the crowd in how best to improve at climbing and assess training progress.\n\n\n\n\n\nDec 15, 2021\n\n\n33 min\n\n\n\n\n\n\n\nNotes on ETA Prediction with GNNs in GMaps\n\n\n\n\n\nBackground and paper notes for the Data Science Meetup.\n\n\n\n\n\nDec 1, 2021\n\n\n5 min\n\n\n\n\n\n\n\nData is everywhere!\n\n\nUh, where again?\n\n\nLast night I was on a data science career panel (of awesome ladies!) as part the Vancouver Datajam 2020 and I promised (as I’ve been meaning to do for a while…) to post a list of data resources.\n\n\n\n\n\nSep 13, 2020\n\n\n7 min\n\n\n\n\n\n\n\nLinear Regression with Uncertainty\n\n\n\n\n\nEveryone uses linear regression whether they admit it or not. Here I review the math behind it with estimates of uncertainty.\n\n\n\n\n\nSep 1, 2020\n\n\n7 min\n\n\n\n\n\n\n\nReferences for Data, ML, Math etc.\n\n\n\n\n\nSome dated and more or less relevant references to get started in ML.\n\n\n\n\n\nSep 19, 2019\n\n\n2 min\n\n\n\n\n\n\n\nVanillaNet Notes\n\n\n\n\n\nNotes for the Data Science Meetup discussing VanillaNet.\n\n\n\n\n\nSep 19, 2019\n\n\n14 min\n\n\n\n\n\n\n\nLearning to learn without forgetting: a summary\n\n\n\n\n\nBullet-point form summary of this excellent paper. Contributions include a memory store of past examples; balances learning of new updates with recall of these stored examples; continual (online) learning in supervised and reinforcement learning settings.\n\n\n\n\n\nAug 28, 2019\n\n\n5 min\n\n\n\n\n\n\n\nThere ain’t no such thing as a free lunch\n\n\n\n\n\nNotes on the No Free Lunch Theorems for Optimization paper.\n\n\n\n\n\nJun 20, 2018\n\n\n5 min\n\n\n\n\n\n\nNo matching items"
   }
 ]

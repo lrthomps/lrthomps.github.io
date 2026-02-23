@@ -3,13 +3,18 @@
     "listing": "/index.html",
     "items": [
       "/posts/2024-plans.html",
+      "/posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html",
       "/posts/embeddings/index.html",
       "/posts/how-bad-is-top-K/index.html",
+      "/posts/Summary_ VALL-E.html",
       "/posts/assess-yourself-for-better-bouldering/index.html",
+      "/posts/Notes on ETA Prediction with GNNs in GMaps.html",
       "/posts/data-where/index.html",
       "/posts/linear-regression-with-uncertainty/index.html",
       "/posts/reading-recommendations.html",
-      "/posts/learning-to-learn-without-forgetting-summary.html"
+      "/posts/VanillaNet Notes.html",
+      "/posts/learning-to-learn-without-forgetting-summary.html",
+      "/posts/Free Lunch.html"
     ]
   }
 ]

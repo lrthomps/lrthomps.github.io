@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Lara Thompson">
+<meta name="dcterms.date" content="2018-06-20">
+<meta name="description" content="Notes on the No Free Lunch Theorems for Optimization paper.">
 
-<title>LT:: MAD Scientist – Lara Thompson:: ML/AI/Data Scientist</title>
+<title>There ain’t no such thing as a free lunch – Lara Thompson:: **M**L/**A**I/**D**ata **Scientist**</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +26,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,77 +71,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-posts .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-description','listing-reading-time',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-posts'] = new List('listing-posts', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Lara Thompson:: <strong>M</strong>L/<strong>A</strong>I/<strong>D</strong>ata <strong>Scientist</strong></span>
     </a>
   </div>
@@ -151,7 +94,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">CV-ish</span></a>
   </li>  
   <li class="nav-item compact">
@@ -178,342 +121,98 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page">
+      <h1 class="title">There ain’t no such thing as a free lunch</h1>
+                  <div>
+        <div class="description">
+          Notes on the No Free Lunch Theorems for Optimization paper.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">machine learning</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Lara Thompson </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">June 20, 2018</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(13)</span></div><div class="category" data-category="climbing">climbing <span class="quarto-category-count">(1)</span></div><div class="category" data-category="datasets">datasets <span class="quarto-category-count">(1)</span></div><div class="category" data-category="machine learning">machine learning <span class="quarto-category-count">(12)</span></div><div class="category" data-category="other">other <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content page-columns page-full column-page-left" id="quarto-document-content">
-
-
-<div class="column-body-outset-left centered">
-<img src="avatar.jpg" class="big-round" alt="">
-<div>
-<p>Studied physics, math, ~neuroscience; now do ML.</p> 
-<p>Boulder and run, read a lot, write some, always learning.</p>
-<p class="justified">
-  ML because it felt natural after physics, closer to what matters in the day to day, exciting in how powerful it can be, challenging in how badly it can fail;
-  mixing math, programming, and problem solving to create products and services that help people rather than manipulate or distract them, 
-  and build technology that means less waste instead of yet more stuff.
-</p>
-</div>
-</div>
-
-
-<div class="column-body">
-<p>I post stuff sporadically: notes for papers we’re reading at the <a href="https://www.meetup.com/learndatascience/">Learn Data Science Meetup</a>; data analysis of something fun; write up of concepts I worked through.</p>
-<div id="listing-posts" class="quarto-listing quarto-listing-container-default">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="other" data-listing-date-sort="1729321200000" data-listing-file-modified-sort="1769550207463" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="368">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2024-plans.html" class="no-external">2024 Update</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/2024-plans.html" class="no-external">best laid plans…</a>
-</div>
-<div class="listing-description">
-<a href="./posts/2024-plans.html" class="no-external">Random list of updates and imminent plans.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/2024-plans.html" class="no-external">
-<div class="listing-date">
-Oct 19, 2024
-</div>
-<div class="listing-reading-time">
-2 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="machine learning" data-listing-date-sort="1691996400000" data-listing-file-modified-sort="1771874787863" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1124">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html" class="no-external">Improving Training Stability for Multitask Ranking Models in Recommender Systems</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html" class="no-external">eg. Making it easier to train complex models fast</a>
-</div>
-<div class="listing-description">
-<a href="./posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html" class="no-external">Notes for a Data Science Meetup, background info for the Clippy paper.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.html" class="no-external">
-<div class="listing-date">
-Aug 14, 2023
-</div>
-<div class="listing-reading-time">
-6 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="machine learning" data-listing-date-sort="1689145200000" data-listing-file-modified-sort="1769550207480" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="844">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/embeddings/index.html" class="no-external">Embeddings</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/embeddings/index.html" class="no-external">They aren’t just for text</a>
-</div>
-<div class="listing-description">
-<a href="./posts/embeddings/index.html" class="no-external">Some introductory notes on embeddings as pre-reading for our data science paper reading group.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/embeddings/index.html" class="no-external">
-<div class="listing-date">
-Jul 12, 2023
-</div>
-<div class="listing-reading-time">
-5 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="machine learning" data-listing-date-sort="1688454000000" data-listing-file-modified-sort="1769550207482" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="8" data-listing-word-count-sort="1503">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/how-bad-is-top-K/index.html" class="no-external">How Bad is Top-K Recommendation under Competing Content Creators?</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/how-bad-is-top-K/index.html" class="no-external">Introduction for Newbies and Summary for the Rushed</a>
-</div>
-<div class="listing-description">
-<a href="./posts/how-bad-is-top-K/index.html" class="no-external">Backround notes on recommenders from a game theory / bandit learning perspective to help people understand this week’s paper.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/how-bad-is-top-K/index.html" class="no-external">
-<div class="listing-date">
-Jul 4, 2023
-</div>
-<div class="listing-reading-time">
-8 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="machine learning" data-listing-date-sort="1679209200000" data-listing-file-modified-sort="1771876291508" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1686">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Summary_ VALL-E.html" class="no-external">VALL-E Notes</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Summary_ VALL-E.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Summary_ VALL-E.html" class="no-external">Notes for the Data Science Meetup discussing VALL-E.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Summary_ VALL-E.html" class="no-external">
-<div class="listing-date">
-Mar 19, 2023
-</div>
-<div class="listing-reading-time">
-9 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="machine learning,climbing" data-listing-date-sort="1639555200000" data-listing-file-modified-sort="1769550207474" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="33" data-listing-word-count-sort="6564">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/assess-yourself-for-better-bouldering/index.html" class="no-external">Assess Yourself for Better Bouldering</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/assess-yourself-for-better-bouldering/index.html" class="no-external">Data-Backed Training Advice</a>
-</div>
-<div class="listing-description">
-<a href="./posts/assess-yourself-for-better-bouldering/index.html" class="no-external">Analysis of a climbing survey dataset to test the wisdom of the crowd in how best to improve at climbing and assess training progress.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/assess-yourself-for-better-bouldering/index.html" class="no-external">
-<div class="listing-date">
-Dec 15, 2021
-</div>
-<div class="listing-reading-time">
-33 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-categories="machine learning" data-listing-date-sort="1638345600000" data-listing-file-modified-sort="1771876385180" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="942">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Notes on ETA Prediction with GNNs in GMaps.html" class="no-external">Notes on ETA Prediction with GNNs in GMaps</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Notes on ETA Prediction with GNNs in GMaps.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Notes on ETA Prediction with GNNs in GMaps.html" class="no-external">Background and paper notes for the Data Science Meetup.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Notes on ETA Prediction with GNNs in GMaps.html" class="no-external">
-<div class="listing-date">
-Dec 1, 2021
-</div>
-<div class="listing-reading-time">
-5 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="machine learning,datasets" data-listing-date-sort="1599980400000" data-listing-file-modified-sort="1769550207479" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1208">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/data-where/index.html" class="no-external">Data is everywhere!</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/data-where/index.html" class="no-external">Uh, where again?</a>
-</div>
-<div class="listing-description">
-<a href="./posts/data-where/index.html" class="no-external">Last night I was on a data science career panel (of awesome ladies!) as part the Vancouver Datajam 2020 and I promised (as I’ve been meaning to do for a while…) to post a list of data resources.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/data-where/index.html" class="no-external">
-<div class="listing-date">
-Sep 13, 2020
-</div>
-<div class="listing-reading-time">
-7 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8" data-categories="machine learning" data-listing-date-sort="1598943600000" data-listing-file-modified-sort="1769550207488" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1306">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/linear-regression-with-uncertainty/index.html" class="no-external">Linear Regression with Uncertainty</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/linear-regression-with-uncertainty/index.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/linear-regression-with-uncertainty/index.html" class="no-external">Everyone uses linear regression whether they admit it or not. Here I review the math behind it with estimates of uncertainty.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/linear-regression-with-uncertainty/index.html" class="no-external">
-<div class="listing-date">
-Sep 1, 2020
-</div>
-<div class="listing-reading-time">
-7 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9" data-categories="machine learning" data-listing-date-sort="1568876400000" data-listing-file-modified-sort="1769550207488" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="301">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/reading-recommendations.html" class="no-external">References for Data, ML, Math etc.</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/reading-recommendations.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/reading-recommendations.html" class="no-external">Some dated and more or less relevant references to get started in ML.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/reading-recommendations.html" class="no-external">
-<div class="listing-date">
-Sep 19, 2019
-</div>
-<div class="listing-reading-time">
-2 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10" data-categories="machine learning" data-listing-date-sort="1568876400000" data-listing-file-modified-sort="1771876365728" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="14" data-listing-word-count-sort="2662">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/VanillaNet Notes.html" class="no-external">VanillaNet Notes</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/VanillaNet Notes.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/VanillaNet Notes.html" class="no-external">Notes for the Data Science Meetup discussing VanillaNet.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/VanillaNet Notes.html" class="no-external">
-<div class="listing-date">
-Sep 19, 2019
-</div>
-<div class="listing-reading-time">
-14 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="11" data-categories="machine learning" data-listing-date-sort="1566975600000" data-listing-file-modified-sort="1769550207487" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="805">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/learning-to-learn-without-forgetting-summary.html" class="no-external">Learning to learn without forgetting: a summary</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/learning-to-learn-without-forgetting-summary.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/learning-to-learn-without-forgetting-summary.html" class="no-external">Bullet-point form summary of this excellent paper. Contributions include a memory store of past examples; balances learning of new updates with recall of these stored examples; continual (online) learning in supervised and reinforcement learning settings.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/learning-to-learn-without-forgetting-summary.html" class="no-external">
-<div class="listing-date">
-Aug 28, 2019
-</div>
-<div class="listing-reading-time">
-5 min
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="12" data-categories="machine learning" data-listing-date-sort="1529478000000" data-listing-file-modified-sort="1771875928225" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="897">
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/Free Lunch.html" class="no-external">There ain’t no such thing as a free lunch</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/Free Lunch.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/Free Lunch.html" class="no-external">Notes on the No Free Lunch Theorems for Optimization paper.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/Free Lunch.html" class="no-external">
-<div class="listing-date">
-Jun 20, 2018
-</div>
-<div class="listing-reading-time">
-5 min
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</div>
+<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
 
 
 
+
+
+<p>[No Free Lunch Theorems for Optimization]<a href="https://georgemaciunas.com/wp-content/uploads/2012/07/Wolpert_NLFoptimization-1.pdf" class="uri">https://georgemaciunas.com/wp-content/uploads/2012/07/Wolpert_NLFoptimization-1.pdf</a>, D.H. Wolpert, W.G. Macready.</p>
+<p>A bar offering a free lunch will likely charge more for drinks. If an algorithm performs well on a certain class of problems then it necessarily pays for that with degraded performance on the set of all remaining problems.</p>
+<p><em>Theorem 1</em> states that for any two algorithms the sum of the probability of a given sample over all loss functions is equal. Or:</p>
+<p><strong>For any pair of algorithms, the average expected performance over all cost functions is equal.</strong></p>
+<p><em>“If an algorithm performs better than random search on some class of problems then in must perform worse than random search on the remaining problems. Thus comparisons reporting the performance of a particular algorithm with a particular parameter setting on a few sample problems are of limited utility. While such results do indicate behavior on the narrow range of problems considered, one should be very wary of trying to generalize those results to other problems.”</em></p>
+<p>This allows still for problems to exist such that algorithm 1 fares much better than algorithm 2 where no problems exist in which 2 performs much better than 1; there must be many many problems for which 2 does (only) somewhat better than 1 for balance out.</p>
+<section id="time-dependence" class="level4">
+<h4 class="anchored" data-anchor-id="time-dependence">Time dependence</h4>
+<p><em>Theorem 2</em> extends this to time-varying loss functions replacing the sum over loss functions to a sum over time. I consider this version to understand NFL for machine learning problems: the set of examples can be imagined to grow with “time”; the training set is a minimization problem for a particular loss function, extending to more and more examples is effectively evolving loss function with those additions. #### Non-flat priors <em>P(f)</em> If we’re worried that a flat distribution over problems is unrealistic (not all problems are equally likely1), no worries because the proof extends to a variety of non-flat priors <em>P(f)</em>: this can be interpreted as averaging over classes of algorithms rather than all algorithms. The sum over <em>f</em> becomes weighted by the prior <em>P(f)</em>. This can be restated as an inner product in <em>f</em> space. Geometrically, an algorithm performs well for a given class of problems or is well <em>matched</em> if the vectors <em>P(f)</em> and <em>v(f) = P(d_m^y | f, m, a)</em> are co-linear. The authors show that the magnitude of <em>v(f)</em> is independent of algorithm <em>a</em>, so the <em>match</em> is detemined solely by the alignment of the algorithm to problem space.</p>
+</section>
+<section id="stochastic-algorithms" class="level4">
+<h4 class="anchored" data-anchor-id="stochastic-algorithms">Stochastic algorithms</h4>
+<p>Can be extended also to stochastic algorithms.</p>
+</section>
+<section id="best-algorithm-for-a-fixed-problem" class="level4">
+<h4 class="anchored" data-anchor-id="best-algorithm-for-a-fixed-problem">Best algorithm for a fixed problem?</h4>
+<p>Suppose we test two algorithms on a subset to compare them. Should be chose the one with lower loss? the one with higher loss?</p>
+<p><em>Theorem 10</em>: There is no a priori justification for using any particular choosing procedure.</p>
+<p><em>“If one restricts [consideration] to only be over those algorithms that are a good match to the [current problem], then it is often the case that “stupid” choosing procedures (pick the worse performer on the subset) outperform “intelligent” ones (versus picking the better performer).”</em></p>
+<p>Another paper is focused on supervised learning: <em>The Lack of A Priori Distinctions Between Learning Algorithms</em> by David H. Wolpert, Neural Computation <strong>8</strong>, 1341-1390 (1996). In this paper, the equivalent NFL is that “there are as many targets for which it is preferable to choose between two learning algorithms based on which has larger cross-validation error (“anti-cross- validation”) as based on which has smaller cross-validation error.”</p>
+</section>
+<section id="applications" class="level2">
+<h2 class="anchored" data-anchor-id="applications">Applications!</h2>
+<section id="information-theory" class="level3">
+<h3 class="anchored" data-anchor-id="information-theory">Information Theory</h3>
+<p><em>Theorem 3</em>: What fraction of problems yield the same sample losses? (Independent of algorithm according to NFL!) this is related to the entropy of the distribution of sample losses.</p>
+<p><em>Theorem 4</em>: Given a specific problem (actually, only the distribution of losses it gives), what fraction of algorithms will yield a particular sample loss distribution? This is related to the Kullback–Liebler distance between the distributions of the problem and the sample losses.</p>
+</section>
+<section id="performance-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="performance-metrics">Performance Metrics</h3>
+<p><em>Theorem 7</em>: For a given problem with <em>m</em> oracle evaluations, the fraction of algorithms that find a minimum (wlog) &gt; <em>eps</em> is a simple function of fraction of cost evaluations over the entire search domain that are &gt; <em>eps</em>.</p>
+<p>One can then compare an algorithm to all others (including random): * given <em>m</em> oracle evaluations on a particular run, what fraction of algorithms would have found a larger minimum (done worse)? * given <em>m</em> steps, how many further <em>k</em> steps until the algorithm finds a smaller minimum? how does this compare with the expected number of points searched at random? In particular, the expected random search takes <em>1/z(d) - 1</em> steps, where <em>z(d)</em> is the fraction of the remaining search space with a loss lower than the current loss. * how does the algorithm compare with random throughout the entirety of its search? are there “hard/slow” parts?</p>
+</section>
+</section>
+<section id="notation" class="level2">
+<h2 class="anchored" data-anchor-id="notation">Notation</h2>
+<p><em>x</em> is a point in the search space</p>
+<p><em>y</em> is the cost</p>
+<p><em>f</em> is the loss function such that <em>f(x) = y</em></p>
+<p>The time-ordered “sample” of size <em>m</em> (that is, a search with <em>m</em> distinct visited points, wasteful duplication of oracle calls are ignored) is given by <em>{(d_m^x(0), d_m^y(0)), … ((d_m^x(m), d_m<sup>y(m))}<em>. </em>d_m</sup>x(i)</em> indicates the <em>X</em> value of the <em>i</em>th successive element in a sample of size <em>m</em> and <em>d_m^y(i)</em> is its associated cost or <em>Y</em> value.</p>
+<p><em>P(f)</em> is a prior distribution encoding what we know for a given class of problem about the behaviour of its cost function.</p>
+<p><em>P(d_m^y | f, m, a)</em> is the probability of a given sample of size <em>m</em> for loss function <em>f</em> directed by algorithm <em>a</em></p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

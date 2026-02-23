@@ -43,5 +43,20 @@
   },
   "posts/linear-regression-with-uncertainty/index.qmd": {
     "index.html": "58b76598"
+  },
+  "posts/Summary_ VALL-E.md": {
+    "Summary_ VALL-E.html": "1d4a6024"
+  },
+  "posts/VanillaNet Notes.md": {
+    "VanillaNet Notes.html": "94c9c5ac"
+  },
+  "posts/Notes on Improving Training Stability for Multitask Ranking Models in RS.md": {
+    "Notes on Improving Training Stability for Multitask Ranking Models in RS.html": "f462d024"
+  },
+  "posts/Notes on ETA Prediction with GNNs in GMaps.md": {
+    "Notes on ETA Prediction with GNNs in GMaps.html": "b0b7eb82"
+  },
+  "posts/Free Lunch.md": {
+    "Free Lunch.html": "316a8a26"
   }
 }
