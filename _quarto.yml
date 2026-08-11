@@ -12,8 +12,7 @@ website:
         href: https://github.com/lrthomps
       - icon: linkedin
         href: https://www.linkedin.com/in/lara-r-thompson/
-      - icon: instagram
-        href: https://www.instagram.com/lrthomps/
+
 format:
   html:
     theme: 
