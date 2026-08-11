@@ -4,6 +4,7 @@ project:
   
 website:
   title: "Lara Thompson:: **M**L/**A**I/**D**ata **Scientist**"
+  favicon: favicon.png
   navbar:
     right:
       - about.qmd
