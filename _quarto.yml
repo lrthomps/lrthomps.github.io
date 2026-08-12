@@ -3,7 +3,7 @@ project:
   output-dir: docs
   
 website:
-  title: "Lara Thompson:: **M**L/**A**I/**D**ata **Scientist**"
+  title: "Lara Thompson:: MLer etc"
   favicon: favicon.png
   navbar:
     right:
