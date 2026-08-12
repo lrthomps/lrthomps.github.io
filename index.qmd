@@ -8,7 +8,7 @@ listing:
     - "title"
   type: default
   fields: [date, title, description, reading-time]
-  categories: true
+  categories: false
   sort-ui: false
   filter-ui: false
 page-layout: full
