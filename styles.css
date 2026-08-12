@@ -1,12 +1,12 @@
 /* css styles */
 
-.content {
-    margin-left:  15%;
-    margin-right: 15%;
-}
-.title-block-header{
-    margin-left:  15%;
-    margin-right: 15%;
+.content,
+.title-block-header {
+    width: 100%;
+    max-width: 1000px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    box-sizing: border-box;
 }
 .big-round {
     width: min(400px, 40vw);
@@ -18,8 +18,8 @@
     margin-right: 30px;
 }
 
-.justified {
-    text-align: justify;
+.centered > div {
+    min-width: 0;
 }
 
 .centered {
@@ -143,9 +143,7 @@ dd {
     }
 
     .big-round {
-        width: min(400px, 90vw);
-        height: auto;
-        aspect-ratio: 1 / 1;
+        width: min(400px, 100%);
         margin: 0 auto 20px;
         display: block;
     }
