@@ -1,6 +1,13 @@
 ---
 title: "CV-ish"
-title-block-banner: false
+pagetitle: "CV-ish"
+format:
+  html:
+    include-after-body:
+      - text: |
+          <style>
+          #title-block-header { display: none !important; }
+          </style>
 ---
 
 ::: {.column-page}
