@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - "favicon.png"
   
 website:
   title: "Lara Thompson:: MLer etc"
