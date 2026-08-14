@@ -18,8 +18,6 @@ format:
       - title-block.html
 ---
 
-:::{.column-body}
-I post stuff sporadically: notes for papers we're reading at the [Data Science Meetup](https://luma.com/learndatascience); data analysis of something fun; write up of concepts I worked through. 
 
 
 :::{#posts}
