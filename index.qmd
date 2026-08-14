@@ -17,7 +17,7 @@ format:
     template-partials: 
       - title-block.html
 ---
-
+:::{.column-body}
 
 
 :::{#posts}
